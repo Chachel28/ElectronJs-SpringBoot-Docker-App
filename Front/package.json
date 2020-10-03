@@ -1,0 +1,14 @@
+{
+  "name": "net.juanxxiii",
+  "version": "1.0.0",
+  "description": "Proyecto de SGE",
+  "main": "main.js",
+  "scripts": {
+    "test": "electron ."
+  },
+  "author": "Alejandro Garcia, Pablo Viniegra, Anibal Gomez",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^10.1.3"
+  }
+}
