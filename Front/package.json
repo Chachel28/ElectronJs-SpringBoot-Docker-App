@@ -4,7 +4,8 @@
   "description": "Proyecto de SGE",
   "main": "main.js",
   "scripts": {
-    "test": "electron ."
+    "test": "electron .",
+    "start": "electron ."
   },
   "author": "Alejandro Garcia, Pablo Viniegra, Anibal Gomez",
   "license": "ISC",
