@@ -1,0 +1,293 @@
+Index: node_modules/login.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- node_modules/login.html	(date 1603389285055)
++++ node_modules/login.html	(date 1603389285055)
+@@ -0,0 +1,36 @@
++<!DOCTYPE html>
++<html lang="en" xmlns="">
++<head>
++    <meta charset="UTF-8">
++    <title>Login</title>
++</head>
++<link rel="stylesheet" href="../dist/css/styles.css">
++<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
++<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
++<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
++<body>
++<div class="sidenav">
++    <div class="login-main-text">
++        <h2>Imagen aquí</h2>
++        <p>Inicia sesión desde aquí para acceder.</p>
++    </div>
++</div>
++<div class="login">
++    <div class="col-md-6 col-sm-12">
++        <div class="login-form">
++            <form>
++                <div class="form-group">
++                    <label>Correo corporativo</label>
++                    <input type="text" class="form-control" placeholder="usuario@ejemplo.com">
++                </div>
++                <div class="form-group">
++                    <label>Contraseña</label>
++                    <input type="password" class="form-control" placeholder="Contraseña">
++                </div>
++                <button type="submit" class="btn btn-black">Acceder</button>
++            </form>
++        </div>
++    </div>
++</div>
++</body>
++</html>
+\ No newline at end of file
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"BranchesTreeState\">\r\n    <expand>\r\n      <path>\r\n        <item name=\"ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n        <item name=\"LOCAL_ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n      </path>\r\n    </expand>\r\n    <select />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"c4a94fa7-29ca-4ed2-b731-5974e470c3a1\" name=\"Default Changelist\" comment=\"\">\r\n      <change afterPath=\"$PROJECT_DIR$/../Back/.idea/encodings.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/../Back/pom.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/../Back/pom.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/index.html\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/index.html\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/main.js\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/main.js\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/package.json\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/package.json\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$/..\" />\r\n  </component>\r\n  <component name=\"MavenImportPreferences\">\r\n    <option name=\"generalSettings\">\r\n      <MavenGeneralSettings>\r\n        <option name=\"mavenHome\" value=\"C:\\Users\\alexg\\AppData\\Local\\JetBrains\\Toolbox\\apps\\IDEA-U\\ch-0\\202.7319.50\\plugins\\maven\\lib\\maven3\" />\r\n      </MavenGeneralSettings>\r\n    </option>\r\n  </component>\r\n  <component name=\"ProjectId\" id=\"1iLSSWmhpc3UFC4tPWwsPCfpKAe\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\">\r\n    <ConfirmationsSetting value=\"2\" id=\"Add\" />\r\n  </component>\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">\r\n    <property name=\"ASKED_ADD_EXTERNAL_FILES\" value=\"true\" />\r\n    <property name=\"RunOnceActivity.OpenProjectViewOnStart\" value=\"true\" />\r\n    <property name=\"WebServerToolWindowFactoryState\" value=\"false\" />\r\n    <property name=\"aspect.path.notification.shown\" value=\"true\" />\r\n    <property name=\"nodejs_package_manager_path\" value=\"npm\" />\r\n    <property name=\"project.structure.last.edited\" value=\"Modules\" />\r\n    <property name=\"project.structure.proportion\" value=\"0.0\" />\r\n    <property name=\"project.structure.side.proportion\" value=\"0.0\" />\r\n  </component>\r\n  <component name=\"RunManager\">\r\n    <configuration default=\"true\" type=\"ArquillianJUnit\" factoryName=\"\" nameIsGenerated=\"true\">\r\n      <option name=\"arquillianRunConfiguration\">\r\n        <value>\r\n          <option name=\"containerStateName\" value=\"\" />\r\n        </value>\r\n      </option>\r\n      <option name=\"TEST_OBJECT\" value=\"class\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"c4a94fa7-29ca-4ed2-b731-5974e470c3a1\" name=\"Default Changelist\" comment=\"\" />\r\n      <created>1601685380105</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1601685380105</updated>\r\n      <workItem from=\"1601685381234\" duration=\"561000\" />\r\n      <workItem from=\"1601734042324\" duration=\"2026000\" />\r\n    </task>\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n    <option name=\"oldMeFiltersMigrated\" value=\"true\" />\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <option name=\"ADD_EXTERNAL_FILES_SILENTLY\" value=\"true\" />\r\n  </component>\r\n  <component name=\"WindowStateProjectService\">\r\n    <state x=\"440\" y=\"114\" key=\"#Project_Structure\" timestamp=\"1601685383826\">\r\n      <screen x=\"0\" y=\"0\" width=\"1920\" height=\"1080\" />\r\n    </state>\r\n    <state x=\"440\" y=\"114\" key=\"#Project_Structure/1920.0.1920.1080/0.0.1920.1080@0.0.1920.1080\" timestamp=\"1601685383826\" />\r\n    <state x=\"342\" y=\"223\" key=\"new project wizard\" timestamp=\"1601685945963\">\r\n      <screen x=\"0\" y=\"0\" width=\"1920\" height=\"1080\" />\r\n    </state>\r\n    <state x=\"342\" y=\"223\" key=\"new project wizard/1920.0.1920.1080/0.0.1920.1080@0.0.1920.1080\" timestamp=\"1601685945963\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/workspace.xml	(revision bc9270f4dae0816e92abcb17074fb39654d11312)
++++ .idea/workspace.xml	(date 1603472764095)
+@@ -6,24 +6,49 @@
+         <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+         <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+       </path>
++      <path>
++        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
++        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
++      </path>
++      <path>
++        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
++        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
++        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
++      </path>
+     </expand>
+-    <select />
++    <select>
++      <path>
++        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
++        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
++        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
++        <item name="BRANCH:origin/anibalDev" type="e8cecc67:BranchNodeDescriptor" />
++      </path>
++    </select>
+   </component>
+   <component name="ChangeListManager">
+     <list default="true" id="c4a94fa7-29ca-4ed2-b731-5974e470c3a1" name="Default Changelist" comment="">
+-      <change afterPath="$PROJECT_DIR$/../Back/.idea/encodings.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/../Back/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Back/pom.xml" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/node_modules/login.html" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/main.js" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/dist/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/dist/css/styles.css" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+     <option name="LAST_RESOLUTION" value="IGNORE" />
++  </component>
++  <component name="FileTemplateManagerImpl">
++    <option name="RECENT_TEMPLATES">
++      <list>
++        <option value="HTML File" />
++      </list>
++    </option>
+   </component>
+   <component name="Git.Settings">
++    <option name="RECENT_BRANCH_BY_REPOSITORY">
++      <map>
++        <entry key="$PROJECT_DIR$/.." value="anibalDev" />
++      </map>
++    </option>
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+   </component>
+   <component name="MavenImportPreferences">
+@@ -43,26 +68,20 @@
+   </component>
+   <component name="PropertiesComponent">
+     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
++    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+     <property name="WebServerToolWindowFactoryState" value="false" />
+     <property name="aspect.path.notification.shown" value="true" />
++    <property name="last_opened_file_path" value="$USER_HOME$/IdeaProjects/PSP_FINAL_1T_AGF" />
+     <property name="nodejs_package_manager_path" value="npm" />
+     <property name="project.structure.last.edited" value="Modules" />
+     <property name="project.structure.proportion" value="0.0" />
+     <property name="project.structure.side.proportion" value="0.0" />
+   </component>
+-  <component name="RunManager">
+-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+-      <option name="arquillianRunConfiguration">
+-        <value>
+-          <option name="containerStateName" value="" />
+-        </value>
+-      </option>
+-      <option name="TEST_OBJECT" value="class" />
+-      <method v="2">
+-        <option name="Make" enabled="true" />
+-      </method>
+-    </configuration>
++  <component name="RecentsManager">
++    <key name="MoveFile.RECENT_KEYS">
++      <recent name="C:\Users\MARY\Documents\GitHub\ProyectoSGE\Front\dist" />
++    </key>
+   </component>
+   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+   <component name="TaskManager">
+@@ -74,6 +93,9 @@
+       <updated>1601685380105</updated>
+       <workItem from="1601685381234" duration="561000" />
+       <workItem from="1601734042324" duration="2026000" />
++      <workItem from="1601737653555" duration="18000" />
++      <workItem from="1603460394235" duration="157000" />
++      <workItem from="1603472732534" duration="32000" />
+     </task>
+     <servers />
+   </component>
+@@ -85,7 +107,24 @@
+       <map>
+         <entry key="MAIN">
+           <value>
+-            <State />
++            <State>
++              <option name="CUSTOM_BOOLEAN_PROPERTIES">
++                <map>
++                  <entry key="Show.Git.Branches" value="true" />
++                </map>
++              </option>
++              <option name="FILTERS">
++                <map>
++                  <entry key="branch">
++                    <value>
++                      <list>
++                        <option value="origin/anibalDev" />
++                      </list>
++                    </value>
++                  </entry>
++                </map>
++              </option>
++            </State>
+           </value>
+         </entry>
+       </map>
+@@ -100,6 +139,22 @@
+       <screen x="0" y="0" width="1920" height="1080" />
+     </state>
+     <state x="440" y="114" key="#Project_Structure/1920.0.1920.1080/0.0.1920.1080@0.0.1920.1080" timestamp="1601685383826" />
++    <state x="456" y="166" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1603387924984">
++      <screen x="0" y="0" width="1366" height="728" />
++    </state>
++    <state x="456" y="166" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1366.728@0.0.1366.728" timestamp="1603387924984" />
++    <state x="463" y="119" key="FileChooserDialogImpl" timestamp="1603472762409">
++      <screen x="0" y="0" width="1366" height="728" />
++    </state>
++    <state x="463" y="119" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1603472762409" />
++    <state x="275" y="97" key="Vcs.Push.Dialog.v2" timestamp="1603389395667">
++      <screen x="0" y="0" width="1366" height="728" />
++    </state>
++    <state x="275" y="97" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1603389395667" />
++    <state x="500" y="278" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1603460509919">
++      <screen x="0" y="0" width="1366" height="728" />
++    </state>
++    <state x="500" y="278" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1366.728@0.0.1366.728" timestamp="1603460509919" />
+     <state x="342" y="223" key="new project wizard" timestamp="1601685945963">
+       <screen x="0" y="0" width="1920" height="1080" />
+     </state>
+Index: dist/css/styles.css
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,600;1,100;1,200;1,300;1,400;1,500;1,600&display=swap');\r\n\r\n/* VARIABLES CSS*/\r\n:root {\r\n    --color_body: #232427;\r\n    --color_caja: #2a2b2f;\r\n    --color_border_caja: #1e1f23;\r\n    --color_letra_content: rgba(255,255,255,0.05);\r\n    --color_letrah3_content: rgba(255,255,255,0.5);\r\n    --main_font:  'Poppins', sans-serif;\r\n}\r\n\r\n/* ESTILOS UNIVERSALES*/\r\n* {\r\n    margin: 0;\r\n    padding: 0;\r\n    box-sizing: border-box;\r\n    font-family: var(--main_font);\r\n\r\n}\r\n\r\nbody {\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: center;\r\n    flex-wrap: wrap;\r\n    min-height: 100vh;\r\n    background: var(--color_body);\r\n}\r\n\r\n/* ESTILOS DEL CONTENEDOR */\r\n.container {\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: center;\r\n    flex-wrap: wrap;\r\n    max-width: 1200px;\r\n    margin: 40px 0;\r\n}\r\n\r\n.container .card {\r\n    position: relative;\r\n    min-width: 320px;\r\n    height: 440px;\r\n    box-shadow: inset 5px 5px 5px rgba(0, 0, 0, 0.2),\r\n                inset -5px -5px 15px rgba(255, 255, 255, 0.1),\r\n                5px 5px 15px rgba(0, 0, 0, 0.3),\r\n                -5px -5px 15px rgba(255, 255, 255, 0.1);\r\n    border-radius: 15px;\r\n    margin: 30px;\r\n}\r\n\r\n.container .card:before {\r\n    position: absolute;\r\n    content: '';\r\n    top: 0;\r\n    left: 0;\r\n    width: 50%;\r\n    height: 100%;\r\n    background: rgba(255, 255, 255, 0.1);\r\n}\r\n\r\n.container .card .box {\r\n    position: absolute;\r\n    top: 20px;\r\n    left: 20px;\r\n    right: 20px;\r\n    bottom: 20px;\r\n    background: var(--color_caja);\r\n    border: 2px solid var(--color_border_caja);\r\n    border-radius: 15px;\r\n    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);\r\n    transition: 0.5s;\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\r\n    overflow: hidden;\r\n}\r\n\r\n.container .card .box:before {\r\n    position: absolute;\r\n    content: '';\r\n    top: 0;\r\n    left: 0;\r\n    width: 50%;\r\n    height: 100%;\r\n    background: rgba(255, 255, 255, 0.05);\r\n    pointer-events: none;\r\n}\r\n\r\n.container .card .box:hover {\r\n    transform: translateY(-50px);\r\n    box-shadow: 0 40px 70px rgba(0, 0, 0, 0.5);\r\n}\r\n\r\n.container .card .box .content {\r\n    padding: 20px;\r\n    text-align: center;\r\n\r\n}\r\n\r\n.container .card .box .content h2 {\r\n    position: absolute;\r\n    top: -10px;\r\n    right: 30px;\r\n    font-size: 8em;\r\n    color: var(--color_letra_content);\r\n\r\n}\r\n\r\n.container .card .box .content h3 {\r\n    font-size: 1.8em;\r\n    color: var(--color_letrah3_content);\r\n    z-index: 1;\r\n    transition: 0.5s;\r\n}\r\n\r\n.container .card .box .content p {\r\n    font-size: 16px;\r\n    font-weight: 300;\r\n    color: var(--color_letrah3_content);\r\n    z-index: 1;\r\n    transition: 0.5s;\r\n}\r\n\r\n.container .card .box .content a {\r\n    position: relative;\r\n    display: inline-block;\r\n    padding: 8px 20px;\r\n    background: #000;\r\n    margin-top: 15px;\r\n    border-radius: 20px;\r\n    text-decoration: none;\r\n    font-weight: 400;\r\n    color: #fff;\r\n    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);\r\n}\r\n\r\n.container .card:nth-child(1) .box .content a {\r\n    background: #2196f3;\r\n}\r\n\r\n.container .card:nth-child(2) .box .content a {\r\n    background: #e91e63;\r\n}\r\n\r\n.container .card:nth-child(3) .box .content a {\r\n    background: #97dc47;\r\n}\r\n\r\n.container .card:nth-child(4) .box .content a {\r\n    background-color: #3edddd;\r\n}\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- dist/css/styles.css	(revision bc9270f4dae0816e92abcb17074fb39654d11312)
++++ dist/css/styles.css	(date 1603468710414)
+@@ -152,3 +152,81 @@
+     background-color: #3edddd;
+ }
+ 
++/*ESTILOS DEL LOGIN*/
++body {
++    font-family: "Lato", sans-serif;
++}
++
++
++
++.main-head{
++    height: 150px;
++    background: #FFF;
++
++}
++
++.sidenav {
++    height: 100%;
++    background-color: #000;
++    overflow-x: hidden;
++    padding-top: 20px;
++}
++
++
++.main {
++    padding: 0px 10px;
++}
++
++@media screen and (max-height: 450px) {
++    .sidenav {padding-top: 15px;}
++}
++
++@media screen and (max-width: 450px) {
++    .login-form{
++        margin-top: 10%;
++    }
++
++    .register-form{
++        margin-top: 10%;
++    }
++}
++
++@media screen and (min-width: 768px){
++    .main{
++        margin-left: 40%;
++    }
++
++    .sidenav{
++        width: 40%;
++        position: fixed;
++        z-index: 1;
++        top: 0;
++        left: 0;
++    }
++
++    .login-form{
++        margin-top: 80%;
++    }
++
++    .register-form{
++        margin-top: 20%;
++    }
++}
++
++
++.login-main-text{
++    margin-top: 20%;
++    padding: 60px;
++    color: #fff;
++}
++
++.login-main-text h2{
++    font-weight: 300;
++}
++
++.btn-black{
++    background-color: #000 !important;
++    color: #fff;
++}
++
++
