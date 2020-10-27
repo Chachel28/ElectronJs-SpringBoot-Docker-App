@@ -6,19 +6,52 @@
         <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
         <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
       </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
     </expand>
-    <select />
+    <select>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:origin/anibalDev" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c4a94fa7-29ca-4ed2-b731-5974e470c3a1" name="Default Changelist" comment="">
+    <list default="true" id="c4a94fa7-29ca-4ed2-b731-5974e470c3a1" name="Default Changelist" comment="He creado una hoja de estilo exclusiva para el login porque al parecer al meter el css de la plantilla en el fichero original creaba algún tipo de conflicto y no se editaba bien.">
+      <change afterPath="$PROJECT_DIR$/resources/ERPentertaiment.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_26_10_2020_18_42__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_26_10_2020_18_42__Default_Changelist_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/css/styles-login.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/dist/css/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/login.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$/.." value="develop" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="MavenImportPreferences">
@@ -38,25 +71,36 @@
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$USER_HOME$/IdeaProjects/PSP_FINAL_1T_AGF" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
   </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\MARY\Documents\GitHub\ProyectoSGE\Front" />
+      <recent name="C:\Users\MARY\Documents\GitHub\ProyectoSGE\Front\dist" />
+    </key>
+  </component>
   <component name="RunManager">
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -72,7 +116,12 @@
       <updated>1601685380105</updated>
       <workItem from="1601685381234" duration="561000" />
       <workItem from="1601734042324" duration="2026000" />
-      <workItem from="1603814561897" duration="126000" />
+      <workItem from="1601737653555" duration="18000" />
+      <workItem from="1603460394235" duration="157000" />
+      <workItem from="1603472732534" duration="32000" />
+      <workItem from="1603734089124" duration="4888000" />
+      <workItem from="1603740014674" duration="30000" />
+      <workItem from="1603809220823" duration="2494000" />
     </task>
     <servers />
   </component>
@@ -84,7 +133,24 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="CUSTOM_BOOLEAN_PROPERTIES">
+                <map>
+                  <entry key="Show.Git.Branches" value="true" />
+                </map>
+              </option>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/anibalDev" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -93,15 +159,38 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="He creado una hoja de estilo exclusiva para el login porque al parecer al meter el css de la plantilla en el fichero original creaba algún tipo de conflicto y no se editaba bien." />
+    <option name="LAST_COMMIT_MESSAGE" value="He creado una hoja de estilo exclusiva para el login porque al parecer al meter el css de la plantilla en el fichero original creaba algún tipo de conflicto y no se editaba bien." />
   </component>
   <component name="WindowStateProjectService">
     <state x="440" y="114" key="#Project_Structure" timestamp="1601685383826">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="440" y="114" key="#Project_Structure/1920.0.1920.1080/0.0.1920.1080@0.0.1920.1080" timestamp="1601685383826" />
-    <state x="342" y="223" key="new project wizard" timestamp="1601685945963">
-      <screen x="0" y="0" width="1920" height="1080" />
+    <state x="456" y="166" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1603387924984">
+      <screen x="0" y="0" width="1366" height="728" />
     </state>
+    <state x="456" y="166" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1366.728@0.0.1366.728" timestamp="1603387924984" />
+    <state x="463" y="119" key="FileChooserDialogImpl" timestamp="1603472762409">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="463" y="119" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1603472762409" />
+    <state x="275" y="97" key="Vcs.Push.Dialog.v2" timestamp="1603739466607">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="275" y="97" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1603739466607" />
+    <state x="500" y="278" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1603810090365">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="500" y="278" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1366.728@0.0.1366.728" timestamp="1603810090365" />
+    <state x="459" y="77" key="git4idea.branch.GitSmartOperationDialog" timestamp="1603810115932">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="459" y="77" key="git4idea.branch.GitSmartOperationDialog/0.0.1366.728@0.0.1366.728" timestamp="1603810115932" />
+    <state x="243" y="0" key="new project wizard" timestamp="1603740041986">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="243" y="0" key="new project wizard/0.0.1366.728@0.0.1366.728" timestamp="1603740041986" />
     <state x="342" y="223" key="new project wizard/1920.0.1920.1080/0.0.1920.1080@0.0.1920.1080" timestamp="1601685945963" />
   </component>
 </project>
