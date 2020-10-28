@@ -39,6 +39,7 @@ body {
     min-width: 320px;
     height: 440px;
     justify-content: center;
+    background-color: var(--color_caja);
     box-shadow: inset 5px 5px 5px rgba(0, 0, 0, 0.2),
                 inset -5px -5px 15px rgba(255, 255, 255, 0.1),
                 5px 5px 15px rgba(0, 0, 0, 0.3),
@@ -135,6 +136,10 @@ body {
 
 .btn1 {
     background-color: var(--color_corporative);
+}
+
+#logo {
+    width: 100%;
 }
 
 /*ESTILOS DEL LOGIN*/
