@@ -217,8 +217,95 @@ body {
 }
 
 /* SALES.HTML INICIO */
-.navegation img {
-    max-height: 40%;
+
+
+.aside {
+    padding: 0.5%;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 1em;
+    box-shadow: inset 5px 5px 5px rgba(0, 0, 0, 0.2),
+                inset -5px -5px 15px rgba(255, 255, 255, 0.1),
+                5px 5px 15px rgba(0, 0, 0, 0.3),
+                -5px -5px 15px rgba(255, 255, 255, 0.1);
+    background-color: var(--color_caja);
+    height: 100vh;
+    position: relative;
+}
+
+.mainBlock {
+    background-color: var(--color_caja);
+    border-radius: 1em;
+    box-shadow: inset 5px 5px 5px rgba(0, 0, 0, 0.2),
+                inset -5px -5px 15px rgba(255, 255, 255, 0.1),
+                5px 5px 15px rgba(0, 0, 0, 0.3),
+                -5px -5px 15px rgba(255, 255, 255, 0.1);
+    height: 100vh;
+    
+}
+
+.navbar-nav li {
+    padding-left: 2em;
+    font-size: 28px;
+}
+
+.h1main {
+    color: var(--color_corporative_first);
+    font-weight: 600;
+    text-align: center;
+    letter-spacing: -1px;
+    line-height: 1;
+    text-shadow: var(--color_corporative_second);
+    margin-bottom: 1em;
+    margin: 0 0.5em;
+    
+}
+
+.myNavbar {
+    background-color: var(--color_caja);
+    box-shadow: 5px 5px 0 var(--color_border_caja);
+}
+
+.aside li {
+    color: white;
+    text-decoration: none;
+    list-style: none;
+    margin-top: 1em;
+    text-align: center;
+}
+
+.aside > a {
+    position: relative;
+    display: inline-block;
+    padding: 8px 20px;
+    margin-top: 4em;
+    border-radius: 20px;
+    text-decoration: none;
+    font-weight: 400;
+    color: #000;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    position: absolute;
+    left: 40%;
+}
+
+.aside > a:hover {
+    font-weight: bolder;
+    box-shadow: 2px 2px 0 var(--color_corporative_second);
+    font-size: 16px;
+    transition: 0.5s;
+}
+
+.aside ul {
+    margin: 0 1.5em;
+}
+
+.aside ul a:hover {
+    text-decoration: none;
+}
+
+.aside ul li:hover {
+    background-color: var(--color_corporative_first);
+    border-radius: 1em;
+    
 }
 
 /* SALES.HTML FIN */
