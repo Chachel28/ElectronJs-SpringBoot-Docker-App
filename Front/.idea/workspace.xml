@@ -27,12 +27,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c4a94fa7-29ca-4ed2-b731-5974e470c3a1" name="Default Changelist" comment="He creado una hoja de estilo exclusiva para el login porque al parecer al meter el css de la plantilla en el fichero original creaba algún tipo de conflicto y no se editaba bien.">
-      <change afterPath="$PROJECT_DIR$/resources/ERPentertaiment.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Back/.idea/sonarlint/issuestore/0/6/06f65155ec73600b9fc5c4dc2883d4bb84d8e284" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Back/.idea/sonarlint/issuestore/0/b/0b53fc271d570f65681589863dc8442fe8586f00" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Back/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/../Back/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_26_10_2020_18_42__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_26_10_2020_18_42__Default_Changelist_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/css/styles-login.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/dist/css/styles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/login.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,7 +75,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$USER_HOME$/IdeaProjects/PSP_FINAL_1T_AGF" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../PSP_FINAL_1T_AGF" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -93,19 +93,6 @@
       <recent name="C:\Users\MARY\Documents\GitHub\ProyectoSGE\Front\dist" />
     </key>
   </component>
-  <component name="RunManager">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -122,6 +109,8 @@
       <workItem from="1603734089124" duration="4888000" />
       <workItem from="1603740014674" duration="30000" />
       <workItem from="1603809220823" duration="2494000" />
+      <workItem from="1603815829254" duration="134000" />
+      <workItem from="1603816060878" duration="73000" />
     </task>
     <servers />
   </component>
@@ -187,10 +176,11 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="459" y="77" key="git4idea.branch.GitSmartOperationDialog/0.0.1366.728@0.0.1366.728" timestamp="1603810115932" />
-    <state x="243" y="0" key="new project wizard" timestamp="1603740041986">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state x="131" y="0" key="new project wizard" timestamp="1603816142939">
+      <screen x="0" y="0" width="1366" height="768" />
     </state>
     <state x="243" y="0" key="new project wizard/0.0.1366.728@0.0.1366.728" timestamp="1603740041986" />
+    <state x="131" y="0" key="new project wizard/0.0.1366.768@0.0.1366.768" timestamp="1603816142939" />
     <state x="342" y="223" key="new project wizard/1920.0.1920.1080/0.0.1920.1080@0.0.1920.1080" timestamp="1601685945963" />
   </component>
 </project>
