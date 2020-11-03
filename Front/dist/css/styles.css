@@ -312,5 +312,30 @@ body {
     
 }
 
+.card {
+    color: white;
+    background-color: var(--color_corporative_first);
+}
+
+.card img {
+    width: 60%;
+    
+}
+
+.card a {
+    display: inline-block;
+    padding: 8px 20px;
+    margin-top: 4em;
+    border-radius: 20px;
+    background-color: #8b8b8b;
+    text-decoration: none;
+    font-weight: 400;
+    color: #000;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.card a:hover {
+    border: 1px solid black;
+}
 /* SALES.HTML FIN */
 
