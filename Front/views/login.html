@@ -9,25 +9,27 @@
 
 <!------ Include the above in your HEAD tag ---------->
 <body class="body-login">
+
+
 <div class="sidenav">
     <div class="login-main-text">
-        <img src="./resources/ERPentertaiment.png">
+        <img class="logo" src="../resources/logoTemporal.png">
         <p>Introduce tu correo corporativo y tu contraseña para acceder al sistema de gestión de la empresa.</p>
     </div>
 </div>
 <div class="main">
     <div class="col-md-6 col-sm-12">
         <div class="login-form">
-            <form id="form-login">
-                <div class="form-group">
+            <form id="form-login" action="" onsubmit="validacion()" method="get">
+                <div class="form-group" id="email-login">
                     <label>Correo corporativo</label>
                     <input type="text" class="form-control" placeholder="usuario@ejemplo.net" id="email">
                 </div>
-                <div class="form-group">
+                <div class="form-group" id="password-login">
                     <label>Contraseña</label>
                     <input type="password" class="form-control" placeholder="Contraseña" id="password">
                 </div>
-                <button type="submit" class="btn btn-black">Acceder</button>
+                <button type="submit" class="btn btn-black" onclick= validacion()>Acceder</button>
             </form>
         </div>
     </div>

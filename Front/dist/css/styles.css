@@ -167,6 +167,27 @@ body {
     padding: 0px 10px;
 }
 
+.logo{
+    height: 150px;
+    width: 150px;
+    margin-bottom: 15%;
+}
+
+.login-main-text{
+    margin-top: 20%;
+    padding: 60px;
+    color: #fff;
+}
+
+.login-main-text h2{
+    font-weight: 300;
+}
+
+.btn-black{
+    background-color: #000 !important;
+    color: #fff;
+}
+
 @media screen and (max-height: 450px) {
     .sidenav {padding-top: 15px;}
 }
@@ -197,20 +218,5 @@ body {
         padding-left: 30px;
     }
 
-}
-
-.login-main-text{
-    margin-top: 20%;
-    padding: 60px;
-    color: #fff;
-}
-
-.login-main-text h2{
-    font-weight: 300;
-}
-
-.btn-black{
-    background-color: #000 !important;
-    color: #fff;
 }
 
