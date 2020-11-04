@@ -1,6 +1,7 @@
 package net.juanxxiii.services;
 
-import net.juanxxiii.db.repos.ClientRepository;
+import net.juanxxiii.db.repository.ClientRepository;
+import net.juanxxiii.dto.ClienteTelefonoDto;
 import net.juanxxiii.dto.TelephoneDto;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +14,7 @@ public class JoinQueryService {
     @Resource
     private ClientRepository clientRepository;
 
-    public List<TelephoneDto> getDtoList(){
+    public List<ClienteTelefonoDto> getDtoList(){
         return clientRepository.fetchTelephoneInnerJoin();
     }
 }

@@ -1,4 +1,4 @@
-package net.juanxxiii.db.tables;
+package net.juanxxiii.db.entity;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -15,17 +15,18 @@ public class Client implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idCliente")
+    @Column(name = "idcliente")
     private int id;
-    @Column(name = "nombreCompleto")
+    @Column(name = "nombrecompleto")
     private String fullName;
-    @Column(name = "dniCif")
+    @Column(name = "dnicif")
     private String dni;
-    @Column(name = "Iban")
+    @Column(name = "iban")
     private String iban;
     @Column(name = "email")
     private String email;
 
-    @OneToMany(targetEntity = Telephone.class, mappedBy = "client", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(targetEntity = Telephone.class, mappedBy = "client", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    //@JoinColumn(name = "idCliente", referencedColumnName = "idCliente")
     private List<Telephone> telephones;
 }

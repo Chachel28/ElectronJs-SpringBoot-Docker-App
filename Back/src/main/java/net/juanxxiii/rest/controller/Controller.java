@@ -1,5 +1,6 @@
 package net.juanxxiii.rest.controller;
 
+import net.juanxxiii.dto.ClienteTelefonoDto;
 import net.juanxxiii.dto.TelephoneDto;
 import net.juanxxiii.services.JoinQueryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,7 @@ public class Controller {
     private JoinQueryService joinQueryService;
 
     @GetMapping("/clients")
-    public ResponseEntity<List<TelephoneDto>> getDtoList(){
-        return new ResponseEntity<List<TelephoneDto>>(joinQueryService.getDtoList(), HttpStatus.OK);
+    public ResponseEntity<List<ClienteTelefonoDto>> getDtoList(){
+        return new ResponseEntity<>(joinQueryService.getDtoList(), HttpStatus.OK);
     }
 }

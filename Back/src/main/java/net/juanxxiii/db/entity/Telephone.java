@@ -1,4 +1,4 @@
-package net.juanxxiii.db.tables;
+package net.juanxxiii.db.entity;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -14,12 +14,12 @@ public class Telephone implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "IdTelefono")
+    @Column(name = "idtelefono")
     private int id;
-    @Column(name = "numTelefono")
+    @Column(name = "numtelefono")
     private int number;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "IdCliente")
+    @JoinColumn(name = "idcliente", referencedColumnName = "idcliente")
     private Client client;
 }
