@@ -27,6 +27,8 @@ public class Client implements Serializable {
     private String email;
 
     @OneToMany(targetEntity = Telephone.class, mappedBy = "client", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    //@JoinColumn(name = "idCliente", referencedColumnName = "idCliente")
     private List<Telephone> telephones;
+
+    @OneToMany(targetEntity = Direction.class, mappedBy = "client", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Direction> directions;
 }

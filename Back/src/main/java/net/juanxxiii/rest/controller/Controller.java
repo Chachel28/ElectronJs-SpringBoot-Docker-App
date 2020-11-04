@@ -1,5 +1,6 @@
 package net.juanxxiii.rest.controller;
 
+import net.juanxxiii.dto.ClienteCompletoDto;
 import net.juanxxiii.dto.ClienteTelefonoDto;
 import net.juanxxiii.dto.TelephoneDto;
 import net.juanxxiii.services.JoinQueryService;
@@ -20,7 +21,12 @@ public class Controller {
     private JoinQueryService joinQueryService;
 
     @GetMapping("/clients")
-    public ResponseEntity<List<ClienteTelefonoDto>> getDtoList(){
+    public ResponseEntity<List<ClienteTelefonoDto>> getDtoList() {
         return new ResponseEntity<>(joinQueryService.getDtoList(), HttpStatus.OK);
+    }
+
+    @GetMapping("/clientes")
+    public ResponseEntity<List<ClienteCompletoDto>> getFullClientDtoList(){
+        return new ResponseEntity<>(joinQueryService.getFullClientDtoList(), HttpStatus.OK);
     }
 }
