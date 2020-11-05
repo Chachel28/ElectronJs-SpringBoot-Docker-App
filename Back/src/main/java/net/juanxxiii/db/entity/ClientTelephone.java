@@ -18,8 +18,6 @@ public class ClientTelephone implements Serializable {
     private int id;
     @Column(name = "numtelefono")
     private int number;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idcliente", referencedColumnName = "idcliente")
-    private Client client;
+    @Column(name = "idcliente")
+    private int client;
 }

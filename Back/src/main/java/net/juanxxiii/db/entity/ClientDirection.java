@@ -17,8 +17,6 @@ public class ClientDirection {
     private int id;
     @Column(name = "direccion")
     private String direction;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idcliente", referencedColumnName = "idcliente")
-    private Client client;
+    @Column(name = "idcliente")
+    private int client;
 }
