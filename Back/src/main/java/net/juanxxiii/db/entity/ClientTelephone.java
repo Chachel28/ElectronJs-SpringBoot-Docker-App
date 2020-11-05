@@ -4,19 +4,20 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Getter
 @Setter
 @Entity
-@Table(name = "direccionescliente")
-public class Direction {
+@Table(name = "telefonoscliente")
+public class ClientTelephone implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "iddireccioncliente")
+    @Column(name = "idtelefono")
     private int id;
-    @Column(name = "direccion")
-    private String direction;
+    @Column(name = "numtelefono")
+    private int number;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "idcliente", referencedColumnName = "idcliente")
