@@ -17,6 +17,7 @@ public interface ClientRepository extends JpaRepository<Client, Integer> {
     //ES NECESARIO USAR ALIAS PARA LAS TABLAS
     @Query(value = "SELECT new net.juanxxiii.dto.ClienteTelefonoDto(c.id, c.fullName, t.id, t.number) FROM Client c INNER JOIN ClientTelephone t ON t.client = c.id")
     List<ClienteTelefonoDto> fetchTelephoneInnerJoin();
+
     @Query(value = "SELECT new net.juanxxiii.dto.ClienteCompletoDto(c.id, c.fullName, d.id, d.direction, t.id, t.number) FROM Client c INNER JOIN ClientDirection d ON c.id = d.client INNER JOIN ClientTelephone t ON c.id = t.client")
     List<ClienteCompletoDto> fetchFullClientJoin();
 }

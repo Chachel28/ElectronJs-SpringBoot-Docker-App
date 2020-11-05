@@ -1,6 +1,7 @@
 package net.juanxxiii.rest.controller;
 
 import net.juanxxiii.db.entity.Client;
+import net.juanxxiii.db.entity.Suplier;
 import net.juanxxiii.dto.ClienteCompletoDto;
 import net.juanxxiii.dto.ClienteTelefonoDto;
 import net.juanxxiii.services.JoinQueryService;
@@ -34,5 +35,10 @@ public class Controller {
     @GetMapping("/clients/{id}")
     public Client getClient(@PathVariable("id")int id){
         return joinQueryService.getClient(id);
+    }
+
+    @GetMapping("/suplier/{id}")
+    public Suplier getSuplier(@PathVariable("id") int id) {
+        return joinQueryService.getSuplier(id);
     }
 }
