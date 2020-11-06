@@ -289,6 +289,7 @@ body {
 
 .footer p {
     color: white;
+    margin-top: 2em;
 }
 
 .aside > a:hover {
@@ -336,6 +337,10 @@ body {
 
 .card a:hover {
     border: 1px solid black;
+}
+
+.collapse .card-body {
+    background-color: var(--color_caja);
 }
 /* SALES.HTML FIN */
 
