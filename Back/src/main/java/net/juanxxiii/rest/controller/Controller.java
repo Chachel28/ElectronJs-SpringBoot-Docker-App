@@ -29,12 +29,12 @@ public class Controller {
     }
 
     @GetMapping("/clientes")
-    public ResponseEntity<List<ClienteCompletoDto>> getFullClientDtoList(){
+    public ResponseEntity<List<ClienteCompletoDto>> getFullClientDtoList() {
         return new ResponseEntity<>(joinQueryService.getFullClientDtoList(), HttpStatus.OK);
     }
 
     @GetMapping("/clients/{id}")
-    public Client getClient(@PathVariable("id")int id){
+    public Client getClient(@PathVariable("id") int id) {
         return joinQueryService.getClient(id);
     }
 
@@ -42,8 +42,14 @@ public class Controller {
     public Suplier getSuplier(@PathVariable("id") int id) {
         return joinQueryService.getSuplier(id);
     }
+
     @GetMapping("/staff/{id}")
-    public Staff getStaff(@PathVariable("id")int id) {
+    public Staff getStaff(@PathVariable("id") int id) {
         return joinQueryService.getStaff(id);
+    }
+
+    @GetMapping("/staff")
+    public List<Staff> getAllStaff(){
+        return joinQueryService.getAllStaff();
     }
 }

@@ -22,7 +22,6 @@ public class JoinQueryService {
     @Resource
     private SuplierRepository suplierRepository;
 
-    public Client getClient(int id){
     @Resource
     private StaffRepository staffRepository;
 
@@ -34,6 +33,10 @@ public class JoinQueryService {
         return suplierRepository.findById(id).get();
     }
 
+    public Staff getStaff(int id) {
+        return staffRepository.findById(id).get();
+    }
+
     public List<ClienteTelefonoDto> getDtoList(){
         return clientRepository.fetchTelephoneInnerJoin();
     }
@@ -42,7 +45,7 @@ public class JoinQueryService {
         return clientRepository.fetchFullClientJoin();
     }
 
-    public Staff getStaff(int id) {
-        return staffRepository.findById(id).get();
+    public List<Staff> getAllStaff() {
+        return staffRepository.findAll();
     }
 }

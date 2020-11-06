@@ -9,6 +9,7 @@ import java.util.List;
 
 @Getter
 @Setter
+@Entity
 @Table(name = "personal")
 public class Staff implements Serializable {
     @Id
@@ -25,6 +26,7 @@ public class Staff implements Serializable {
     @Column(name = "password")
     private String password;
 
-    @OneToOne (targetEntity = PositionStaff.class, mappedBy = "idpositionstaff", fetch = FetchType.LAZY)
+    @OneToOne
+    @JoinColumn(name = "idpuesto", referencedColumnName = "idpuesto")
     private PositionStaff positionStaff;
 }
