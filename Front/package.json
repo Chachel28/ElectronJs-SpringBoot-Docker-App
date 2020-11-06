@@ -11,5 +11,8 @@
   "license": "ISC",
   "devDependencies": {
     "electron": "^10.1.3"
+  },
+  "dependencies": {
+    "ajax": "0.0.4"
   }
 }
