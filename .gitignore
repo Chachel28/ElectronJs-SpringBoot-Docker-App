@@ -1,8 +1,6 @@
 
 Front/node_modules/electron/dist/electron.exe
-Front/.idea/workspace.xml
-/.idea
-/.iml
+
 ### VisualStudioCode ###
 .vscode/*
 !.vscode/settings.json
@@ -15,4 +13,7 @@ Front/.idea/workspace.xml
 # Ignore all local history of files
 .history
 .ionide
-.Front/.idea/workspace.xml
+.Front/.idea
+.Back/.idea
+.Front/*.iml
+.Back/*.iml
