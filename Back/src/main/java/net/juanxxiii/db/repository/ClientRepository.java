@@ -12,7 +12,7 @@ import java.util.List;
 @Repository
 public interface ClientRepository extends JpaRepository<Client, Integer> {
     //SELECT t.idTelefono, t.numTelefono FROM clientes c JOIN telefonoscliente t on c.idCliente = t.IdCliente
-    //SELECT new net.juanxxiii.dto.TelephoneDto(t.id, t.number) FROM Client c INNER JOIN Telephone t
+    //SELECT new net.juanxxiii.dto.TelephoneDto(t.id, t.number) FROM Client c INNER JOIN Telephone t ON t.client = c.id
 
     //ES NECESARIO USAR ALIAS PARA LAS TABLAS
     @Query(value = "SELECT new net.juanxxiii.dto.ClienteTelefonoDto(c.id, c.fullName, t.id, t.number) FROM Client c INNER JOIN ClientTelephone t ON t.client = c.id")
