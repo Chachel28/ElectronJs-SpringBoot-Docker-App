@@ -12,8 +12,6 @@ Front/node_modules/electron/dist/electron.exe
 # Ignore all local history of files
 .history
 .ionide
-./Front/.idea
-./Back/.idea
-./Front/*.iml
-./Back/*.iml
-./Back/target
+.idea/*
+*.iml
+target/*
