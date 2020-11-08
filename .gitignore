@@ -1,4 +1,3 @@
-
 Front/node_modules/electron/dist/electron.exe
 
 ### VisualStudioCode ###
@@ -13,7 +12,6 @@ Front/node_modules/electron/dist/electron.exe
 # Ignore all local history of files
 .history
 .ionide
-.Front/.idea
-.Back/.idea
-.Front/*.iml
-.Back/*.iml
+.idea
+*.iml
+target
