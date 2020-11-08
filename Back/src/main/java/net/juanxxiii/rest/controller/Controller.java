@@ -1,6 +1,7 @@
 package net.juanxxiii.rest.controller;
 
 import net.juanxxiii.db.entity.Client;
+import net.juanxxiii.db.entity.Staff;
 import net.juanxxiii.db.entity.Supplier;
 import net.juanxxiii.services.QueryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,5 +58,16 @@ public class Controller {
     @GetMapping("/supplier/{id}")
     public Supplier getSupplier(@PathVariable("id") int id) {
         return queryService.getSupplier(id);
+    }
+
+    //Staff Mapping
+    @GetMapping("/staff")
+    public List<Staff> getAllStaff() {
+        return queryService.getAllStaff();
+    }
+
+    @GetMapping("/staff/{id}")
+    public Staff getStaff(@PathVariable("id") int id) {
+        return queryService.getStaff(id);
     }
 }
