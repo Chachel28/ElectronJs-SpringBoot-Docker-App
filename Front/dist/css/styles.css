@@ -344,3 +344,17 @@ body {
 }
 /* SALES.HTML FIN */
 
+/* INICIO SALESOPERATION.HTML*/
+.aside {
+    background-color: var(--color_border_caja);
+    border: 2px solid #8b8b8b;
+}
+
+.aside form button:hover {
+    font-weight: bolder;
+    box-shadow: 2px 2px 0 var(--color_corporative_second);
+    font-size: 16px;
+    transition: 0.5s;
+}
+/* FIN SALESOPERATION.HTML*/
+
