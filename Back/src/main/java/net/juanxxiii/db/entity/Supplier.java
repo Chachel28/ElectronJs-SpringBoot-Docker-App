@@ -11,7 +11,7 @@ import java.util.List;
 @Setter
 @Entity
 @Table(name = "proveedores")
-public class Suplier implements Serializable {
+public class Supplier implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,8 +24,8 @@ public class Suplier implements Serializable {
     @Column(name = "email")
     private String email;
 
-    @OneToMany(targetEntity = SuplierTelephone.class, mappedBy = "suplier", fetch = FetchType.LAZY)
-    private List<SuplierTelephone> telephones;
-    @OneToMany(targetEntity = SuplierDirection.class, mappedBy = "suplier", fetch = FetchType.LAZY)
-    private List<SuplierDirection> directions;
+    @OneToMany(targetEntity = SupplierTelephone.class, mappedBy = "suplier", fetch = FetchType.LAZY)
+    private List<SupplierTelephone> telephones;
+    @OneToMany(targetEntity = SupplierDirection.class, mappedBy = "suplier", fetch = FetchType.LAZY)
+    private List<SupplierDirection> directions;
 }
