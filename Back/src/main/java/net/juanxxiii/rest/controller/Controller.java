@@ -24,29 +24,44 @@ public class Controller {
 
     //Client Mapping
     @PostMapping("/clients")
-    public Client newClient(@RequestBody Client newClient) {
-        return queryService.saveClient(newClient);
+    public ResponseEntity<Client> newClient(@RequestBody Client newClient) {
+        return ResponseEntity.ok(queryService.saveClient(newClient));
     }
 
     @GetMapping("/clients")
-    public List<Client> getClientList() {
-        return queryService.getClientList();
+    public ResponseEntity<List<Client>> getClientList() {
+        return ResponseEntity.ok(queryService.getClientList());
     }
 
     @GetMapping("/clients/{id}")
-    public Client getClient(@PathVariable("id")int id){
-        return queryService.getClient(id);
+    public ResponseEntity<?> getClient(@PathVariable("id")int id){
+        Client client = queryService.getClient(id);
+        if (client != null) {
+            return ResponseEntity.ok(client);
+        }else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @PutMapping("/clients/{id}")
-    public Client updateClient(@RequestBody Client newClient, @PathVariable("id")int id){
-        return queryService.updateClient(newClient, id);
+    public ResponseEntity<?> updateClient(@RequestBody Client newClient, @PathVariable("id")int id){
+        Client client = queryService.updateClient(newClient, id);
+        if (client != null) {
+            return ResponseEntity.ok(client);
+        }else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
-//    @PatchMapping("/clients/{id}")
-//    public Client partialUpdateClient(@RequestBody Map<String, Object> updates, @PathVariable("id")int id){
-//        return queryService.partialUpdateClient(updates, id);
-//    }
+    @PatchMapping("/clients/{id}")
+    public ResponseEntity<?> partialUpdateClient(@RequestBody Map<String, Object> updates, @PathVariable("id")int id){
+        Client client = queryService.partialUpdateClient(updates, id);
+        if (client != null) {
+            return ResponseEntity.ok(client);
+        }else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 
     @DeleteMapping("/clients/{id}")
     public ResponseEntity<?> deleteClient(@PathVariable("id")int id){

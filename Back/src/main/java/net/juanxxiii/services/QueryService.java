@@ -1,8 +1,6 @@
 package net.juanxxiii.services;
 
-import net.juanxxiii.db.entity.Client;
-import net.juanxxiii.db.entity.Staff;
-import net.juanxxiii.db.entity.Supplier;
+import net.juanxxiii.db.entity.*;
 import net.juanxxiii.db.repository.ClientRepository;
 import net.juanxxiii.db.repository.StaffRepository;
 import net.juanxxiii.db.repository.SupplierRepository;
@@ -10,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
 @Service
 public class QueryService {
@@ -38,7 +38,7 @@ public class QueryService {
     }
 
     public Client getClient(int id) {
-        return clientRepository.findById(id).get();
+        return clientRepository.findById(id).orElse(null);
     }
 
     public Client updateClient(Client newClient, int id) {
@@ -55,26 +55,45 @@ public class QueryService {
                 .orElse(null);
     }
 
-//    public Client partialUpdateClient(Map<String, Object> updates, int id) {
-//        return clientRepository.findById(id)
-//                .map(client -> {
-//                    client.setFullName(newClient.getFullName());
-//                    client.setDni(newClient.getDni());
-//                    client.setEmail(newClient.getEmail());
-//                    client.setIban(newClient.getIban());
-//                    client.setDirections(newClient.getDirections());
-//                    client.setTelephones(newClient.getTelephones());
-//                    return clientRepository.save(client);
-//                })
-//                .orElseGet(() -> clientRepository.save(newClient));
-//    }
+    public Client partialUpdateClient(Map<String, Object> updates, int id) {
+        return clientRepository.findById(id)
+                .map(client -> {
+                    for(String key : updates.keySet()){
+                        switch (key) {
+                            case "fullName":
+                                client.setFullName((String) updates.get(key));
+                                break;
+                            case "dni":
+                                client.setDni((String) updates.get(key));
+                                break;
+                            case "iban":
+                                client.setIban((String) updates.get(key));
+                                break;
+                            case "email":
+                                client.setEmail((String) updates.get(key));
+                                break;
+                            case "telephones":
+                                client.setTelephones((List<ClientTelephone>) updates.get(key));
+                                break;
+                            case "directions":
+                                client.setDirections((List<ClientDirection>) updates.get(key));
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                    return clientRepository.save(client);
+                })
+                .orElse(null);
+    }
 
     public void deleteClient(int id) {
-        clientRepository.delete(clientRepository.findById(id).get());
+        clientRepository.delete(Objects.requireNonNull(clientRepository.findById(id).orElse(null)));
     }
+
     //Suplier queryList
     public Supplier getSupplier(int id) {
-        return supplierRepository.findById(id).get();
+        return supplierRepository.findById(id).orElse(null);
     }
 
     //Staff queryList
@@ -83,6 +102,6 @@ public class QueryService {
     }
 
     public Staff getStaff(int id) {
-        return staffRepository.findById(id).get();
+        return staffRepository.findById(id).orElse(null);
     }
 }
