@@ -13,6 +13,15 @@ import java.util.List;
 @Table(name = "clientes")
 public class Client implements Serializable {
 
+    public Client() {
+        this.fullName = null;
+        this.dni = null;
+        this.iban = null;
+        this.email = null;
+        this.telephones = null;
+        this.directions = null;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idcliente")

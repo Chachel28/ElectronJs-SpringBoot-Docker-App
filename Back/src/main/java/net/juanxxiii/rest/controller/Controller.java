@@ -1,6 +1,7 @@
 package net.juanxxiii.rest.controller;
 
 import net.juanxxiii.db.entity.Client;
+import net.juanxxiii.db.entity.ClientTelephone;
 import net.juanxxiii.db.entity.Staff;
 import net.juanxxiii.db.entity.Supplier;
 import net.juanxxiii.services.QueryService;
@@ -53,15 +54,15 @@ public class Controller {
         }
     }
 
-//    @PatchMapping("/clients/{id}")
-//    public ResponseEntity<?> partialUpdateClient(@RequestBody Map<String, Object> updates, @PathVariable("id")int id){
-//        Client client = queryService.partialUpdateClient(updates, id);
-//        if (client != null) {
-//            return ResponseEntity.ok("Client partially updated");
-//        }else {
-//            return ResponseEntity.notFound().build();
-//        }
-//    }
+    @PatchMapping("/clients/{id}")
+    public ResponseEntity<?> partialUpdateClient(@RequestBody Client client, @PathVariable("id")int id){
+        int value = queryService.partialUpdateClient(client, id);
+        if (value != -1) {
+            return ResponseEntity.ok("Client partially updated");
+        }else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 
     @DeleteMapping("/clients/{id}")
     public ResponseEntity<?> deleteClient(@PathVariable("id")int id){
