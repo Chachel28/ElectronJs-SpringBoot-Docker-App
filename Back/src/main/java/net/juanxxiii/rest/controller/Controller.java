@@ -45,23 +45,23 @@ public class Controller {
 
     @PutMapping("/clients/{id}")
     public ResponseEntity<?> updateClient(@RequestBody Client newClient, @PathVariable("id")int id){
-        Client client = queryService.updateClient(newClient, id);
-        if (client != null) {
-            return ResponseEntity.ok(client);
+        int client = queryService.updateClient(newClient, id);
+        if (client != -1) {
+            return ResponseEntity.ok("Client updated");
         }else {
             return ResponseEntity.notFound().build();
         }
     }
 
-    @PatchMapping("/clients/{id}")
-    public ResponseEntity<?> partialUpdateClient(@RequestBody Map<String, Object> updates, @PathVariable("id")int id){
-        Client client = queryService.partialUpdateClient(updates, id);
-        if (client != null) {
-            return ResponseEntity.ok(client);
-        }else {
-            return ResponseEntity.notFound().build();
-        }
-    }
+//    @PatchMapping("/clients/{id}")
+//    public ResponseEntity<?> partialUpdateClient(@RequestBody Map<String, Object> updates, @PathVariable("id")int id){
+//        Client client = queryService.partialUpdateClient(updates, id);
+//        if (client != null) {
+//            return ResponseEntity.ok("Client partially updated");
+//        }else {
+//            return ResponseEntity.notFound().build();
+//        }
+//    }
 
     @DeleteMapping("/clients/{id}")
     public ResponseEntity<?> deleteClient(@PathVariable("id")int id){
