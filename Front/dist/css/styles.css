@@ -356,5 +356,16 @@ body {
     font-size: 16px;
     transition: 0.5s;
 }
+
+.buttons button:hover {
+    font-weight: bolder;
+    box-shadow: 2px 2px 0 var(--color_corporative_first);
+    font-size: 16px;
+    transition: 0.5s;
+}
+
+.table tr:hover {
+    background-color: var(--color_corporative_first);
+}
 /* FIN SALESOPERATION.HTML*/
 
