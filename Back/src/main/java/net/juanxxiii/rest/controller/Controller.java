@@ -1,7 +1,6 @@
 package net.juanxxiii.rest.controller;
 
 import net.juanxxiii.db.entity.Client;
-import net.juanxxiii.db.entity.ClientTelephone;
 import net.juanxxiii.db.entity.Staff;
 import net.juanxxiii.db.entity.Supplier;
 import net.juanxxiii.services.QueryService;
@@ -10,7 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v1")
