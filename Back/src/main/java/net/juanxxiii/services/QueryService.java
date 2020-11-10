@@ -5,8 +5,11 @@ import net.juanxxiii.db.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 @Service
 public class QueryService {
@@ -24,7 +27,6 @@ public class QueryService {
                         StaffRepository staffRepository,
                         ClientTelephoneRepository clientTelephoneRepository,
                         ClientDirectionRepository clientDirectionRepository) {
-
         this.clientRepository = clientRepository;
         this.supplierRepository = supplierRepository;
         this.staffRepository = staffRepository;
@@ -71,42 +73,39 @@ public class QueryService {
                 .orElse(-1);
     }
 
-//    public Client partialUpdateClient(Map<String, Object> updates, int id) {
-//        return clientRepository.findById(id)
-//                .map(client -> {
-//                    for (String key : updates.keySet()) {
-//                        switch (key) {
-//                            case "fullName":
-//                                client.setFullName((String) updates.get(key));
-//                                break;
-//                            case "dni":
-//                                client.setDni((String) updates.get(key));
-//                                break;
-//                            case "iban":
-//                                client.setIban((String) updates.get(key));
-//                                break;
-//                            case "email":
-//                                client.setEmail((String) updates.get(key));
-//                                break;
-//                            case "telephones":
-//                                List<ClientTelephone> telephones = client.getTelephones();
-//                                (List<ClientTelephone>)updates.get(key).forEach(telephone ->{
-//                                        if (!telephones.contains(telephone)) {
-//                                            clientTelephoneRepository.save(telephone);
-//                                        }
-//                                    });
-//                                break;
-//                            case "directions":
-//                                client.setDirections((List<?>) updates.get(key));
-//                                break;
-//                            default:
-//                                break;
-//                        }
-//                    }
-//                    return clientRepository.save(client);
-//                })
-//                .orElse(null);
-//    }
+    public int partialUpdateClient(Client newClient, int id) {
+        return clientRepository.findById(id)
+                .map(client -> {
+                    if (newClient.getFullName() != null) {
+                        clientRepository.updateClientName(newClient.getFullName(), id);
+                    }
+                    if (newClient.getDni() != null) {
+                        clientRepository.updateClientDni(newClient.getDni(), id);
+                    }
+                    if (newClient.getIban() != null) {
+                        clientRepository.updateClientIban(newClient.getIban(), id);
+                    }
+                    if (newClient.getEmail() != null) {
+                        clientRepository.updateClientEmail(newClient.getEmail(), id);
+                    }
+                    if(newClient.getTelephones() != null) {
+                        newClient.getTelephones().forEach(clientTelephone -> {
+                            if (!client.getTelephones().contains(clientTelephone)) {
+                                clientTelephoneRepository.save(clientTelephone);
+                            }
+                        });
+                    }
+                    if (newClient.getDirections() != null) {
+                        newClient.getDirections().forEach(clientDirection -> {
+                            if (!client.getDirections().contains(clientDirection)) {
+                                clientDirectionRepository.save(clientDirection);
+                            }
+                        });
+                    }
+                    return 1;
+                })
+                .orElse(-1);
+    }
 
     public void deleteClient(int id) {
         clientRepository
