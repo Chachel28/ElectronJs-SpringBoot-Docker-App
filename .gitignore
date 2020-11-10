@@ -13,5 +13,4 @@ Front/node_modules/electron/dist/electron.exe
 .history
 .ionide
 .idea
-*.iml
 target
