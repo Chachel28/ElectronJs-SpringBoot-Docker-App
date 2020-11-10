@@ -5,13 +5,19 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.List;
 
 @Getter
 @Setter
 @Entity
 @Table(name = "personal")
 public class Staff implements Serializable {
+    public Staff () {
+        this.positionStaff = null;
+        this.name = null;
+        this.email = null;
+        this.password = null;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idpersonal")
