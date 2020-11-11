@@ -106,7 +106,7 @@ public class Controller {
     }
 
     @PatchMapping("/staff/{id}")
-    public ResponseEntity<?> partialUpdateStaff(@PathVariable int id, @RequestBody Staff staff) {
+    public ResponseEntity<?> partialUpdateStaff(@RequestBody Staff staff, @PathVariable int id) {
         int value = queryService.partialUpdateStaff(staff, id);
         if (value != -1) {
             return ResponseEntity.ok("staff updated");

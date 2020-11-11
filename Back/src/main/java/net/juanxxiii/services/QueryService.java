@@ -17,6 +17,7 @@ public class QueryService {
     private final ClientTelephoneRepository clientTelephoneRepository;
     private final ClientDirectionRepository clientDirectionRepository;
     private final PositionStaffRepository positionStaffRepository;
+    private final SaleRepository saleRepository;
 
     @Autowired
     public QueryService(ClientRepository clientRepository,
@@ -24,19 +25,22 @@ public class QueryService {
                         StaffRepository staffRepository,
                         ClientTelephoneRepository clientTelephoneRepository,
                         ClientDirectionRepository clientDirectionRepository,
-                        PositionStaffRepository positionStaffRepository) {
+                        PositionStaffRepository positionStaffRepository,
+                        SaleRepository saleRepository) {
         this.clientRepository = clientRepository;
         this.supplierRepository = supplierRepository;
         this.staffRepository = staffRepository;
         this.clientTelephoneRepository = clientTelephoneRepository;
         this.clientDirectionRepository = clientDirectionRepository;
         this.positionStaffRepository = positionStaffRepository;
+        this.saleRepository = saleRepository;
     }
 
     //Client queryList
     public Client saveClient(Client newClient) {
         List<ClientTelephone> telephones = null;
         List<ClientDirection> directions = null;
+        List<Sale> sales = null;
         if (!newClient.getTelephones().isEmpty()) {
             telephones = newClient.getTelephones();
             newClient.setTelephones(null);
@@ -44,6 +48,10 @@ public class QueryService {
         if (!newClient.getDirections().isEmpty()) {
             directions = newClient.getDirections();
             newClient.setDirections(null);
+        }
+        if (!newClient.getSales().isEmpty()) {
+            sales = newClient.getSales();
+            newClient.setSales(null);
         }
         clientRepository.save(newClient);
         int id = clientRepository.lastId();
@@ -57,6 +65,12 @@ public class QueryService {
             directions.forEach(direction -> {
                 direction.setClient(id);
                 clientDirectionRepository.save(direction);
+            });
+        }
+        if (sales != null) {
+            sales.forEach(sale -> {
+                sale.setClient(id);
+                saleRepository.save(sale);
             });
         }
         return clientRepository.findById(id).orElse(null);
@@ -78,6 +92,7 @@ public class QueryService {
                 .map(client -> {
                     List<ClientTelephone> telephones = client.getTelephones();
                     List<ClientDirection> directions = client.getDirections();
+                    List<Sale> sales = client.getSales();
                     newClient.getTelephones()
                             .forEach(telephone -> {
                                 if (!telephones.contains(telephone)) {
@@ -100,6 +115,18 @@ public class QueryService {
                     directions.forEach(direction ->{
                         if (!newClient.getDirections().contains(direction)) {
                             clientDirectionRepository.deleteById(direction.getId());
+                        }
+                    });
+                    newClient.getSales()
+                            .forEach(sale -> {
+                                if (!sales.contains(sale)) {
+                                    sale.setClient(client.getId());
+                                    saleRepository.save(sale);
+                                }
+                            });
+                    sales.forEach(sale ->{
+                        if (!newClient.getSales().contains(sale)) {
+                            saleRepository.deleteById(sale.getId());
                         }
                     });
                     return clientRepository.updateClient(newClient.getFullName(), newClient.getDni(), newClient.getEmail(), newClient.getIban(), newClient.getId());
@@ -148,6 +175,20 @@ public class QueryService {
                             }
                         });
                     }
+                    if (newClient.getSales() != null) {
+                        newClient.getSales()
+                                .forEach(sale -> {
+                                    if (!client.getSales().contains(sale)) {
+                                        sale.setClient(client.getId());
+                                        saleRepository.save(sale);
+                                    }
+                                });
+                        client.getSales().forEach(sale ->{
+                            if (!newClient.getSales().contains(sale)) {
+                                saleRepository.deleteById(sale.getId());
+                            }
+                        });
+                    }
                     return 1;
                 })
                 .orElse(-1);
@@ -193,7 +234,7 @@ public class QueryService {
 
     public int updateStaff(Staff staff, int id) {
         return staffRepository.findById(id).map(s -> {
-            positionStaffRepository.findById(staff.getPositionStaff().getIdPositionStaff()).orElse(positionStaffRepository.save(staff.getPositionStaff()));
+            updatePositionStaff(staff, id, s);
             return staffRepository.updateStaff(staff.getName(), staff.getEmail(), staff.getPassword(), staff.getTelephone(), id);
         }).orElse(-1);
     }
@@ -212,15 +253,21 @@ public class QueryService {
             if (staff.getTelephone() != 0) {
                 staffRepository.updateStaffTelephone(staff.getTelephone(), id);
             }
-            if (!staff.getPositionStaff().equals(s.getPositionStaff())) {
-                PositionStaff pSRepo = positionStaffRepository.findByName(staff.getPositionStaff().getName()).orElse(null);
-                if (pSRepo == null) {
-                    pSRepo = positionStaffRepository.save(staff.getPositionStaff());
-                }
-                staffRepository.updateIdPositionStaff(pSRepo.getIdPositionStaff(), id);
+            if (staff.getPositionStaff() != null) {
+                updatePositionStaff(staff, id, s);
             }
             return 1;
         }).orElse(-1);
+    }
+
+    private void updatePositionStaff(Staff staff, int id, Staff s) {
+        if (!staff.getPositionStaff().equals(s.getPositionStaff())) {
+            PositionStaff pSRepo = positionStaffRepository.findByName(staff.getPositionStaff().getName()).orElse(null);
+            if (pSRepo == null) {
+                pSRepo = positionStaffRepository.save(staff.getPositionStaff());
+            }
+            staffRepository.updateIdPositionStaff(pSRepo.getIdPositionStaff(), id);
+        }
     }
 
     public void deleteStaff(int id) {

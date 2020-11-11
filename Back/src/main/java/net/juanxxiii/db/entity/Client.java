@@ -20,6 +20,7 @@ public class Client implements Serializable {
         this.email = null;
         this.telephones = null;
         this.directions = null;
+        this.sales = null;
     }
 
     @Id
@@ -40,4 +41,7 @@ public class Client implements Serializable {
 
     @OneToMany(targetEntity = ClientDirection.class, mappedBy = "client", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<ClientDirection> directions;
+
+    @OneToMany(targetEntity = Sale.class, mappedBy = "client", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Sale> sales;
 }
