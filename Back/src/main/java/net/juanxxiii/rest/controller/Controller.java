@@ -23,8 +23,13 @@ public class Controller {
 
     //Client Mapping
     @PostMapping("/clients")
-    public ResponseEntity<Client> newClient(@RequestBody Client newClient) {
-        return ResponseEntity.ok(queryService.saveClient(newClient));
+    public ResponseEntity<?> newClient(@RequestBody Client newClient) {
+        Client client = queryService.saveClient(newClient);
+        if (client != null) {
+            return ResponseEntity.ok(client);
+        }else{
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @GetMapping("/clients")

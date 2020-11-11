@@ -5,15 +5,11 @@ import net.juanxxiii.db.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 @Service
 public class QueryService {
-
 
     private final ClientRepository clientRepository;
     private final SupplierRepository supplierRepository;
@@ -36,8 +32,31 @@ public class QueryService {
 
     //Client queryList
     public Client saveClient(Client newClient) {
-        return clientRepository
-                .save(newClient);
+        List<ClientTelephone> telephones = null;
+        List<ClientDirection> directions = null;
+        if (!newClient.getTelephones().isEmpty()) {
+            telephones = newClient.getTelephones();
+            newClient.setTelephones(null);
+        }
+        if (!newClient.getDirections().isEmpty()) {
+            directions = newClient.getDirections();
+            newClient.setDirections(null);
+        }
+        clientRepository.save(newClient);
+        int id = clientRepository.lastId();
+        if (telephones != null) {
+            telephones.forEach(telephone -> {
+                telephone.setClient(id);
+                clientTelephoneRepository.save(telephone);
+            });
+        }
+        if (directions != null) {
+            directions.forEach(direction -> {
+                direction.setClient(id);
+                clientDirectionRepository.save(direction);
+            });
+        }
+        return clientRepository.findById(id).orElse(null);
     }
 
     public List<Client> getClientList() {

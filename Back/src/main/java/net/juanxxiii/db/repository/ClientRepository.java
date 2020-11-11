@@ -24,6 +24,9 @@ public interface ClientRepository extends JpaRepository<Client, Integer> {
     @Query(value = "SELECT new net.juanxxiii.dto.ClienteCompletoDto(c.id, c.fullName, d.id, d.direction, t.id, t.number) FROM Client c INNER JOIN ClientDirection d ON c.id = d.client INNER JOIN ClientTelephone t ON c.id = t.client")
     List<ClienteCompletoDto> fetchFullClientJoin();
 
+    @Query("SELECT MAX(c.id) FROM Client c")
+    int lastId();
+
     @Transactional
     @Modifying
     @Query("UPDATE Client c SET c.fullName = :fullName, c.dni = :dni, c.email = :email, c.iban = :iban WHERE c.id = :id")
