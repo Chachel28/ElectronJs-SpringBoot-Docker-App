@@ -18,7 +18,7 @@ public class PositionStaff implements Serializable {
     private int idPositionStaff;
 
     @Column(name = "nombrepuesto")
-    private String nombre;
+    private String name;
 
     @Column(name = "seccion")
     private String section;

@@ -11,6 +11,16 @@ import java.io.Serializable;
 @Entity
 @Table(name = "productos")
 public class Product implements Serializable {
+
+    public Product() {
+        this.name = null;
+        this.description = null;
+        this.buyPrice = 0;
+        this.sellPrice = 0;
+        this.stock = 0;
+        this.type = null;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idproducto")
