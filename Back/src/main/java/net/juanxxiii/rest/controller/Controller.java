@@ -33,37 +33,37 @@ public class Controller {
     }
 
     @GetMapping("/clients/{id}")
-    public ResponseEntity<?> getClient(@PathVariable("id")int id){
+    public ResponseEntity<?> getClient(@PathVariable("id") int id) {
         Client client = queryService.getClient(id);
         if (client != null) {
             return ResponseEntity.ok(client);
-        }else {
+        } else {
             return ResponseEntity.notFound().build();
         }
     }
 
     @PutMapping("/clients/{id}")
-    public ResponseEntity<?> updateClient(@RequestBody Client newClient, @PathVariable("id")int id){
+    public ResponseEntity<?> updateClient(@RequestBody Client newClient, @PathVariable("id") int id) {
         int client = queryService.updateClient(newClient, id);
         if (client != -1) {
             return ResponseEntity.ok("Client updated");
-        }else {
+        } else {
             return ResponseEntity.notFound().build();
         }
     }
 
     @PatchMapping("/clients/{id}")
-    public ResponseEntity<?> partialUpdateClient(@RequestBody Client client, @PathVariable("id")int id){
+    public ResponseEntity<?> partialUpdateClient(@RequestBody Client client, @PathVariable("id") int id) {
         int value = queryService.partialUpdateClient(client, id);
         if (value != -1) {
             return ResponseEntity.ok("Client partially updated");
-        }else {
+        } else {
             return ResponseEntity.notFound().build();
         }
     }
 
     @DeleteMapping("/clients/{id}")
-    public ResponseEntity<?> deleteClient(@PathVariable("id")int id){
+    public ResponseEntity<?> deleteClient(@PathVariable("id") int id) {
         queryService.deleteClient(id);
         return ResponseEntity.ok("Client deleted");
     }
@@ -75,6 +75,11 @@ public class Controller {
     }
 
     //Staff Mapping
+    @PostMapping("/staff")
+    public ResponseEntity<Staff> newStaff(@RequestBody Staff staff) {
+        return ResponseEntity.ok(queryService.saveStaff(staff));
+    }
+
     @GetMapping("/staff")
     public List<Staff> getAllStaff() {
         return queryService.getAllStaff();
@@ -84,4 +89,21 @@ public class Controller {
     public Staff getStaff(@PathVariable("id") int id) {
         return queryService.getStaff(id);
     }
+
+    @PutMapping("/staff/{id}")
+    public ResponseEntity<?> updateStaff(@RequestBody Staff staff, @PathVariable int id) {
+        int value = queryService.updateStaff(staff, id);
+        if (value != -1) {
+            return ResponseEntity.ok("staff updated");
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @DeleteMapping("/staff/{id}")
+    public ResponseEntity<?> deleteStaff(@PathVariable("id") int id) {
+        queryService.deleteStaff(id);
+        return ResponseEntity.ok("Staff deleted");
+    }
+
 }

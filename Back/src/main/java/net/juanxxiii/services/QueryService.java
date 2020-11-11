@@ -5,11 +5,8 @@ import net.juanxxiii.db.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 @Service
 public class QueryService {
@@ -20,18 +17,21 @@ public class QueryService {
     private final StaffRepository staffRepository;
     private final ClientTelephoneRepository clientTelephoneRepository;
     private final ClientDirectionRepository clientDirectionRepository;
+    private final PositionStaffRepository positionStaffRepository;
 
     @Autowired
     public QueryService(ClientRepository clientRepository,
                         SupplierRepository supplierRepository,
                         StaffRepository staffRepository,
                         ClientTelephoneRepository clientTelephoneRepository,
-                        ClientDirectionRepository clientDirectionRepository) {
+                        ClientDirectionRepository clientDirectionRepository,
+                        PositionStaffRepository positionStaffRepository) {
         this.clientRepository = clientRepository;
         this.supplierRepository = supplierRepository;
         this.staffRepository = staffRepository;
         this.clientTelephoneRepository = clientTelephoneRepository;
         this.clientDirectionRepository = clientDirectionRepository;
+        this.positionStaffRepository = positionStaffRepository;
     }
 
     //Client queryList
@@ -123,6 +123,10 @@ public class QueryService {
     }
 
     //Staff queryList
+    public Staff saveStaff(Staff staff) {
+        return staffRepository.save(staff);
+    }
+
     public List<Staff> getAllStaff() {
         return staffRepository
                 .findAll();
@@ -133,4 +137,16 @@ public class QueryService {
                 .findById(id)
                 .orElse(null);
     }
+
+    public int updateStaff(Staff staff, int id) {
+        return staffRepository.findById(id).map(s -> {
+            positionStaffRepository.findById(staff.getPositionStaff().getIdPositionStaff()).orElse(positionStaffRepository.save(staff.getPositionStaff()));
+            return staffRepository.updateStaff(staff.getName(),staff.getEmail(),staff.getPassword(),id);
+        }).orElse(-1);
+    }
+
+    public void deleteStaff(int id) {
+        staffRepository.delete(Objects.requireNonNull(staffRepository.findById(id).orElse(null)));
+    }
+
 }
