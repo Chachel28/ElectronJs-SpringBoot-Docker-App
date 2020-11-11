@@ -44,7 +44,7 @@
               </ul>
             </div>
           </nav>
-          <section class="row">
+          <section class="row my-2">
               <aside class="col-4 aside">
                   <h3 class="h1main my-3">ÚLTIMOS CLIENTES</h3>
                   <ul>
@@ -71,8 +71,8 @@
                       <a href=""><li><i class="fas fa-portrait mr-2"></i>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</li></a>
                   </ul>
               </aside>
-              <section class="col-8">
-                <div class="card" style="width: 18rem;">
+              <section class="col-8 row">
+                <div class="card col-3" style="width: 18rem;">
                     <div class="card-body text-center">
                       <h5 class="card-title">Nombre</h5>
                       <hr class="my-4">
@@ -81,6 +81,111 @@
                       <p class="card-text">IBAN</p>
                       <p class="card-text">teléfonos</p>
                       <p class="card-text">direcciones</p>
+                    </div>
+                  </div>
+                  <!--TODO: reorganización de clientes -->
+                  <div class="col-9">
+                    <p>
+                      <a class="btn btn-dark" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        Añadir Cliente
+                      </a>
+                      <a class="btn btn-dark" type="button" data-toggle="collapse" href="#collapseExample1" aria-expanded="false" aria-controls="collapseExample">
+                        Modificar Cliente
+                      </a>
+                      <a class="btn btn-dark" type="button" data-toggle="collapse" href="#collapseExample2" aria-expanded="false" aria-controls="collapseExample">
+                        Borrar Cliente
+                      </a>
+                    </p>
+                    <div class="collapse my-4" id="collapseExample">
+                      <form>
+                        <div class="form-row">
+                          <div class="form-group col-6">
+                            <label for="inputEmail4">Email</label>
+                            <input type="email" class="form-control" id="inputEmail4" placeholder="ejemplo@gmail.com">
+                          </div>
+                          <div class="form-group col-6">
+                            <label for="inputCompletName">Nombre Completo</label>
+                            <input type="text" class="form-control" id="inputCompletName">
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label for="inputIBAN">IBAN</label>
+                          <input type="text" class="form-control" id="inputIBAN" placeholder="ES80 ....">
+                        </div>
+                        <div class="form-group">
+                          <label for="inputDNI">DNI/NIE</label>
+                          <input type="text" class="form-control" id="inputDNI" >
+                        </div>
+                        <div class="form-row">
+                          <div class="form-group col-6">
+                            <label for="inputTelephone">Teléfono</label>
+                            <input type="text" class="form-control" id="inputTelephone">
+                          </div>
+                          <div class="form-group col-6">
+                            <label for="inputDirection">Dirección</label>
+                            <input type="text" class="form-control" id="inputDirection">
+                          </div>
+                        </div>
+                        <button type="submit" class="btn btn2">Añadir</button>
+                      </form>
+                    </div>
+                    <div class="collapse my-4" id="collapseExample1">
+                      <form>
+                        <div class="form-row">
+                          <div class="form-group col-6">
+                            <label for="inputEmail4">Email</label>
+                            <input type="email" class="form-control" id="inputEmail4" placeholder="ejemplo@gmail.com">
+                          </div>
+                          <div class="form-group col-6">
+                            <label for="inputCompletName">Nombre Completo</label>
+                            <input type="text" class="form-control" id="inputCompletName">
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label for="inputIBAN">IBAN</label>
+                          <input type="text" class="form-control" id="inputIBAN" placeholder="ES80 ....">
+                        </div>
+                        <div class="form-group">
+                          <label for="inputDNI">DNI/NIE</label>
+                          <input type="text" class="form-control" id="inputDNI" >
+                        </div>
+                        <div class="form-row">
+                          <div class="form-group col-6">
+                            <label for="inputTelephone">Teléfono</label>
+                            <input type="text" class="form-control" id="inputTelephone">
+                          </div>
+                          <div class="form-group col-6">
+                            <label for="inputDirection">Dirección</label>
+                            <input type="text" class="form-control" id="inputDirection">
+                          </div>
+                        </div>
+                        <button type="submit" class="btn btn2">Modificar</button>
+                      </form>
+                    </div>
+                    <div class="collapse" id="collapseExample2">
+                      <form class="form-inline my-2 my-lg-0">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search">
+                        <button class="btn btn1" type="submit">Buscar</button>
+                      </form>
+                      <table class="table table-dark my-4">
+                        <thead>
+                          <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">DNI</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <th scope="row">1</th>
+                            <td>Mark</td>
+                            <td>Otto</td>
+                            <td>@mdo</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <a href="" class="btn btn2 text-center">Borrar</a>
                     </div>
                   </div>
               </section>

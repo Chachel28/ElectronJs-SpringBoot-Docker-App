@@ -376,7 +376,18 @@ body {
 
 /* INICIO CLIENTS.HTML*/
 
+form button:hover {
+    font-weight: bolder;
+    box-shadow: 2px 2px 0 var(--color_corporative_first);
+    font-size: 16px;
+    transition: 0.5s;
+}
 
-
+.collapse > a:hover {
+    font-weight: bolder;
+    box-shadow: 2px 2px 0 var(--color_corporative_first);
+    font-size: 16px;
+    transition: 0.5s;
+}
 /* FIN CLIENTS.HTML*/
 
