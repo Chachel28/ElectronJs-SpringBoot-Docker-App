@@ -10,6 +10,11 @@
     --main_font:  'Poppins', sans-serif;
     --color_corporative_first: #009e81;
     --color_corporative_second: #00b594;
+    --color_corporative_third: #1C3D36;
+    --color_corporative_four: #01A862;
+    --color_corporative_five: #026340;
+    --color_light_gray: #F7F7F7;
+    --color_gray: #c8c8c8;
 }
 
 /* ESTILOS UNIVERSALES*/
@@ -24,7 +29,7 @@
 body {
     
     min-height: 100vh;
-    background: var(--color_body);
+    background: var(--color_gray);
 }
 
 
@@ -227,7 +232,7 @@ body {
                 inset -5px -5px 15px rgba(255, 255, 255, 0.1),
                 5px 5px 15px rgba(0, 0, 0, 0.3),
                 -5px -5px 15px rgba(255, 255, 255, 0.1);
-    background-color: var(--color_caja);
+    background-color: var(--color_corporative_third);
     height: 100vh;
     position: relative;
 }
