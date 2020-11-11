@@ -110,7 +110,7 @@ public class QueryService {
                     if (newClient.getEmail() != null) {
                         clientRepository.updateClientEmail(newClient.getEmail(), id);
                     }
-                    if(newClient.getTelephones() != null) {
+                    if (newClient.getTelephones() != null) {
                         newClient.getTelephones().forEach(clientTelephone -> {
                             if (!client.getTelephones().contains(clientTelephone)) {
                                 clientTelephoneRepository.save(clientTelephone);
@@ -146,6 +146,13 @@ public class QueryService {
 
     //Staff queryList
     public Staff saveStaff(Staff staff) {
+        PositionStaff positionStaff = staff.getPositionStaff();
+        PositionStaff pSRepo = positionStaffRepository.findByName(positionStaff.getName()).orElse(null);
+        if (pSRepo == null) {
+            positionStaffRepository.save(positionStaff);
+        } else {
+            staff.setPositionStaff(pSRepo);
+        }
         return staffRepository.save(staff);
     }
 
@@ -163,7 +170,7 @@ public class QueryService {
     public int updateStaff(Staff staff, int id) {
         return staffRepository.findById(id).map(s -> {
             positionStaffRepository.findById(staff.getPositionStaff().getIdPositionStaff()).orElse(positionStaffRepository.save(staff.getPositionStaff()));
-            return staffRepository.updateStaff(staff.getName(),staff.getEmail(),staff.getPassword(),id);
+            return staffRepository.updateStaff(staff.getName(), staff.getEmail(), staff.getPassword(), id);
         }).orElse(-1);
     }
 
