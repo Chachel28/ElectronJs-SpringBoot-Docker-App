@@ -105,6 +105,16 @@ public class Controller {
         }
     }
 
+    @PatchMapping("/staff/{id}")
+    public ResponseEntity<?> partialUpdateStaff(@PathVariable int id, @RequestBody Staff staff) {
+        int value = queryService.partialUpdateStaff(staff, id);
+        if (value != -1) {
+            return ResponseEntity.ok("staff updated");
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
     @DeleteMapping("/staff/{id}")
     public ResponseEntity<?> deleteStaff(@PathVariable("id") int id) {
         queryService.deleteStaff(id);

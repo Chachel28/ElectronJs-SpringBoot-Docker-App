@@ -170,12 +170,36 @@ public class QueryService {
     public int updateStaff(Staff staff, int id) {
         return staffRepository.findById(id).map(s -> {
             positionStaffRepository.findById(staff.getPositionStaff().getIdPositionStaff()).orElse(positionStaffRepository.save(staff.getPositionStaff()));
-            return staffRepository.updateStaff(staff.getName(), staff.getEmail(), staff.getPassword(), id);
+            return staffRepository.updateStaff(staff.getName(), staff.getEmail(), staff.getPassword(), staff.getTelephone(), id);
+        }).orElse(-1);
+    }
+
+    public int partialUpdateStaff(Staff staff, int id) {
+        return staffRepository.findById(id).map(s -> {
+            if (staff.getName() != null) {
+                staffRepository.updateStaffName(staff.getName(), id);
+            }
+            if (staff.getEmail() != null) {
+                staffRepository.updateStaffEmail(staff.getEmail(), id);
+            }
+            if (staff.getPassword() != null) {
+                staffRepository.updateStaffPassword(staff.getPassword(), id);
+            }
+            if (staff.getTelephone() != 0) {
+                staffRepository.updateStaffTelephone(staff.getTelephone(), id);
+            }
+            if (!staff.getPositionStaff().equals(s.getPositionStaff())) {
+                PositionStaff pSRepo = positionStaffRepository.findByName(staff.getPositionStaff().getName()).orElse(null);
+                if (pSRepo == null) {
+                    pSRepo = positionStaffRepository.save(staff.getPositionStaff());
+                }
+                staffRepository.updateIdPositionStaff(pSRepo.getIdPositionStaff(), id);
+            }
+            return 1;
         }).orElse(-1);
     }
 
     public void deleteStaff(int id) {
         staffRepository.delete(Objects.requireNonNull(staffRepository.findById(id).orElse(null)));
     }
-
 }
