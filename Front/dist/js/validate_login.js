@@ -1,17 +1,14 @@
 
-function validacion() {
-    let email  =  document.getElementById("email-login").value();
-    let password = document.getElementById("password-login").value();
-    if (email != "admin@gmail.com") {
-        alert('Email no registrado')
-        console.log("false")
+function validation() {
+    var email  =  document.getElementById("email-login").value;
+    var password = document.getElementById("password-login").value;
+    if (email == "admin@gmail.com" && password == "Password") {
+        alert('Login succesfully.');
         return false;
     }
-    else if (password != "Contraseña") {
-        alert('Contraseña incorrecta')
-        console.log("false")
-        return false;
+    else {
+        alert('Wrong email or password');
+
     }
-    console.log(email)
-    return true;
+
 }
