@@ -19,4 +19,12 @@ public class ClientDirection {
     private String direction;
     @Column(name = "idcliente")
     private int client;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ClientDirection that = (ClientDirection) o;
+        return direction.equals(that.direction);
+    }
 }

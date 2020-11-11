@@ -81,15 +81,27 @@ public class QueryService {
                     newClient.getTelephones()
                             .forEach(telephone -> {
                                 if (!telephones.contains(telephone)) {
+                                    telephone.setClient(client.getId());
                                     clientTelephoneRepository.save(telephone);
                                 }
                             });
+                    telephones.forEach(telephone ->{
+                        if (!newClient.getTelephones().contains(telephone)) {
+                            clientTelephoneRepository.deleteById(telephone.getId());
+                        }
+                    });
                     newClient.getDirections()
                             .forEach(direction -> {
                                 if (!directions.contains(direction)) {
+                                    direction.setClient(client.getId());
                                     clientDirectionRepository.save(direction);
                                 }
                             });
+                    directions.forEach(direction ->{
+                        if (!newClient.getDirections().contains(direction)) {
+                            clientDirectionRepository.deleteById(direction.getId());
+                        }
+                    });
                     return clientRepository.updateClient(newClient.getFullName(), newClient.getDni(), newClient.getEmail(), newClient.getIban(), newClient.getId());
                 })
                 .orElse(-1);
@@ -113,14 +125,26 @@ public class QueryService {
                     if (newClient.getTelephones() != null) {
                         newClient.getTelephones().forEach(clientTelephone -> {
                             if (!client.getTelephones().contains(clientTelephone)) {
+                                clientTelephone.setClient(client.getId());
                                 clientTelephoneRepository.save(clientTelephone);
+                            }
+                        });
+                        client.getTelephones().forEach(telephone ->{
+                            if (!newClient.getTelephones().contains(telephone)) {
+                                clientTelephoneRepository.deleteById(telephone.getId());
                             }
                         });
                     }
                     if (newClient.getDirections() != null) {
                         newClient.getDirections().forEach(clientDirection -> {
                             if (!client.getDirections().contains(clientDirection)) {
+                                clientDirection.setClient(client.getId());
                                 clientDirectionRepository.save(clientDirection);
+                            }
+                        });
+                        client.getDirections().forEach(direction ->{
+                            if (!newClient.getDirections().contains(direction)) {
+                                clientDirectionRepository.deleteById(direction.getId());
                             }
                         });
                     }
