@@ -26,11 +26,7 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c4a94fa7-29ca-4ed2-b731-5974e470c3a1" name="Default Changelist" comment="Commit de puta madre">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_26_10_2020_18_42_[Default_Changelist]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_26_10_2020_18_42__Default_Changelist_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_27_10_2020_15_48_[Default_Changelist]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_27_10_2020_15_48__Default_Changelist_.xml" beforeDir="false" />
+    <list default="true" id="c4a94fa7-29ca-4ed2-b731-5974e470c3a1" name="Default Changelist" comment="Probando validate_login.js">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/js/validate_login.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/js/validate_login.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/login.html" afterDir="false" />
@@ -111,8 +107,16 @@
       <workItem from="1603734089124" duration="4888000" />
       <workItem from="1603740014674" duration="30000" />
       <workItem from="1603809220823" duration="2494000" />
-      <workItem from="1605092594477" duration="1712000" />
+      <workItem from="1605092594477" duration="11326000" />
     </task>
+    <task id="LOCAL-00001" summary="Probando validate_login.js">
+      <created>1605094411695</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1605094411695</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -150,7 +154,8 @@
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="He creado una hoja de estilo exclusiva para el login porque al parecer al meter el css de la plantilla en el fichero original creaba algún tipo de conflicto y no se editaba bien." />
-    <option name="LAST_COMMIT_MESSAGE" value="He creado una hoja de estilo exclusiva para el login porque al parecer al meter el css de la plantilla en el fichero original creaba algún tipo de conflicto y no se editaba bien." />
+    <MESSAGE value="Probando validate_login.js" />
+    <option name="LAST_COMMIT_MESSAGE" value="Probando validate_login.js" />
   </component>
   <component name="WindowStateProjectService">
     <state x="440" y="114" key="#Project_Structure" timestamp="1601685383826">
@@ -189,18 +194,18 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="207" height="457" key="HiddenNamespacesPopup/0.0.1366.728@0.0.1366.728" timestamp="1603815111814" />
-    <state x="275" y="97" key="Vcs.Push.Dialog.v2" timestamp="1603811921063">
+    <state x="275" y="97" key="Vcs.Push.Dialog.v2" timestamp="1605094696013">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="275" y="97" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1603811921063" />
+    <state x="275" y="97" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1605094696013" />
     <state x="413" y="169" key="com.intellij.database.dbimport.ImportUtil.ChooseTargetDialog" timestamp="1603815432153">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="413" y="169" key="com.intellij.database.dbimport.ImportUtil.ChooseTargetDialog/0.0.1366.728@0.0.1366.728" timestamp="1603815432153" />
-    <state x="500" y="278" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1603810090365">
+    <state x="500" y="278" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1605094691449">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="500" y="278" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1366.728@0.0.1366.728" timestamp="1603810090365" />
+    <state x="500" y="278" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1366.728@0.0.1366.728" timestamp="1605094691449" />
     <state x="459" y="77" key="git4idea.branch.GitSmartOperationDialog" timestamp="1603810115932">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -210,5 +215,9 @@
     </state>
     <state x="243" y="0" key="new project wizard/0.0.1366.728@0.0.1366.728" timestamp="1603740041986" />
     <state x="342" y="223" key="new project wizard/1920.0.1920.1080/0.0.1920.1080@0.0.1920.1080" timestamp="1601685945963" />
+    <state x="343" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1605108289653">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="343" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1605108289653" />
   </component>
 </project>
