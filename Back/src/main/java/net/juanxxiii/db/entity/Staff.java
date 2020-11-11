@@ -16,6 +16,7 @@ public class Staff implements Serializable {
         this.name = null;
         this.email = null;
         this.password = null;
+        this.telephone = 0;
     }
 
     @Id

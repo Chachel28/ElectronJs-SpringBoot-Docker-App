@@ -13,6 +13,32 @@ import org.springframework.transaction.annotation.Transactional;
 public interface StaffRepository extends JpaRepository<Staff, Integer> {
     @Modifying
     @Transactional
-    @Query("UPDATE Staff s SET s.name= :name, s.email=:email, s.password=:password WHERE s.idStaff = :id")
-    int updateStaff(@Param("name") String name, @Param("email") String email, @Param("password") String password, @Param("id") int id);
+    @Query("UPDATE Staff s SET s.name= :name, s.email=:email, s.password=:password, s.telephone=:telephone WHERE s.idStaff = :id")
+    int updateStaff(@Param("name") String name, @Param("email") String email, @Param("password") String password, @Param("telephone") int telephone, @Param("id") int id);
+
+    @Modifying
+    @Transactional
+    @Query("UPDATE Staff s SET s.name = :name WHERE s.idStaff=:id")
+    void updateStaffName(@Param("name") String name, @Param("id") int id);
+
+    @Modifying
+    @Transactional
+    @Query("UPDATE Staff s SET s.email = :email WHERE s.idStaff=:id")
+    void updateStaffEmail(@Param("email") String email, @Param("id") int id);
+
+    @Modifying
+    @Transactional
+    @Query("UPDATE Staff s SET s.password = :password WHERE s.idStaff=:id")
+    void updateStaffPassword(@Param("password") String password, @Param("id") int id);
+
+    @Modifying
+    @Transactional
+    @Query("UPDATE Staff s SET s.telephone = :telephone WHERE s.idStaff=:id")
+    void updateStaffTelephone(@Param("telephone") int telephone, @Param("id") int id);
+
+    @Modifying
+    @Transactional
+    @Query(value = "UPDATE personal SET idPuesto=:idpuesto WHERE idPersonal=:id",nativeQuery = true)
+    void updateIdPositionStaff(@Param("idpuesto") int idPosition, @Param("id") int id);
+
 }
