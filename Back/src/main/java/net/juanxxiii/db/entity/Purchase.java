@@ -10,7 +10,7 @@ import java.io.Serializable;
 @Setter
 @Entity
 @Table(name = "compras")
-public class Purcharse implements Serializable{
+public class Purchase implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idcompra")
@@ -18,4 +18,7 @@ public class Purcharse implements Serializable{
 
     @Column(name = "cantidadcomprada")
     private int quantity;
+
+    @Column(name = "idproveedor")
+    private int supplier;
 }

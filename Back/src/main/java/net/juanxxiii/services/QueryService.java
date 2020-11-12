@@ -1,12 +1,15 @@
 package net.juanxxiii.services;
 
+import jdk.nashorn.internal.runtime.options.Option;
 import net.juanxxiii.db.entity.*;
 import net.juanxxiii.db.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 @Service
 public class QueryService {
@@ -18,6 +21,8 @@ public class QueryService {
     private final ClientTelephoneRepository clientTelephoneRepository;
     private final ClientDirectionRepository clientDirectionRepository;
     private final PositionStaffRepository positionStaffRepository;
+    private final SaleRepository saleRepository;
+    private final ProductRepository productRepository;
     private final SupplierTelephoneRepository supplierTelephoneRepository;
     private final SupplierDirectionRepository supplierDirectionRepository;
 
@@ -29,6 +34,9 @@ public class QueryService {
                         ClientTelephoneRepository clientTelephoneRepository,
                         ClientDirectionRepository clientDirectionRepository,
                         PositionStaffRepository positionStaffRepository,
+                        SaleRepository saleRepository,
+                        ProductRepository productRepository) {
+                        PositionStaffRepository positionStaffRepository,
                         SupplierTelephoneRepository supplierTelephoneRepository,
                         SupplierDirectionRepository supplierDirectionRepository
                         ) {
@@ -38,14 +46,50 @@ public class QueryService {
         this.clientTelephoneRepository = clientTelephoneRepository;
         this.clientDirectionRepository = clientDirectionRepository;
         this.positionStaffRepository = positionStaffRepository;
+        this.saleRepository = saleRepository;
+        this.productRepository = productRepository;
         this.supplierTelephoneRepository = supplierTelephoneRepository;
         this.supplierDirectionRepository = supplierDirectionRepository;
     }
 
     //Client queryList
     public Client saveClient(Client newClient) {
-        return clientRepository
-                .save(newClient);
+        List<ClientTelephone> telephones = null;
+        List<ClientDirection> directions = null;
+        List<Sale> sales = null;
+        if (!newClient.getTelephones().isEmpty()) {
+            telephones = newClient.getTelephones();
+            newClient.setTelephones(null);
+        }
+        if (!newClient.getDirections().isEmpty()) {
+            directions = newClient.getDirections();
+            newClient.setDirections(null);
+        }
+        if (!newClient.getSales().isEmpty()) {
+            sales = newClient.getSales();
+            newClient.setSales(null);
+        }
+        clientRepository.save(newClient);
+        int id = clientRepository.lastId();
+        if (telephones != null) {
+            telephones.forEach(telephone -> {
+                telephone.setClient(id);
+                clientTelephoneRepository.save(telephone);
+            });
+        }
+        if (directions != null) {
+            directions.forEach(direction -> {
+                direction.setClient(id);
+                clientDirectionRepository.save(direction);
+            });
+        }
+        if (sales != null) {
+            sales.forEach(sale -> {
+                sale.setClient(id);
+                saleRepository.save(sale);
+            });
+        }
+        return clientRepository.findById(id).orElse(null);
     }
 
     public List<Client> getClientList() {
@@ -64,18 +108,43 @@ public class QueryService {
                 .map(client -> {
                     List<ClientTelephone> telephones = client.getTelephones();
                     List<ClientDirection> directions = client.getDirections();
+                    List<Sale> sales = client.getSales();
                     newClient.getTelephones()
                             .forEach(telephone -> {
                                 if (!telephones.contains(telephone)) {
+                                    telephone.setClient(client.getId());
                                     clientTelephoneRepository.save(telephone);
                                 }
                             });
+                    telephones.forEach(telephone -> {
+                        if (!newClient.getTelephones().contains(telephone)) {
+                            clientTelephoneRepository.deleteById(telephone.getId());
+                        }
+                    });
                     newClient.getDirections()
                             .forEach(direction -> {
                                 if (!directions.contains(direction)) {
+                                    direction.setClient(client.getId());
                                     clientDirectionRepository.save(direction);
                                 }
                             });
+                    directions.forEach(direction -> {
+                        if (!newClient.getDirections().contains(direction)) {
+                            clientDirectionRepository.deleteById(direction.getId());
+                        }
+                    });
+                    newClient.getSales()
+                            .forEach(sale -> {
+                                if (!sales.contains(sale)) {
+                                    sale.setClient(client.getId());
+                                    saleRepository.save(sale);
+                                }
+                            });
+                    sales.forEach(sale -> {
+                        if (!newClient.getSales().contains(sale)) {
+                            saleRepository.deleteById(sale.getId());
+                        }
+                    });
                     return clientRepository.updateClient(newClient.getFullName(), newClient.getDni(), newClient.getEmail(), newClient.getIban(), newClient.getId());
                 })
                 .orElse(-1);
@@ -96,17 +165,46 @@ public class QueryService {
                     if (newClient.getEmail() != null) {
                         clientRepository.updateClientEmail(newClient.getEmail(), id);
                     }
-                    if(newClient.getTelephones() != null) {
+                    if (newClient.getTelephones() != null) {
                         newClient.getTelephones().forEach(clientTelephone -> {
                             if (!client.getTelephones().contains(clientTelephone)) {
+                                clientTelephone.setClient(client.getId());
                                 clientTelephoneRepository.save(clientTelephone);
+                            }
+                        });
+                        client.getTelephones().forEach(telephone -> {
+                            if (!newClient.getTelephones().contains(telephone)) {
+                                clientTelephoneRepository.deleteById(telephone.getId());
                             }
                         });
                     }
                     if (newClient.getDirections() != null) {
                         newClient.getDirections().forEach(clientDirection -> {
                             if (!client.getDirections().contains(clientDirection)) {
+                                clientDirection.setClient(client.getId());
                                 clientDirectionRepository.save(clientDirection);
+                            }
+                        });
+                        client.getDirections().forEach(direction -> {
+                            if (!newClient.getDirections().contains(direction)) {
+                                clientDirectionRepository.deleteById(direction.getId());
+                            }
+                        });
+                        client.getDirections().stream()
+                                .filter(direction -> !newClient.getDirections().contains(direction))
+                                .forEach(direction -> clientDirectionRepository.deleteById(direction.getId()));
+                    }
+                    if (newClient.getSales() != null) {
+                        newClient.getSales()
+                                .forEach(sale -> {
+                                    if (!client.getSales().contains(sale)) {
+                                        sale.setClient(client.getId());
+                                        saleRepository.save(sale);
+                                    }
+                                });
+                        client.getSales().forEach(sale -> {
+                            if (!newClient.getSales().contains(sale)) {
+                                saleRepository.deleteById(sale.getId());
                             }
                         });
                     }
@@ -122,7 +220,6 @@ public class QueryService {
                                 .findById(id)
                                 .orElse(null)));
     }
-
 
     //Supplier queryList
     public Supplier saveSupplier(Supplier newSupplier) {
@@ -203,6 +300,13 @@ public class QueryService {
 
     //Staff queryList
     public Staff saveStaff(Staff staff) {
+        PositionStaff positionStaff = staff.getPositionStaff();
+        PositionStaff pSRepo = positionStaffRepository.findByName(positionStaff.getName()).orElse(null);
+        if (pSRepo == null) {
+            positionStaffRepository.save(positionStaff);
+        } else {
+            staff.setPositionStaff(pSRepo);
+        }
         return staffRepository.save(staff);
     }
 
@@ -219,13 +323,78 @@ public class QueryService {
 
     public int updateStaff(Staff staff, int id) {
         return staffRepository.findById(id).map(s -> {
-            positionStaffRepository.findById(staff.getPositionStaff().getIdPositionStaff()).orElse(positionStaffRepository.save(staff.getPositionStaff()));
-            return staffRepository.updateStaff(staff.getName(),staff.getEmail(),staff.getPassword(),id);
+            updatePositionStaff(staff, id, s);
+            return staffRepository.updateStaff(staff.getName(), staff.getEmail(), staff.getPassword(), staff.getTelephone(), id);
         }).orElse(-1);
+    }
+
+    public int partialUpdateStaff(Staff staff, int id) {
+        return staffRepository.findById(id).map(s -> {
+            if (staff.getName() != null) {
+                staffRepository.updateStaffName(staff.getName(), id);
+            }
+            if (staff.getEmail() != null) {
+                staffRepository.updateStaffEmail(staff.getEmail(), id);
+            }
+            if (staff.getPassword() != null) {
+                staffRepository.updateStaffPassword(staff.getPassword(), id);
+            }
+            if (staff.getTelephone() != 0) {
+                staffRepository.updateStaffTelephone(staff.getTelephone(), id);
+            }
+            if (staff.getPositionStaff() != null) {
+                updatePositionStaff(staff, id, s);
+            }
+            return 1;
+        }).orElse(-1);
+    }
+
+    private void updatePositionStaff(Staff staff, int id, Staff s) {
+        if (!staff.getPositionStaff().equals(s.getPositionStaff())) {
+            PositionStaff pSRepo = positionStaffRepository.findByName(staff.getPositionStaff().getName()).orElse(null);
+            if (pSRepo == null) {
+                pSRepo = positionStaffRepository.save(staff.getPositionStaff());
+            }
+            staffRepository.updateIdPositionStaff(pSRepo.getIdPositionStaff(), id);
+        }
     }
 
     public void deleteStaff(int id) {
         staffRepository.delete(Objects.requireNonNull(staffRepository.findById(id).orElse(null)));
     }
 
+    //Product queryList
+    public Product saveProduct(Product newProduct) {
+        return productRepository.save(newProduct);
+    }
+
+    public List<Product> getProducts() {
+        return productRepository.findAll();
+    }
+
+    public Product getProduct(int id) {
+        return productRepository.findById(id).orElse(null);
+    }
+
+    public int updateProduct(Product product, int id) {
+         return productRepository.updateProduct(product.getName(),
+                                                product.getDescription(),
+                                                product.getBuyPrice(),
+                                                product.getSellPrice(),
+                                                product.getType(),
+                                                product.getStock(),
+                                                id);
+    }
+    //TODO: implement patch product
+  /* public int partialUpdateProduct(Product product, int id) {
+        return productRepository.findById(id).map(p -> {
+
+            if (product.getName() != null) {
+                productRepository.updateProductName(product.getName(), id);
+            }
+            if (product.getDescription() != null) {
+                productRepository.update
+            }
+        });
+    }*/
 }

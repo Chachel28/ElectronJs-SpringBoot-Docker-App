@@ -1,10 +1,9 @@
 package net.juanxxiii.rest.controller;
 
-import net.juanxxiii.db.entity.Client;
-import net.juanxxiii.db.entity.Staff;
-import net.juanxxiii.db.entity.Supplier;
+import net.juanxxiii.db.entity.*;
 import net.juanxxiii.services.QueryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,8 +23,13 @@ public class Controller {
 
     //Client Mapping
     @PostMapping("/clients")
-    public ResponseEntity<Client> newClient(@RequestBody Client newClient) {
-        return ResponseEntity.ok(queryService.saveClient(newClient));
+    public ResponseEntity<?> newClient(@RequestBody Client newClient) {
+        Client client = queryService.saveClient(newClient);
+        if (client != null) {
+            return ResponseEntity.ok(client);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @GetMapping("/clients")
@@ -141,10 +145,63 @@ public class Controller {
         }
     }
 
+    @PatchMapping("/staff/{id}")
+    public ResponseEntity<?> partialUpdateStaff(@RequestBody Staff staff, @PathVariable int id) {
+        int value = queryService.partialUpdateStaff(staff, id);
+        if (value != -1) {
+            return ResponseEntity.ok("staff updated");
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
     @DeleteMapping("/staff/{id}")
     public ResponseEntity<?> deleteStaff(@PathVariable("id") int id) {
         queryService.deleteStaff(id);
         return ResponseEntity.ok("Staff deleted");
+    }
+
+    //Product Mapping
+    @PostMapping("/product")
+    public ResponseEntity<?> newProduct(@RequestBody Product newProduct) {
+        Product product = queryService.saveProduct(newProduct);
+        if (product != null) {
+            return ResponseEntity.ok(product);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @GetMapping("/product")
+    public ResponseEntity<List<Product>> getProductList() {
+        return ResponseEntity.ok(queryService.getProducts());
+    }
+
+    @GetMapping("/product/{id}")
+    public ResponseEntity<?> getProduct(@Param("id") int id) {
+        Product product = queryService.getProduct(id);
+        if (product != null) {
+            return ResponseEntity.ok(product);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @PutMapping("product/{id}")
+    public ResponseEntity<?> updateProduct(@RequestBody Product product, @PathVariable int id) {
+        int value = queryService.updateProduct(product, id);
+        if (value != -1) {
+            return ResponseEntity.noContent().build();
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @PatchMapping("/product/{id}")
+    public ResponseEntity<?> partialUpdateProduct (@RequestBody Product product, @PathVariable int id) {
+//        int value = queryService.partialUpdateProduct(product, id);
+        //TODO: Implement later
+        return null;
     }
 
 }

@@ -5,6 +5,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Getter
 @Setter
@@ -18,4 +19,15 @@ public class Sale implements Serializable {
 
     @Column(name = "cantidadvendida")
     private int quantity;
+
+    @Column(name = "idcliente")
+    private int client;
+
+    @Column(name = "idproducto")
+    private int idproduct;
+
+    @OneToMany(targetEntity = Product.class, mappedBy = "id", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Product> products;
+
+    //Factura
 }

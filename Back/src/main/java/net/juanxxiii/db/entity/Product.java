@@ -5,12 +5,23 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Getter
 @Setter
 @Entity
 @Table(name = "productos")
 public class Product implements Serializable {
+
+    public Product() {
+        this.name = null;
+        this.description = null;
+        this.buyPrice = 0;
+        this.sellPrice = 0;
+        this.stock = 0;
+        this.type = null;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idproducto")

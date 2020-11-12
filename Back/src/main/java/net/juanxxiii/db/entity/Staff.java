@@ -16,6 +16,7 @@ public class Staff implements Serializable {
         this.name = null;
         this.email = null;
         this.password = null;
+        this.telephone = 0;
     }
 
     @Id
@@ -32,7 +33,10 @@ public class Staff implements Serializable {
     @Column(name = "password")
     private String password;
 
-    @OneToOne
+    @Column(name = "telefono")
+    private int telephone;
+
+    @ManyToOne(targetEntity = PositionStaff.class, optional = false)
     @JoinColumn(name = "idpuesto", referencedColumnName = "idpuesto")
     private PositionStaff positionStaff;
 }

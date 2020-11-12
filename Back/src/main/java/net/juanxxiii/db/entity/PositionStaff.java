@@ -5,6 +5,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Objects;
 
 @Getter
 @Setter
@@ -18,7 +19,7 @@ public class PositionStaff implements Serializable {
     private int idPositionStaff;
 
     @Column(name = "nombrepuesto")
-    private String nombre;
+    private String name;
 
     @Column(name = "seccion")
     private String section;
@@ -26,4 +27,13 @@ public class PositionStaff implements Serializable {
     @Column(name = "privilegio")
     private int privilege;
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        PositionStaff that = (PositionStaff) o;
+        return privilege == that.privilege &&
+                name.equals(that.name) &&
+                section.equals(that.section);
+    }
 }
