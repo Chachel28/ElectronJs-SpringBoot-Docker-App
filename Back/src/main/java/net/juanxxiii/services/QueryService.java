@@ -1,12 +1,15 @@
 package net.juanxxiii.services;
 
+import jdk.nashorn.internal.runtime.options.Option;
 import net.juanxxiii.db.entity.*;
 import net.juanxxiii.db.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 @Service
 public class QueryService {
@@ -103,7 +106,7 @@ public class QueryService {
                                     clientTelephoneRepository.save(telephone);
                                 }
                             });
-                    telephones.forEach(telephone ->{
+                    telephones.forEach(telephone -> {
                         if (!newClient.getTelephones().contains(telephone)) {
                             clientTelephoneRepository.deleteById(telephone.getId());
                         }
@@ -115,7 +118,7 @@ public class QueryService {
                                     clientDirectionRepository.save(direction);
                                 }
                             });
-                    directions.forEach(direction ->{
+                    directions.forEach(direction -> {
                         if (!newClient.getDirections().contains(direction)) {
                             clientDirectionRepository.deleteById(direction.getId());
                         }
@@ -127,7 +130,7 @@ public class QueryService {
                                     saleRepository.save(sale);
                                 }
                             });
-                    sales.forEach(sale ->{
+                    sales.forEach(sale -> {
                         if (!newClient.getSales().contains(sale)) {
                             saleRepository.deleteById(sale.getId());
                         }
@@ -159,7 +162,7 @@ public class QueryService {
                                 clientTelephoneRepository.save(clientTelephone);
                             }
                         });
-                        client.getTelephones().forEach(telephone ->{
+                        client.getTelephones().forEach(telephone -> {
                             if (!newClient.getTelephones().contains(telephone)) {
                                 clientTelephoneRepository.deleteById(telephone.getId());
                             }
@@ -172,11 +175,14 @@ public class QueryService {
                                 clientDirectionRepository.save(clientDirection);
                             }
                         });
-                        client.getDirections().forEach(direction ->{
+                        client.getDirections().forEach(direction -> {
                             if (!newClient.getDirections().contains(direction)) {
                                 clientDirectionRepository.deleteById(direction.getId());
                             }
                         });
+                        client.getDirections().stream()
+                                .filter(direction -> !newClient.getDirections().contains(direction))
+                                .forEach(direction -> clientDirectionRepository.deleteById(direction.getId()));
                     }
                     if (newClient.getSales() != null) {
                         newClient.getSales()
@@ -186,7 +192,7 @@ public class QueryService {
                                         saleRepository.save(sale);
                                     }
                                 });
-                        client.getSales().forEach(sale ->{
+                        client.getSales().forEach(sale -> {
                             if (!newClient.getSales().contains(sale)) {
                                 saleRepository.deleteById(sale.getId());
                             }
@@ -277,8 +283,38 @@ public class QueryService {
         staffRepository.delete(Objects.requireNonNull(staffRepository.findById(id).orElse(null)));
     }
 
-    //Sale queryList
+    //Product queryList
     public Product saveProduct(Product newProduct) {
         return productRepository.save(newProduct);
     }
+
+    public List<Product> getProducts() {
+        return productRepository.findAll();
+    }
+
+    public Product getProduct(int id) {
+        return productRepository.findById(id).orElse(null);
+    }
+
+    public int updateProduct(Product product, int id) {
+         return productRepository.updateProduct(product.getName(),
+                                                product.getDescription(),
+                                                product.getBuyPrice(),
+                                                product.getSellPrice(),
+                                                product.getType(),
+                                                product.getStock(),
+                                                id);
+    }
+    //TODO: implement patch product
+  /* public int partialUpdateProduct(Product product, int id) {
+        return productRepository.findById(id).map(p -> {
+
+            if (product.getName() != null) {
+                productRepository.updateProductName(product.getName(), id);
+            }
+            if (product.getDescription() != null) {
+                productRepository.update
+            }
+        });
+    }*/
 }

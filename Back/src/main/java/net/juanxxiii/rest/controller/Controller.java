@@ -3,6 +3,7 @@ package net.juanxxiii.rest.controller;
 import net.juanxxiii.db.entity.*;
 import net.juanxxiii.services.QueryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,7 +26,7 @@ public class Controller {
         Client client = queryService.saveClient(newClient);
         if (client != null) {
             return ResponseEntity.ok(client);
-        }else{
+        } else {
             return ResponseEntity.notFound().build();
         }
     }
@@ -125,9 +126,41 @@ public class Controller {
         Product product = queryService.saveProduct(newProduct);
         if (product != null) {
             return ResponseEntity.ok(product);
-        }else{
+        } else {
             return ResponseEntity.notFound().build();
         }
+    }
+
+    @GetMapping("/product")
+    public ResponseEntity<List<Product>> getProductList() {
+        return ResponseEntity.ok(queryService.getProducts());
+    }
+
+    @GetMapping("/product/{id}")
+    public ResponseEntity<?> getProduct(@Param("id") int id) {
+        Product product = queryService.getProduct(id);
+        if (product != null) {
+            return ResponseEntity.ok(product);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @PutMapping("product/{id}")
+    public ResponseEntity<?> updateProduct(@RequestBody Product product, @PathVariable int id) {
+        int value = queryService.updateProduct(product, id);
+        if (value != -1) {
+            return ResponseEntity.noContent().build();
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @PatchMapping("/product/{id}")
+    public ResponseEntity<?> partialUpdateProduct (@RequestBody Product product, @PathVariable int id) {
+//        int value = queryService.partialUpdateProduct(product, id);
+        //TODO: Implement later
+        return null;
     }
 
 }
