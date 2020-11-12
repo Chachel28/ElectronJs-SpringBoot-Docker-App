@@ -23,6 +23,9 @@ public class Sale implements Serializable {
     @Column(name = "idcliente")
     private int client;
 
+    @Column(name = "idproducto")
+    private int idproduct;
+
     @OneToMany(targetEntity = Product.class, mappedBy = "id", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Product> products;
 

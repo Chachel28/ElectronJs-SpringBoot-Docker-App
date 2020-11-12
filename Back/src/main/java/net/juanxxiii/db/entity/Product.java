@@ -5,6 +5,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Getter
 @Setter
@@ -37,4 +38,6 @@ public class Product implements Serializable {
     private int stock;
     @Column(name = "tipo")
     private String type;
+    @OneToMany(targetEntity = Sale.class,mappedBy = "idproducto")
+    private Sale sale;
 }

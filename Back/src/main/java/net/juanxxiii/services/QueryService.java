@@ -18,6 +18,7 @@ public class QueryService {
     private final ClientDirectionRepository clientDirectionRepository;
     private final PositionStaffRepository positionStaffRepository;
     private final SaleRepository saleRepository;
+    private final ProductRepository productRepository;
 
     @Autowired
     public QueryService(ClientRepository clientRepository,
@@ -26,7 +27,8 @@ public class QueryService {
                         ClientTelephoneRepository clientTelephoneRepository,
                         ClientDirectionRepository clientDirectionRepository,
                         PositionStaffRepository positionStaffRepository,
-                        SaleRepository saleRepository) {
+                        SaleRepository saleRepository,
+                        ProductRepository productRepository) {
         this.clientRepository = clientRepository;
         this.supplierRepository = supplierRepository;
         this.staffRepository = staffRepository;
@@ -34,6 +36,7 @@ public class QueryService {
         this.clientDirectionRepository = clientDirectionRepository;
         this.positionStaffRepository = positionStaffRepository;
         this.saleRepository = saleRepository;
+        this.productRepository = productRepository;
     }
 
     //Client queryList
@@ -272,5 +275,16 @@ public class QueryService {
 
     public void deleteStaff(int id) {
         staffRepository.delete(Objects.requireNonNull(staffRepository.findById(id).orElse(null)));
+    }
+
+    public Object saveProduct(Product product) {
+        Sale sale = product.getSale();
+        Sale saleTemporal = saleRepository.findById(sale.getIdproduct()).orElse(null);
+        if (saleTemporal==null) {
+            saleRepository.save(sale);
+        } else {
+            sale.setIdproduct(saleTemporal.getIdproduct());
+        }
+        return saleRepository.save(sale);
     }
 }

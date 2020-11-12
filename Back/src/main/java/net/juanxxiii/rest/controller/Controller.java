@@ -1,6 +1,7 @@
 package net.juanxxiii.rest.controller;
 
 import net.juanxxiii.db.entity.Client;
+import net.juanxxiii.db.entity.Product;
 import net.juanxxiii.db.entity.Staff;
 import net.juanxxiii.db.entity.Supplier;
 import net.juanxxiii.services.QueryService;
@@ -119,6 +120,12 @@ public class Controller {
     public ResponseEntity<?> deleteStaff(@PathVariable("id") int id) {
         queryService.deleteStaff(id);
         return ResponseEntity.ok("Staff deleted");
+    }
+
+    //Product Mapping
+    @PostMapping("/product")
+    public ResponseEntity<Product> newProduct(@RequestBody Product product) {
+        //return ResponseEntity.ok(queryService.saveProduct(product));
     }
 
 }
