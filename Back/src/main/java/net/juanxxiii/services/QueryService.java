@@ -1,15 +1,13 @@
 package net.juanxxiii.services;
 
-import jdk.nashorn.internal.runtime.options.Option;
 import net.juanxxiii.db.entity.*;
 import net.juanxxiii.db.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 
 @Service
 public class QueryService {
@@ -22,6 +20,7 @@ public class QueryService {
     private final PositionStaffRepository positionStaffRepository;
     private final SaleRepository saleRepository;
     private final ProductRepository productRepository;
+    private final ReceiptRepository receiptRepository;
 
     @Autowired
     public QueryService(ClientRepository clientRepository,
@@ -31,7 +30,8 @@ public class QueryService {
                         ClientDirectionRepository clientDirectionRepository,
                         PositionStaffRepository positionStaffRepository,
                         SaleRepository saleRepository,
-                        ProductRepository productRepository) {
+                        ProductRepository productRepository,
+                        ReceiptRepository receiptRepository) {
         this.clientRepository = clientRepository;
         this.supplierRepository = supplierRepository;
         this.staffRepository = staffRepository;
@@ -40,6 +40,7 @@ public class QueryService {
         this.positionStaffRepository = positionStaffRepository;
         this.saleRepository = saleRepository;
         this.productRepository = productRepository;
+        this.receiptRepository = receiptRepository;
     }
 
     //Client queryList
@@ -305,16 +306,37 @@ public class QueryService {
                                                 product.getStock(),
                                                 id);
     }
-    //TODO: implement patch product
-  /* public int partialUpdateProduct(Product product, int id) {
+
+   public int partialUpdateProduct(Product product, int id) {
         return productRepository.findById(id).map(p -> {
 
             if (product.getName() != null) {
                 productRepository.updateProductName(product.getName(), id);
             }
             if (product.getDescription() != null) {
-                productRepository.update
+                productRepository.updateProductDescription(product.getDescription(), id);
             }
-        });
-    }*/
+            if (product.getBuyPrice() != 0) {
+                productRepository.updateProductBuyPrice(product.getBuyPrice(), id);
+            }
+            if (product.getSellPrice() != 0) {
+                productRepository.updateProductSellPrice(product.getSellPrice(), id);
+            }
+            if (product.getType() != null) {
+                productRepository.updateProductType(product.getType(), id);
+            }
+            if (product.getStock() != 0) {
+                productRepository.updateProductStock(product.getStock(), id);
+            }
+            return 1;
+        }).orElse(-1);
+    }
+
+    public void deleteProduct(int id) {
+        productRepository.deleteById(id);
+    }
+
+    public Receipt saveReceipt(Receipt newReceipt) {
+        return receiptRepository.save(newReceipt);
+    }
 }

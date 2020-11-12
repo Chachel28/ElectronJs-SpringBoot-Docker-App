@@ -137,7 +137,7 @@ public class Controller {
     }
 
     @GetMapping("/product/{id}")
-    public ResponseEntity<?> getProduct(@Param("id") int id) {
+    public ResponseEntity<?> getProduct(@PathVariable("id") int id) {
         Product product = queryService.getProduct(id);
         if (product != null) {
             return ResponseEntity.ok(product);
@@ -146,7 +146,7 @@ public class Controller {
         }
     }
 
-    @PutMapping("product/{id}")
+    @PutMapping("/product/{id}")
     public ResponseEntity<?> updateProduct(@RequestBody Product product, @PathVariable int id) {
         int value = queryService.updateProduct(product, id);
         if (value != -1) {
@@ -157,10 +157,34 @@ public class Controller {
     }
 
     @PatchMapping("/product/{id}")
-    public ResponseEntity<?> partialUpdateProduct (@RequestBody Product product, @PathVariable int id) {
-//        int value = queryService.partialUpdateProduct(product, id);
-        //TODO: Implement later
-        return null;
+    public ResponseEntity<?> partialUpdateProduct(@RequestBody Product product, @PathVariable int id) {
+        int value = queryService.partialUpdateProduct(product, id);
+        if (value != -1) {
+            return ResponseEntity.noContent().build();
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+
     }
+
+    @DeleteMapping("/product/{id}")
+    public ResponseEntity<?> deleteProduct(@PathVariable("id") int id) {
+        queryService.deleteProduct(id);
+        return ResponseEntity.noContent().build();
+
+    }
+
+    //Receipt Mapping
+    @PostMapping("/receipt")
+    public ResponseEntity<?> newReceipt(@RequestBody Receipt newReceipt) {
+        Receipt receipt = queryService.saveReceipt(newReceipt);
+        if (receipt != null) {
+            return ResponseEntity.ok(receipt);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+
 
 }
