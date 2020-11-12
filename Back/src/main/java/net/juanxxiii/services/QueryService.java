@@ -18,6 +18,9 @@ public class QueryService {
     private final ClientTelephoneRepository clientTelephoneRepository;
     private final ClientDirectionRepository clientDirectionRepository;
     private final PositionStaffRepository positionStaffRepository;
+    private final SupplierTelephoneRepository supplierTelephoneRepository;
+    private final SupplierDirectionRepository supplierDirectionRepository;
+
 
     @Autowired
     public QueryService(ClientRepository clientRepository,
@@ -25,13 +28,18 @@ public class QueryService {
                         StaffRepository staffRepository,
                         ClientTelephoneRepository clientTelephoneRepository,
                         ClientDirectionRepository clientDirectionRepository,
-                        PositionStaffRepository positionStaffRepository) {
+                        PositionStaffRepository positionStaffRepository,
+                        SupplierTelephoneRepository supplierTelephoneRepository,
+                        SupplierDirectionRepository supplierDirectionRepository
+                        ) {
         this.clientRepository = clientRepository;
         this.supplierRepository = supplierRepository;
         this.staffRepository = staffRepository;
         this.clientTelephoneRepository = clientTelephoneRepository;
         this.clientDirectionRepository = clientDirectionRepository;
         this.positionStaffRepository = positionStaffRepository;
+        this.supplierTelephoneRepository = supplierTelephoneRepository;
+        this.supplierDirectionRepository = supplierDirectionRepository;
     }
 
     //Client queryList
@@ -115,12 +123,83 @@ public class QueryService {
                                 .orElse(null)));
     }
 
+
     //Supplier queryList
+    public Supplier saveSupplier(Supplier newSupplier) {
+        return supplierRepository
+                .save(newSupplier);
+    }
+
+    public List<Supplier> getSupplierList() {
+        return supplierRepository
+                .findAll();
+    }
+
     public Supplier getSupplier(int id) {
         return supplierRepository
                 .findById(id)
                 .orElse(null);
     }
+    public int updateSupplier(Supplier newSupplier, int id) {
+        return supplierRepository.findById(id)
+                .map(client -> {
+                    List<SupplierTelephone> telephones = client.getTelephones();
+                    List<SupplierDirection> directions = client.getDirections();
+                    newSupplier.getTelephones()
+                            .forEach(telephone -> {
+                                if (!telephones.contains(telephone)) {
+                                    supplierTelephoneRepository.save(telephone);
+                                }
+                            });
+                    newSupplier.getDirections()
+                            .forEach(direction -> {
+                                if (!directions.contains(direction)) {
+                                    supplierDirectionRepository.save(direction);
+                                }
+                            });
+                    return supplierRepository.updateSupplier(newSupplier.getName(), newSupplier.getDni(), newSupplier.getEmail(), newSupplier.getId());
+                })
+                .orElse(-1);
+    }
+
+    public int partialUpdateSupplier(Supplier newSupplier, int id){
+        return supplierRepository.findById(id)
+                .map(supplier -> {
+                    if (newSupplier.getName() != null) {
+                        supplierRepository.updateSupplierName(newSupplier.getName(), id);
+                    }
+                    if (newSupplier.getDni() != null) {
+                        clientRepository.updateClientDni(newSupplier.getDni(), id);
+                    }
+                    if (newSupplier.getEmail() != null) {
+                        clientRepository.updateClientEmail(newSupplier.getEmail(), id);
+                    }
+                    if(newSupplier.getTelephones() != null) {
+                        newSupplier.getTelephones().forEach(supplierTelephone -> {
+                            if (!supplier.getTelephones().contains(supplierTelephone)) {
+                                supplierTelephoneRepository.save(supplierTelephone);
+                            }
+                        });
+                    }
+                    if (newSupplier.getDirections() != null) {
+                        newSupplier.getDirections().forEach(supplierDirection -> {
+                            if (!supplier.getDirections().contains(supplierDirection)) {
+                                supplierDirectionRepository.save(supplierDirection);
+                            }
+                        });
+                    }
+                    return 1;
+                }).orElse(-1);
+    }
+
+    public void deleteSupplier(int id) {
+        supplierRepository
+                .delete(Objects
+                        .requireNonNull(supplierRepository
+                                .findById(id)
+                                .orElse(null)));
+    }
+
 
     //Staff queryList
     public Staff saveStaff(Staff staff) {
