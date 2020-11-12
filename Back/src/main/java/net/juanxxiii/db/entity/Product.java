@@ -38,6 +38,4 @@ public class Product implements Serializable {
     private int stock;
     @Column(name = "tipo")
     private String type;
-    @OneToMany(targetEntity = Sale.class,mappedBy = "idproducto")
-    private Sale sale;
 }

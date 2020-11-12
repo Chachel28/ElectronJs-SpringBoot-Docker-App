@@ -1,9 +1,6 @@
 package net.juanxxiii.rest.controller;
 
-import net.juanxxiii.db.entity.Client;
-import net.juanxxiii.db.entity.Product;
-import net.juanxxiii.db.entity.Staff;
-import net.juanxxiii.db.entity.Supplier;
+import net.juanxxiii.db.entity.*;
 import net.juanxxiii.services.QueryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -124,8 +121,13 @@ public class Controller {
 
     //Product Mapping
     @PostMapping("/product")
-    public ResponseEntity<Product> newProduct(@RequestBody Product product) {
-        //return ResponseEntity.ok(queryService.saveProduct(product));
+    public ResponseEntity<?> newProduct(@RequestBody Product newProduct) {
+        Product product = queryService.saveProduct(newProduct);
+        if (product != null) {
+            return ResponseEntity.ok(product);
+        }else{
+            return ResponseEntity.notFound().build();
+        }
     }
 
 }

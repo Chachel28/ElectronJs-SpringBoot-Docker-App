@@ -277,14 +277,8 @@ public class QueryService {
         staffRepository.delete(Objects.requireNonNull(staffRepository.findById(id).orElse(null)));
     }
 
-    public Object saveProduct(Product product) {
-        Sale sale = product.getSale();
-        Sale saleTemporal = saleRepository.findById(sale.getIdproduct()).orElse(null);
-        if (saleTemporal==null) {
-            saleRepository.save(sale);
-        } else {
-            sale.setIdproduct(saleTemporal.getIdproduct());
-        }
-        return saleRepository.save(sale);
+    //Sale queryList
+    public Product saveProduct(Product newProduct) {
+        return productRepository.save(newProduct);
     }
 }
