@@ -339,4 +339,12 @@ public class QueryService {
     public Receipt saveReceipt(Receipt newReceipt) {
         return receiptRepository.save(newReceipt);
     }
+
+    public List<Receipt> getReceipts() {
+        return receiptRepository.findAll();
+    }
+
+    public Receipt getReceipt(int id) {
+        return receiptRepository.findById(id).orElse(null);
+    }
 }

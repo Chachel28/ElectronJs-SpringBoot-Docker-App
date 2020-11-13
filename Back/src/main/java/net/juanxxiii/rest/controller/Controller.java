@@ -185,6 +185,21 @@ public class Controller {
         }
     }
 
+    @GetMapping("/receipt")
+    public ResponseEntity<List<Receipt>> getReceiptList() {
+        return ResponseEntity.ok(queryService.getReceipts());
+    }
+
+    @GetMapping("/receipt/{id}")
+    public ResponseEntity<?> getReceipt(@PathVariable("id") int id) {
+        Receipt receipt = queryService.getReceipt(id);
+        if (receipt != null) {
+            return ResponseEntity.ok(receipt);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
 
 
 }
