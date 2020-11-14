@@ -200,6 +200,31 @@ public class Controller {
         }
     }
 
+    @PutMapping("/product/{id}")
+    public ResponseEntity<?> updateReceipt(@RequestBody Receipt receipt, @PathVariable("id") int id) {
+        int value = queryService.updateReceipt(receipt, id);
+        if (value != -1) {
+            return ResponseEntity.noContent().build();
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @PatchMapping("/receipt/{id}")
+    public ResponseEntity<?> partialUpdateReceipt(@RequestBody Receipt receipt, @PathVariable("id") int id) {
+        int value = queryService.partialUpdateReceipt(receipt, id);
+        if (value != -1) {
+            return ResponseEntity.noContent().build();
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @DeleteMapping("/receipt/{id}")
+    public ResponseEntity<?> deleteReceipt(@PathVariable("id") int id){
+        queryService.deleteReceipt(id);
+        return ResponseEntity.noContent().build();
+    }
 
 
 }

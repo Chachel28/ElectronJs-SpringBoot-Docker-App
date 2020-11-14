@@ -347,4 +347,39 @@ public class QueryService {
     public Receipt getReceipt(int id) {
         return receiptRepository.findById(id).orElse(null);
     }
+
+    public int updateReceipt(Receipt receipt, int id) {
+        return receiptRepository.updateReceipt(receipt.getReceiptDate(),
+                                                receipt.getSubtotal(),
+                                                receipt.getDiscounts(),
+                                                receipt.getIva(),
+                                                receipt.getTotal(),
+                                                id);
+    }
+
+    public int partialUpdateReceipt(Receipt receipt, int id) {
+        return receiptRepository.findById(id).map(r -> {
+            if (receipt.getReceiptDate() != null) {
+                receiptRepository.updateReceiptDate(receipt.getReceiptDate(), id);
+            }
+            if (receipt.getSubtotal() != 0) {
+                receiptRepository.updateSubtotal(receipt.getSubtotal(), id);
+            }
+            if (receipt.getTotal() != 0) {
+                receiptRepository.updateSubtotal(receipt.getTotal(), id);
+            }
+            if (receipt.getDiscounts() != 0) {
+                receiptRepository.updateDiscounts(receipt.getDiscounts(), id);
+            }
+            if (receipt.getIva() != 0) {
+                receiptRepository.updateIva(receipt.getIva(), id);
+            }
+            return 1;
+        }).orElse(-1);
+
+    }
+
+    public void deleteReceipt(int id) {
+        receiptRepository.deleteById(id);
+    }
 }
