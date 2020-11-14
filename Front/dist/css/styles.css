@@ -405,8 +405,17 @@ form button:hover {
 }
 /* FIN CLIENTS.HTML*/
 
-/* INICIO PRODUCTS.HTML*/
+/* ALLSTAFF.HTML*/
 
+.myPagination {
+    display: flex;
+    margin-left: 43%;
+}
 
-/* FIN PRODUCTS.HTML*/
+.paging {
+    color: #000;
+    font-size: 16px;
+    justify-content: center;
+}
+/* ALLSTAFF.HTML*/
 
