@@ -200,7 +200,7 @@ public class Controller {
         }
     }
 
-    @PutMapping("/product/{id}")
+    @PutMapping("/receipt/{id}")
     public ResponseEntity<?> updateReceipt(@RequestBody Receipt receipt, @PathVariable("id") int id) {
         int value = queryService.updateReceipt(receipt, id);
         if (value != -1) {
@@ -226,5 +226,55 @@ public class Controller {
         return ResponseEntity.noContent().build();
     }
 
+    //Sale Mapping
+    @PostMapping("/sales")
+    public ResponseEntity<?> newSale(@RequestBody Sale newSale) {
+        Sale sale = queryService.saveSale(newSale);
+        if (sale != null) {
+            return ResponseEntity.ok(sale);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 
+    @GetMapping("/sales")
+    public ResponseEntity<List<Sale>> getSaleList() {
+        return ResponseEntity.ok(queryService.getSaleList());
+    }
+
+    @GetMapping("/sales/{id}")
+    public ResponseEntity<?> getSale(@PathVariable("id") int id) {
+        Sale sale = queryService.getSale(id);
+        if (sale != null) {
+            return ResponseEntity.ok(sale);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @PutMapping("/sales/{id}")
+    public ResponseEntity<?> updateSale(@RequestBody Sale newSale, @PathVariable("id") int id) {
+        int sale = queryService.updateSale(newSale, id);
+        if (sale != -1) {
+            return ResponseEntity.ok("Client updated");
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @PatchMapping("/sales/{id}")
+    public ResponseEntity<?> updatePartialSale(@RequestBody Sale newSale, @PathVariable("id") int id) {
+        int sale = queryService.partialUpdateSale(newSale, id);
+        if (sale != -1) {
+            return ResponseEntity.ok("Client updated");
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @DeleteMapping("/sales/{id}")
+    public ResponseEntity<?> deleteSale(@PathVariable("id") int id) {
+        queryService.deleteSale(id);
+        return ResponseEntity.ok("Client deleted");
+    }
 }
