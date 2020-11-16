@@ -22,6 +22,8 @@ public class QueryService {
     private final SaleLineRepository saleLineRepository;
     private final ProductRepository productRepository;
     private final ReceiptRepository receiptRepository;
+    private final PurchaseRepository purchaseRepository;
+    private final PurchaseLineRepository purchaseLineRepository;
 
     @Autowired
     public QueryService(ClientRepository clientRepository,
@@ -33,7 +35,9 @@ public class QueryService {
                         SaleRepository saleRepository,
                         SaleLineRepository saleLineRepository,
                         ProductRepository productRepository,
-                        ReceiptRepository receiptRepository) {
+                        ReceiptRepository receiptRepository,
+                        PurchaseRepository purchaseRepository,
+                        PurchaseLineRepository purchaseLineRepository) {
         this.clientRepository = clientRepository;
         this.supplierRepository = supplierRepository;
         this.staffRepository = staffRepository;
@@ -44,6 +48,8 @@ public class QueryService {
         this.saleLineRepository = saleLineRepository;
         this.productRepository = productRepository;
         this.receiptRepository = receiptRepository;
+        this.purchaseRepository = purchaseRepository;
+        this.purchaseLineRepository = purchaseLineRepository;
     }
 
     //Client queryList
@@ -494,6 +500,115 @@ public class QueryService {
         saleRepository
                 .delete(Objects
                         .requireNonNull(saleRepository
+                                .findById(id)
+                                .orElse(null)));
+    }
+
+    //Purchase queryList
+    public Purchase savePurchase(Purchase newPurchase) {
+        List<PurchaseLine> lines = null;
+        if (!newPurchase.getPurchaseLines().isEmpty()) {
+            lines = newPurchase.getPurchaseLines();
+            newPurchase.setPurchaseLines(null);
+        }
+        purchaseRepository.save(newPurchase);
+        int id = purchaseRepository.lastId();
+        if (lines != null) {
+            lines.forEach(line -> {
+                line.setIdPurchase(id);
+                purchaseLineRepository.save(line);
+            });
+        }
+        return purchaseRepository.findById(id).orElse(null);
+    }
+
+    public List<Purchase> getPurchaseList() {
+        return purchaseRepository.findAll();
+    }
+
+    public Purchase getPurchase(int id) {
+        return purchaseRepository.findById(id).orElse(null);
+    }
+
+    public int updatePurchase(Purchase newPurchase, int id) {
+        return purchaseRepository.findById(id)
+                .map(purchase -> {
+                    List<PurchaseLine> purchaseLines = purchase.getPurchaseLines();
+                    newPurchase.getPurchaseLines()
+                            .forEach(purchaseLine -> {
+                                if (!purchaseLines.contains(purchaseLine)) {
+                                    purchaseLine.setIdPurchase(purchase.getId());
+                                    purchaseLineRepository.save(purchaseLine);
+                                }
+                            });
+                    purchaseLines.forEach(saleLine -> {
+                        if (!newPurchase.getPurchaseLines().contains(saleLine)) {
+                            saleLineRepository.deleteById(saleLine.getId());
+                        }
+                    });
+                    updatePurchaseStaff(newPurchase, id, purchase);
+                    updatePurchaseReceipt(newPurchase, id, purchase);
+                    return purchaseRepository.updatePurchase(newPurchase.getSupplier(), id);
+                })
+                .orElse(-1);
+    }
+
+    private void updatePurchaseReceipt(Purchase newPurchase, int id, Purchase purchase) {
+        if (!purchase.getReceipt().equals(newPurchase.getReceipt())) {
+            Receipt rRepo = receiptRepository.findById(newPurchase.getReceipt().getId()).orElse(null);
+            if (rRepo == null) {
+                rRepo = receiptRepository.save(newPurchase.getReceipt());
+            }
+            purchaseRepository.updateIdReceipt(rRepo.getId(), id);
+        }
+    }
+
+    private void updatePurchaseStaff(Purchase newPurchase, int id, Purchase purchase) {
+        if (!purchase.getStaff().equals(newPurchase.getStaff())) {
+            Staff sRepo = staffRepository.findByName(newPurchase.getStaff().getName()).orElse(null);
+            if (sRepo == null) {
+                sRepo = staffRepository.save(newPurchase.getStaff());
+            }
+            saleRepository.updateIdStaff(sRepo.getIdStaff(), id);
+        }
+    }
+
+    public int partialUpdatePurchase(Purchase newPurchase, int id) {
+        return purchaseRepository.findById(id)
+                .map(purchase -> {
+                    if (newPurchase.getPurchaseLines() != null) {
+                        newPurchase.getPurchaseLines()
+                                .forEach(purchaseLine -> {
+                                    if (!purchase.getPurchaseLines().contains(purchaseLine)) {
+                                        purchaseLine.setIdPurchase(purchase.getId());
+                                        purchaseLineRepository.save(purchaseLine);
+                                    }
+                                });
+                        purchase.getPurchaseLines().forEach(purchaseLine -> {
+                            if (!newPurchase.getPurchaseLines().contains(purchaseLine)) {
+                                purchaseLineRepository.deleteById(purchaseLine.getId());
+                            }
+                        });
+                    }
+                    if (newPurchase.getStaff() != null) {
+                        updatePurchaseStaff(newPurchase, id, purchase);
+                    }
+                    if (newPurchase.getReceipt() != null) {
+                        updatePurchaseReceipt(newPurchase, id, purchase);
+                    }
+                    if (newPurchase.getSupplier() != 0) {
+                        saleRepository.updateSale(newPurchase.getSupplier(), id);
+                    }
+                    return 1;
+                })
+                .orElse(-1);
+
+    }
+
+    public void deletePurchase(int id) {
+        purchaseRepository
+                .delete(Objects
+                        .requireNonNull(purchaseRepository
                                 .findById(id)
                                 .orElse(null)));
     }

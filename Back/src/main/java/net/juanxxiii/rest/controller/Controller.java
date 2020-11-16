@@ -79,12 +79,12 @@ public class Controller {
     }
 
     //Staff Mapping
-    @PostMapping("/staff")
+    @PostMapping("/staffs")
     public ResponseEntity<Staff> newStaff(@RequestBody Staff staff) {
         return ResponseEntity.ok(queryService.saveStaff(staff));
     }
 
-    @GetMapping("/staff")
+    @GetMapping("/staffs")
     public List<Staff> getAllStaff() {
         return queryService.getAllStaff();
     }
@@ -94,7 +94,7 @@ public class Controller {
         return queryService.getStaff(id);
     }
 
-    @PutMapping("/staff/{id}")
+    @PutMapping("/staffs/{id}")
     public ResponseEntity<?> updateStaff(@RequestBody Staff staff, @PathVariable int id) {
         int value = queryService.updateStaff(staff, id);
         if (value != -1) {
@@ -104,7 +104,7 @@ public class Controller {
         }
     }
 
-    @PatchMapping("/staff/{id}")
+    @PatchMapping("/staffs/{id}")
     public ResponseEntity<?> partialUpdateStaff(@RequestBody Staff staff, @PathVariable int id) {
         int value = queryService.partialUpdateStaff(staff, id);
         if (value != -1) {
@@ -114,14 +114,14 @@ public class Controller {
         }
     }
 
-    @DeleteMapping("/staff/{id}")
+    @DeleteMapping("/staffs/{id}")
     public ResponseEntity<?> deleteStaff(@PathVariable("id") int id) {
         queryService.deleteStaff(id);
         return ResponseEntity.ok("Staff deleted");
     }
 
     //Product Mapping
-    @PostMapping("/product")
+    @PostMapping("/products")
     public ResponseEntity<?> newProduct(@RequestBody Product newProduct) {
         Product product = queryService.saveProduct(newProduct);
         if (product != null) {
@@ -131,12 +131,12 @@ public class Controller {
         }
     }
 
-    @GetMapping("/product")
+    @GetMapping("/products")
     public ResponseEntity<List<Product>> getProductList() {
         return ResponseEntity.ok(queryService.getProducts());
     }
 
-    @GetMapping("/product/{id}")
+    @GetMapping("/products/{id}")
     public ResponseEntity<?> getProduct(@PathVariable("id") int id) {
         Product product = queryService.getProduct(id);
         if (product != null) {
@@ -146,7 +146,7 @@ public class Controller {
         }
     }
 
-    @PutMapping("/product/{id}")
+    @PutMapping("/products/{id}")
     public ResponseEntity<?> updateProduct(@RequestBody Product product, @PathVariable int id) {
         int value = queryService.updateProduct(product, id);
         if (value != -1) {
@@ -156,7 +156,7 @@ public class Controller {
         }
     }
 
-    @PatchMapping("/product/{id}")
+    @PatchMapping("/products/{id}")
     public ResponseEntity<?> partialUpdateProduct(@RequestBody Product product, @PathVariable int id) {
         int value = queryService.partialUpdateProduct(product, id);
         if (value != -1) {
@@ -167,7 +167,7 @@ public class Controller {
 
     }
 
-    @DeleteMapping("/product/{id}")
+    @DeleteMapping("/products/{id}")
     public ResponseEntity<?> deleteProduct(@PathVariable("id") int id) {
         queryService.deleteProduct(id);
         return ResponseEntity.noContent().build();
@@ -175,7 +175,7 @@ public class Controller {
     }
 
     //Receipt Mapping
-    @PostMapping("/receipt")
+    @PostMapping("/receipts")
     public ResponseEntity<?> newReceipt(@RequestBody Receipt newReceipt) {
         Receipt receipt = queryService.saveReceipt(newReceipt);
         if (receipt != null) {
@@ -185,12 +185,12 @@ public class Controller {
         }
     }
 
-    @GetMapping("/receipt")
+    @GetMapping("/receipts")
     public ResponseEntity<List<Receipt>> getReceiptList() {
         return ResponseEntity.ok(queryService.getReceipts());
     }
 
-    @GetMapping("/receipt/{id}")
+    @GetMapping("/receipts/{id}")
     public ResponseEntity<?> getReceipt(@PathVariable("id") int id) {
         Receipt receipt = queryService.getReceipt(id);
         if (receipt != null) {
@@ -200,7 +200,7 @@ public class Controller {
         }
     }
 
-    @PutMapping("/receipt/{id}")
+    @PutMapping("/receipts/{id}")
     public ResponseEntity<?> updateReceipt(@RequestBody Receipt receipt, @PathVariable("id") int id) {
         int value = queryService.updateReceipt(receipt, id);
         if (value != -1) {
@@ -210,7 +210,7 @@ public class Controller {
         }
     }
 
-    @PatchMapping("/receipt/{id}")
+    @PatchMapping("/receipts/{id}")
     public ResponseEntity<?> partialUpdateReceipt(@RequestBody Receipt receipt, @PathVariable("id") int id) {
         int value = queryService.partialUpdateReceipt(receipt, id);
         if (value != -1) {
@@ -220,8 +220,8 @@ public class Controller {
         }
     }
 
-    @DeleteMapping("/receipt/{id}")
-    public ResponseEntity<?> deleteReceipt(@PathVariable("id") int id){
+    @DeleteMapping("/receipts/{id}")
+    public ResponseEntity<?> deleteReceipt(@PathVariable("id") int id) {
         queryService.deleteReceipt(id);
         return ResponseEntity.noContent().build();
     }
@@ -277,4 +277,57 @@ public class Controller {
         queryService.deleteSale(id);
         return ResponseEntity.ok("Client deleted");
     }
+
+    //Purchase Mapping
+    @PostMapping("/purchases")
+    public ResponseEntity<?> newPurchase(@RequestBody Purchase newPurchase) {
+        Purchase purchase = queryService.savePurchase(newPurchase);
+        if (purchase != null) {
+            return ResponseEntity.ok(purchase);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @GetMapping("/purchases")
+    public ResponseEntity<List<Purchase>> getPurchaseList() {
+        return ResponseEntity.ok(queryService.getPurchaseList());
+    }
+
+    @GetMapping("/purchases/{id}")
+    public ResponseEntity<?> getPurchases(@PathVariable("id") int id) {
+        Purchase purchase = queryService.getPurchase(id);
+        if (purchase != null) {
+            return ResponseEntity.ok(purchase);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @PutMapping("/purchases/{id}")
+    public ResponseEntity<?> updatePurchase(@RequestBody Purchase newPurchase, @PathVariable("id") int id) {
+        int purchase = queryService.updatePurchase(newPurchase, id);
+        if (purchase != -1) {
+            return ResponseEntity.ok("Client updated");
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @PatchMapping("/purchases/{id}")
+    public ResponseEntity<?> updatePartialPurchase(@RequestBody Purchase newPurchase, @PathVariable("id") int id) {
+        int purchase = queryService.partialUpdatePurchase(newPurchase, id);
+        if (purchase != -1) {
+            return ResponseEntity.ok("Client updated");
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @DeleteMapping("/purchases/{id}")
+    public ResponseEntity<?> deletePurchase(@PathVariable("id") int id) {
+        queryService.deletePurchase(id);
+        return ResponseEntity.ok("Client deleted");
+    }
+
 }
