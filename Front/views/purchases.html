@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Módulo de ventas</title>
+    <title>Módulo de Compras</title>
     <meta name="description" content="Módulo de Ventas del ERP">
     <link rel="stylesheet" href="../assets/bootstrap-4.5.3-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../dist/css/styles.css">
@@ -32,12 +32,15 @@
                         <li class="nav-item">
                           <a class="nav-link" href="#">Productos</a>
                         </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">Operaciones Compras</a>
+                        </li>
                       </ul>
                     </div>
                 </nav>
                 <section class="row">
                   <div class="aside col-3 my-5">
-                    <h1 class="h1main">HISTORIAL DE VENTAS</h1>
+                    <h1 class="h1main">HISTORIAL DE COMPRAS</h1>
                     <ul>
                       <a href=""><li><i class="fas fa-clipboard mr-2"></i>Lorem ipsum dolor sit amet consectetur</li></a>
                       <a href=""><li><i class="fas fa-clipboard mr-2"></i>Lorem ipsum dolor sit amet consectetur</li></a>
@@ -51,20 +54,19 @@
                     <a href="" class="btn2 justify-content-center align-items-center">Ver todo</a>
                   </div>
                   <div class="mainBlock col-9 my-5">
-                    <h1 class="h1main my-2 mb-5">ACCIONES EN VENTAS</h1>
+                    <h1 class="h1main my-2 mb-5">ACCIONES EN COMPRAS</h1>
                     <div class="row">
                       <div class="col-4">
                         <div class="card" style="width: auto; height: auto;">
                           <div class="card-body">
-                            <h3 class="card-title text-center">Cliente</h3>
-                            <p class="card-text text-center"><b>Nombre:</b> Nombre cliente</p>
-                            <p class="card-text text-center"><b>DNI:</b> DNI cliente</p>
-                            <p class="card-text text-center"><b>Dirección:</b> Dirección cliente</p>
-                            <p class="card-text text-center"><b>Teléfono:</b> teléfono cliente</p>
-                            <p class="card-text text-center"><b>IBAN:</b> IBAN cliente</p>
-                            <p class="card-text text-center"><b>Email:</b> Email cliente</p>                           
+                            <h3 class="card-title text-center">Proveedor</h3>
+                            <p class="card-text text-center"><b>Nombre:</b> Nombre proveedor</p>
+                            <p class="card-text text-center"><b>DNI/CIF:</b> DNI proveedor</p>
+                            <p class="card-text text-center"><b>Email:</b> Email proveedor</p>
+                            <p class="card-text text-center"><b>Teléfonos:</b> telefonos proveedores</p>
+                            <p class="card-text text-center"><b>Direcciones:</b> direcciones proveedores</p>                           
                           </div>
-                          <a href="#" class="btn btn-dark w-auto">Ir al cliente</a>
+                          <a href="#" class="btn btn-dark w-auto">Ir al proveedor</a>
                         </div>
                       </div>
                       <div class="col-8 my-3 row justify-content-center">
@@ -78,7 +80,7 @@
                           <a class="btn btn-dark" data-toggle="collapse" href="#multiCollapseExample3" role="button" aria-expanded="false" aria-controls="collapseExample">
                             Personal
                           </a>
-                          <a href="salesOperation.html" class="btn btn2" role="button" id="btnSellOperations">Operaciones de ventas</a>
+                          <a href="salesOperation.html" class="btn btn2" role="button" id="btnSellOperations">Operaciones de compras</a>
                         </p>
                         <div class="row">
                           <div class="col">
@@ -111,16 +113,10 @@
                                   </thead>
                                   <tbody>
                                     <tr>
-                                      <th scope="row">Samsung Galaxy S3</th>
-                                      <td>Smartphone</td>
-                                      <td>365,90</td>
-                                      <td>1</td>
-                                    </tr>
-                                    <tr>
-                                      <th scope="row">One Plus 6T</th>
-                                      <td>Smartphone</td>
-                                      <td>659,90</td>
-                                      <td>1</td>
+                                      <th scope="row">Carcasa</th>
+                                      <td>cubridor smartphone</td>
+                                      <td>23,90</td>
+                                      <td>10</td>
                                     </tr>
                                     
                                   </tbody>
@@ -136,6 +132,7 @@
                                   <p class="lead"><b>Nombre y Apellidos: </b> Marcos Du Santos</p>
                                   <p class="lead"><b>Fecha Venta: </b> [fecha timestamps]</p>
                                   <p class="lead"><b>Email: </b> emailfalso@gmail.com</p>
+                                  <p class="lead"><b>Nombre Puesto:</b> nombre del puesto</p>
                                   <a class="btn btn-dark btn-lg my-n2" href="">Ir a ficha</a>
                               </div>
                             </div>
@@ -148,7 +145,6 @@
                       <p class="text-center">Copyright &copy;2020 by Entertaiment</p>
                   </div>
                   </div>
-
                 </section>
     </div>
     <script src="../assets/bootstrap-4.5.3-dist/js/bootstrap.min.js"></script>

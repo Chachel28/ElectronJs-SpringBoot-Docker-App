@@ -285,6 +285,12 @@ body {
     margin: 0 0.5em;
 
 }
+#btnSellOperations:hover {
+    font-weight: bolder;
+    box-shadow: 2px 2px 0 var(--color_corporative_second);
+    font-size: 16px;
+    transition: 0.5s;
+}
 
 .myNavbar {
     background-color: var(--color_caja);
@@ -426,8 +432,17 @@ form button:hover {
 }
 /* FIN CLIENTS.HTML*/
 
-/* INICIO PRODUCTS.HTML*/
+/* ALLSTAFF.HTML*/
 
+.myPagination {
+    display: flex;
+    margin-left: 43%;
+}
 
-/* FIN PRODUCTS.HTML*/
+.paging {
+    color: #000;
+    font-size: 16px;
+    justify-content: center;
+}
+/* ALLSTAFF.HTML*/
 

@@ -226,6 +226,46 @@ public class Controller {
         }
     }
 
+    @GetMapping("/receipt")
+    public ResponseEntity<List<Receipt>> getReceiptList() {
+        return ResponseEntity.ok(queryService.getReceipts());
+    }
+
+    @GetMapping("/receipt/{id}")
+    public ResponseEntity<?> getReceipt(@PathVariable("id") int id) {
+        Receipt receipt = queryService.getReceipt(id);
+        if (receipt != null) {
+            return ResponseEntity.ok(receipt);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @PutMapping("/product/{id}")
+    public ResponseEntity<?> updateReceipt(@RequestBody Receipt receipt, @PathVariable("id") int id) {
+        int value = queryService.updateReceipt(receipt, id);
+        if (value != -1) {
+            return ResponseEntity.noContent().build();
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @PatchMapping("/receipt/{id}")
+    public ResponseEntity<?> partialUpdateReceipt(@RequestBody Receipt receipt, @PathVariable("id") int id) {
+        int value = queryService.partialUpdateReceipt(receipt, id);
+        if (value != -1) {
+            return ResponseEntity.noContent().build();
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @DeleteMapping("/receipt/{id}")
+    public ResponseEntity<?> deleteReceipt(@PathVariable("id") int id){
+        queryService.deleteReceipt(id);
+        return ResponseEntity.noContent().build();
+    }
 
 
 }
