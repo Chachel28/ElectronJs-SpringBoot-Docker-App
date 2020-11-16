@@ -76,7 +76,12 @@ public class Controller {
     //Supplier Mapping
     @PostMapping("/supplier")
     public ResponseEntity<Supplier> newSupplier(@RequestBody Supplier newSupplier) {
-        return ResponseEntity.ok(queryService.saveSupplier(newSupplier));
+        Supplier supplier = queryService.saveSupplier(newSupplier);
+        if (supplier != null) {
+            return ResponseEntity.ok(supplier);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @GetMapping("/supplier")
@@ -93,24 +98,27 @@ public class Controller {
             return ResponseEntity.notFound().build();
         }
     }
+
     @PutMapping("/supplier/{id}")
-    public ResponseEntity<?> updateSupplier(@RequestBody Supplier newSupplier, @PathVariable("id") int id){
+    public ResponseEntity<?> updateSupplier(@RequestBody Supplier newSupplier, @PathVariable("id") int id) {
         int supplier = queryService.updateSupplier(newSupplier, id);
-        if (supplier != -1){
+        if (supplier != -1) {
             return ResponseEntity.ok("Supplier updated");
-        }else{
+        } else {
             return ResponseEntity.notFound().build();
         }
     }
+
     @PatchMapping("/supplier/{id}")
-    public ResponseEntity<?> partialUpdateSupplier(@RequestBody Supplier supplier, @PathVariable("id") int id){
+    public ResponseEntity<?> partialUpdateSupplier(@RequestBody Supplier supplier, @PathVariable("id") int id) {
         int value = queryService.partialUpdateSupplier(supplier, id);
-        if (value != -1){
+        if (value != -1) {
             return ResponseEntity.ok("Supplier partially updated");
-        }else{
+        } else {
             return ResponseEntity.notFound().build();
         }
     }
+
     @DeleteMapping("/supplier/{id}")
     public ResponseEntity<?> deleteSupplier(@PathVariable("id") int id) {
         queryService.deleteSupplier(id);
@@ -120,7 +128,7 @@ public class Controller {
 
     //Staff Mapping
     @PostMapping("/staff")
-    public ResponseEntity<Staff>newStaff(@RequestBody Staff staff) {
+    public ResponseEntity<Staff> newStaff(@RequestBody Staff staff) {
 
         return ResponseEntity.ok(queryService.saveStaff(staff));
     }
@@ -241,7 +249,7 @@ public class Controller {
         }
     }
 
-    @PutMapping("/product/{id}")
+    @PutMapping("/receipt/{id}")
     public ResponseEntity<?> updateReceipt(@RequestBody Receipt receipt, @PathVariable("id") int id) {
         int value = queryService.updateReceipt(receipt, id);
         if (value != -1) {
@@ -262,7 +270,7 @@ public class Controller {
     }
 
     @DeleteMapping("/receipt/{id}")
-    public ResponseEntity<?> deleteReceipt(@PathVariable("id") int id){
+    public ResponseEntity<?> deleteReceipt(@PathVariable("id") int id) {
         queryService.deleteReceipt(id);
         return ResponseEntity.noContent().build();
     }

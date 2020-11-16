@@ -20,20 +20,23 @@ public interface SupplierRepository extends JpaRepository<Supplier, Integer> {
     //SELECT new net.juanxxiii.dto.TelephoneDto(t.id, t.number) FROM Supplier s INNER JOIN Telephone t ON t.supplier = s.id
 
     //ES NECESARIO USAR ALIAS PARA LAS TABLAS
-    @Query(value = "SELECT new net.juanxxiii.dto.ProveedorTelefonoDto(s.id, s.name, t.id, t.number) FROM Supplier s INNER JOIN SupplierTelephone t ON t.suplier = s.id")
+    @Query(value = "SELECT new net.juanxxiii.dto.ProveedorTelefonoDto(s.id, s.fullName, t.id, t.number) FROM Supplier s INNER JOIN SupplierTelephone t ON t.supplier = s.id")
     List<ProveedorTelefonoDto> fetchTelephoneInnerJoin();
 
-    @Query(value = "SELECT new net.juanxxiii.dto.ProveedorCompletoDto(s.id, s.name, d.id, d.direction, t.id, t.number) FROM Supplier s INNER JOIN SupplierDirection d ON s.id = d.suplier INNER JOIN SupplierTelephone t ON s.id = t.suplier")
+    @Query(value = "SELECT new net.juanxxiii.dto.ProveedorCompletoDto(s.id, s.fullName, d.id, d.direction, t.id, t.number) FROM Supplier s INNER JOIN SupplierDirection d ON s.id = d.supplier INNER JOIN SupplierTelephone t ON s.id = t.supplier")
     List<ProveedorCompletoDto> fetchFullSupplierJoin();
+
+    @Query("SELECT MAX(s.id) FROM Supplier s")
+    int lastId();
 
     @Transactional
     @Modifying
-    @Query("UPDATE Supplier s SET s.name = :name, s.dni = :dni, s.email = :email WHERE s.id = :id")
+    @Query("UPDATE Supplier s SET s.fullName = :name, s.dni = :dni, s.email = :email WHERE s.id = :id")
     int updateSupplier(@Param("name") String name,@Param("dni") String dni,@Param("email") String email,@Param("id") int id);
 
     @Transactional
     @Modifying
-    @Query("UPDATE Supplier s SET s.name = :name WHERE s.id = :id")
+    @Query("UPDATE Supplier s SET s.fullName = :name WHERE s.id = :id")
     int updateSupplierName(@Param("name") String name, @Param("id") int id);
 
     @Transactional
