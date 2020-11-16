@@ -12,22 +12,26 @@ import java.util.List;
 @Entity
 @Table(name = "ventas")
 public class Sale implements Serializable {
+    public Sale() {
+        this.client = 0;
+    }
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idventa")
     private int id;
 
-    @Column(name = "cantidadvendida")
-    private int quantity;
-
     @Column(name = "idcliente")
     private int client;
 
-    @Column(name = "idproducto")
-    private int idproduct;
+    @ManyToOne(targetEntity = Staff.class, optional = false)
+    @JoinColumn(name = "idpersonal", referencedColumnName = "idpersonal")
+    private Staff staff;
 
-    @OneToMany(targetEntity = Product.class, mappedBy = "id", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Product> products;
+    @OneToOne
+    @JoinColumn(name = "idfactura", referencedColumnName = "idfactura")
+    private Receipt receipt;
 
-    //Factura
+    @OneToMany(targetEntity = SaleLine.class, mappedBy = "idSale", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<SaleLine> saleLines;
+
 }
