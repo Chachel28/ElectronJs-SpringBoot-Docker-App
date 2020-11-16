@@ -200,7 +200,7 @@ public class Controller {
         }
     }
 
-    @PutMapping("/product/{id}")
+    @PutMapping("/receipt/{id}")
     public ResponseEntity<?> updateReceipt(@RequestBody Receipt receipt, @PathVariable("id") int id) {
         int value = queryService.updateReceipt(receipt, id);
         if (value != -1) {
