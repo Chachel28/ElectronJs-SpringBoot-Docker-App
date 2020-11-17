@@ -212,7 +212,7 @@ public class QueryService {
                                 });
                         client.getSales().forEach(sale -> {
                             if (!newClient.getSales().contains(sale)) {
-                                saleRepository.deleteById(sale.getId());
+                                saveSale(sale);
                             }
                         });
                     }
