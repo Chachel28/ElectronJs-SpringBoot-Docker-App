@@ -9,6 +9,8 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
+
 @Repository
 public interface StaffRepository extends JpaRepository<Staff, Integer> {
     @Modifying
@@ -41,4 +43,6 @@ public interface StaffRepository extends JpaRepository<Staff, Integer> {
     @Query(value = "UPDATE personal SET idPuesto=:idpuesto WHERE idPersonal=:id",nativeQuery = true)
     void updateIdPositionStaff(@Param("idpuesto") int idPosition, @Param("id") int id);
 
+    @Query("select s from Staff s where s.name = :name")
+    Optional<Staff> findByName(@Param("name")String name);
 }

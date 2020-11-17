@@ -1,11 +1,14 @@
 package net.juanxxiii.db.repository;
 
 import net.juanxxiii.db.entity.Receipt;
+import net.juanxxiii.db.entity.Staff;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Optional;
 
 public interface ReceiptRepository extends JpaRepository<Receipt, Integer> {
     @Modifying
