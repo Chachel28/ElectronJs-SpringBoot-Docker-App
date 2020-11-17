@@ -20,6 +20,7 @@ public class Purchase implements Serializable{
     @Column(name = "idproveedor")
     private int supplier;
 
+    @org.springframework.data.annotation.Transient
     @ManyToOne(targetEntity = Staff.class, optional = false)
     @JoinColumn(name = "idpersonal", referencedColumnName = "idpersonal")
     private Staff staff;
@@ -28,6 +29,6 @@ public class Purchase implements Serializable{
     @JoinColumn(name = "idfactura", referencedColumnName = "idfactura")
     private Receipt receipt;
 
-    @OneToMany(targetEntity = PurchaseLine.class, mappedBy = "idpurchase", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(targetEntity = PurchaseLine.class, mappedBy = "idPurchase", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<PurchaseLine> purchaseLines;
 }

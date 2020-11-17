@@ -9,7 +9,7 @@ import java.io.Serializable;
 @Getter
 @Setter
 @Entity
-@Table("lineas_compra")
+@Table(name = "lineas_compra")
 public class PurchaseLine implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,7 +19,8 @@ public class PurchaseLine implements Serializable {
     @Column(name = "idcompra")
     private int idPurchase;
 
-    @ManyToOne(optional = false)
+    @org.springframework.data.annotation.Transient
+    @ManyToOne(optional = false, cascade = CascadeType.ALL)
     @JoinColumn(name = "idproducto", referencedColumnName = "idproducto")
     private Product idProduct;
 
