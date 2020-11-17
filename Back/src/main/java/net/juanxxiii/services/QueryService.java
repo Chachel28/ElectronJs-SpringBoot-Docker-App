@@ -3,8 +3,8 @@ package net.juanxxiii.services;
 import net.juanxxiii.db.entity.*;
 import net.juanxxiii.db.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Objects;
@@ -86,7 +86,7 @@ public class QueryService {
         if (sales != null) {
             sales.forEach(sale -> {
                 sale.setClient(id);
-                saleRepository.save(sale);
+                saveSale(sale);
             });
         }
         return clientRepository.findById(id).orElse(null);
@@ -137,7 +137,7 @@ public class QueryService {
                             .forEach(sale -> {
                                 if (!sales.contains(sale)) {
                                     sale.setClient(client.getId());
-                                    saleRepository.save(sale);
+                                    saveSale(sale);
                                 }
                             });
                     sales.forEach(sale -> {
@@ -199,7 +199,7 @@ public class QueryService {
                                 .forEach(sale -> {
                                     if (!client.getSales().contains(sale)) {
                                         sale.setClient(client.getId());
-                                        saleRepository.save(sale);
+                                        saveSale(sale);
                                     }
                                 });
                         client.getSales().forEach(sale -> {
@@ -394,11 +394,24 @@ public class QueryService {
     }
 
     //Sale queryList
+    @Transactional
     public Sale saveSale(Sale newSale) {
         List<SaleLine> lines = null;
         if (!newSale.getSaleLines().isEmpty()) {
             lines = newSale.getSaleLines();
+            lines.forEach(line -> {
+                Product product = productRepository.findById(line.getIdProduct().getId()).orElse(productRepository.save(line.getIdProduct()));
+                line.setIdProduct(product);
+            });
             newSale.setSaleLines(null);
+        }
+        if (newSale.getReceipt() != null) {
+            Receipt receipt = receiptRepository.findById(newSale.getReceipt().getId()).orElse(receiptRepository.save(newSale.getReceipt()));
+            newSale.setReceipt(receipt);
+        }
+        if (newSale.getStaff() != null) {
+            Staff staff = staffRepository.findById(newSale.getStaff().getIdStaff()).orElse(saveStaff(newSale.getStaff()));
+            newSale.setStaff(staff);
         }
         saleRepository.save(newSale);
         int id = saleRepository.lastId();
@@ -505,11 +518,24 @@ public class QueryService {
     }
 
     //Purchase queryList
+    @Transactional
     public Purchase savePurchase(Purchase newPurchase) {
         List<PurchaseLine> lines = null;
         if (!newPurchase.getPurchaseLines().isEmpty()) {
             lines = newPurchase.getPurchaseLines();
+            lines.forEach(line -> {
+                Product product = productRepository.findById(line.getIdProduct().getId()).orElse(productRepository.save(line.getIdProduct()));
+                line.setIdProduct(product);
+            });
             newPurchase.setPurchaseLines(null);
+        }
+        if (newPurchase.getReceipt() != null) {
+            Receipt receipt = receiptRepository.findById(newPurchase.getReceipt().getId()).orElse(receiptRepository.save(newPurchase.getReceipt()));
+            newPurchase.setReceipt(receipt);
+        }
+        if (newPurchase.getStaff() != null) {
+            Staff staff = staffRepository.findById(newPurchase.getStaff().getIdStaff()).orElse(saveStaff(newPurchase.getStaff()));
+            newPurchase.setStaff(staff);
         }
         purchaseRepository.save(newPurchase);
         int id = purchaseRepository.lastId();
