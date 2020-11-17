@@ -17,4 +17,10 @@ function httpGetAsync(theUrl, callback)
     xmlHttp.send(null);
 }
 
+async function apiTestProducts() {
+    await fetch('http://localhost:8080/api/v1/products')
+  .then(response => response.json())
+  .then(response => console.log(response));
+}
+
 /*Para parsear un JSON hay que hacer JSON.parse(myObject) */
