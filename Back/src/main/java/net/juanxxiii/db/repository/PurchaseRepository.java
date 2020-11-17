@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 public interface PurchaseRepository extends JpaRepository<Purchase, Integer> {
+    @Query("SELECT MAX(p.id) FROM Purchase p")
     int lastId();
 
     @Modifying
