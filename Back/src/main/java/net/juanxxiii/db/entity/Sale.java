@@ -32,11 +32,8 @@ public class Sale implements Serializable {
     @JoinColumn(name = "idfactura", referencedColumnName = "idfactura")
     private Receipt receipt;
 
-<<<<<<< HEAD
-    @OneToMany(targetEntity = SaleLine.class, mappedBy = "id", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-=======
+
     @OneToMany(targetEntity = SaleLine.class, mappedBy = "idSale", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
->>>>>>> de2083b0446b5b3adee9d9fbdab1e0f162a8cf26
     private List<SaleLine> saleLines;
 
 }
