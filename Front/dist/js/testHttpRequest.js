@@ -18,9 +18,9 @@ function httpGetAsync(theUrl, callback)
 }
 
 async function apiTestProducts() {
-    await fetch('http://localhost:8080/api/v1/products')
+    await fetch('http://localhost:8080/api/v1/clients')
   .then(response => response.json())
-  .then(response => console.log(response));
+  .then(response => {console.log(response)});
 }
 
 /*Para parsear un JSON hay que hacer JSON.parse(myObject) */
