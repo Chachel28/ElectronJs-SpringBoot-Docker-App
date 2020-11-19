@@ -10,8 +10,8 @@ function createWindow () {
         }
     })
 
-    // y carga el index.html de la aplicación.
-    win.loadFile('index.html')
+    // y carga el login.html de la aplicación.
+    win.loadFile('login.html')
 
     // Abre las herramientas de desarrollo (DevTools).
     // win.webContents.openDevTools()
