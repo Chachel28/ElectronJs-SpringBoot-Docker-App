@@ -6,6 +6,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Objects;
 
 @Getter
 @Setter
@@ -38,4 +39,17 @@ public class Product implements Serializable {
     private int stock;
     @Column(name = "tipo")
     private String type;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Product product = (Product) o;
+        return Float.compare(product.buyPrice, buyPrice) == 0 &&
+                Float.compare(product.sellPrice, sellPrice) == 0 &&
+                stock == product.stock &&
+                name.equals(product.name) &&
+                description.equals(product.description) &&
+                type.equals(product.type);
+    }
 }

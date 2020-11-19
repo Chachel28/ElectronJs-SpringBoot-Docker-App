@@ -32,7 +32,17 @@ public class Sale implements Serializable {
     @JoinColumn(name = "idfactura", referencedColumnName = "idfactura")
     private Receipt receipt;
 
+
     @OneToMany(targetEntity = SaleLine.class, mappedBy = "idSale", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<SaleLine> saleLines;
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Sale sale = (Sale) o;
+        return client == sale.client &&
+                staff.equals(sale.staff) &&
+                receipt.equals(sale.receipt);
+    }
 }
