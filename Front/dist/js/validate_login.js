@@ -11,9 +11,10 @@ async function validate_login(){
         },
         body: JSON.stringify(body)
     }
-    await fetch(url, getInit)
+    document.getElementById("access").setAttribute("href", "views/index.html");
+    /*await fetch(url, getInit)
     .then(response => response.json)
     .then(response => {
 
-    });
+    });*/
 }
