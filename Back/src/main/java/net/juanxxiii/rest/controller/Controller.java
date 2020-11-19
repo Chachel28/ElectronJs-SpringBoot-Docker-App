@@ -3,7 +3,6 @@ package net.juanxxiii.rest.controller;
 import net.juanxxiii.db.entity.*;
 import net.juanxxiii.services.QueryService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -89,7 +88,7 @@ public class Controller {
         return queryService.getAllStaff();
     }
 
-    @GetMapping("/staff/{id}")
+    @GetMapping("/staffs/{id}")
     public Staff getStaff(@PathVariable("id") int id) {
         return queryService.getStaff(id);
     }
@@ -256,7 +255,7 @@ public class Controller {
     public ResponseEntity<?> updateSale(@RequestBody Sale newSale, @PathVariable("id") int id) {
         int sale = queryService.updateSale(newSale, id);
         if (sale != -1) {
-            return ResponseEntity.ok("Client updated");
+            return ResponseEntity.ok("Sale updated");
         } else {
             return ResponseEntity.notFound().build();
         }
@@ -266,7 +265,7 @@ public class Controller {
     public ResponseEntity<?> updatePartialSale(@RequestBody Sale newSale, @PathVariable("id") int id) {
         int sale = queryService.partialUpdateSale(newSale, id);
         if (sale != -1) {
-            return ResponseEntity.ok("Client updated");
+            return ResponseEntity.ok("Sale updated");
         } else {
             return ResponseEntity.notFound().build();
         }
@@ -275,7 +274,7 @@ public class Controller {
     @DeleteMapping("/sales/{id}")
     public ResponseEntity<?> deleteSale(@PathVariable("id") int id) {
         queryService.deleteSale(id);
-        return ResponseEntity.ok("Client deleted");
+        return ResponseEntity.ok("Sale deleted");
     }
 
     //Purchase Mapping
@@ -308,7 +307,7 @@ public class Controller {
     public ResponseEntity<?> updatePurchase(@RequestBody Purchase newPurchase, @PathVariable("id") int id) {
         int purchase = queryService.updatePurchase(newPurchase, id);
         if (purchase != -1) {
-            return ResponseEntity.ok("Client updated");
+            return ResponseEntity.ok("Purchase updated");
         } else {
             return ResponseEntity.notFound().build();
         }
@@ -318,7 +317,7 @@ public class Controller {
     public ResponseEntity<?> updatePartialPurchase(@RequestBody Purchase newPurchase, @PathVariable("id") int id) {
         int purchase = queryService.partialUpdatePurchase(newPurchase, id);
         if (purchase != -1) {
-            return ResponseEntity.ok("Client updated");
+            return ResponseEntity.ok("Purchase updated");
         } else {
             return ResponseEntity.notFound().build();
         }
@@ -327,7 +326,7 @@ public class Controller {
     @DeleteMapping("/purchases/{id}")
     public ResponseEntity<?> deletePurchase(@PathVariable("id") int id) {
         queryService.deletePurchase(id);
-        return ResponseEntity.ok("Client deleted");
+        return ResponseEntity.ok("Purchase deleted");
     }
 
 }

@@ -25,4 +25,13 @@ public class SaleLine implements Serializable {
 
     @Column(name = "cantidadvendida")
     private int quantity;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        SaleLine saleLine = (SaleLine) o;
+        return quantity == saleLine.quantity &&
+                idProduct.equals(saleLine.idProduct);
+    }
 }
