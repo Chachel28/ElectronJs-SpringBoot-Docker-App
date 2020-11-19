@@ -39,4 +39,16 @@ public class Staff implements Serializable {
     @ManyToOne(targetEntity = PositionStaff.class, optional = false)
     @JoinColumn(name = "idpuesto", referencedColumnName = "idpuesto")
     private PositionStaff positionStaff;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Staff staff = (Staff) o;
+        return telephone == staff.telephone &&
+                name.equals(staff.name) &&
+                email.equals(staff.email) &&
+                password.equals(staff.password) &&
+                positionStaff.equals(staff.positionStaff);
+    }
 }
