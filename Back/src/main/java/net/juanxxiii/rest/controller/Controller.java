@@ -331,7 +331,6 @@ public class Controller {
 
     //Other things
     @PostMapping("/login")
-    @CrossOrigin(origins = "localhost:8080")
     public ResponseEntity<?> login(@RequestBody Staff email) {
         Staff staff = queryService.getStaffByEmail(email.getEmail());
         if (staff != null) {
