@@ -3,7 +3,7 @@ function validate_login(){
     const email = document.getElementById("email");
     const pass = document.getElementById("password");
     const form = document.getElementById("form-login")
-    form.addEventListener('submit', async (e) => {
+    form.addEventListener('submit', (e) => {
         let messages = [];
 
         if(pass.length <= 6){
@@ -15,11 +15,11 @@ function validate_login(){
             method: 'POST',
             headers:{            
                 "Content-Type": "application/json",
-                "Accept": "application/json"
+                "User-Agent": "alex"
             },
             body: JSON.stringify(body)
         }
-        await fetch(url, getInit)
+        fetch(url, getInit)
         .then(response => response.json)
         .then(response => {
             console.log(response)

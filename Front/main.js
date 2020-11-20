@@ -15,7 +15,7 @@ function createWindow () {
     win.loadFile('login.html')
 
     // Abre las herramientas de desarrollo (DevTools).
-    // win.webContents.openDevTools()
+    win.webContents.openDevTools()
 }
 
 // Este método se llamará cuando Electron haya finalizado
