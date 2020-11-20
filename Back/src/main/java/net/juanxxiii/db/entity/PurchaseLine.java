@@ -19,11 +19,19 @@ public class PurchaseLine implements Serializable {
     @Column(name = "idcompra")
     private int idPurchase;
 
-    @org.springframework.data.annotation.Transient
     @ManyToOne(optional = false, cascade = CascadeType.ALL)
     @JoinColumn(name = "idproducto", referencedColumnName = "idproducto")
     private Product idProduct;
 
     @Column(name = "cantidadcomprada")
     private int quantity;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        PurchaseLine purchaseLine = (PurchaseLine) o;
+        return quantity == purchaseLine.quantity &&
+                idProduct.equals(purchaseLine.idProduct);
+    }
 }

@@ -34,8 +34,10 @@ public class Supplier implements Serializable {
 
     @OneToMany(targetEntity = SupplierTelephone.class, mappedBy = "supplier", fetch = FetchType.LAZY)
     private List<SupplierTelephone> telephones;
+
     @OneToMany(targetEntity = SupplierDirection.class, mappedBy = "supplier", fetch = FetchType.LAZY)
     private List<SupplierDirection> directions;
+
     @OneToMany(targetEntity = Purchase.class, mappedBy = "supplier", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Purchase> purchases;
 }

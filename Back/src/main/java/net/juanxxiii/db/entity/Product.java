@@ -11,7 +11,7 @@ import java.util.Objects;
 @Getter
 @Setter
 @Entity
-@Table(name = "productos")
+@Table(name ="productos")
 public class Product implements Serializable {
 
     public Product() {

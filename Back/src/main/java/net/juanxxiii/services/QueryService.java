@@ -26,7 +26,6 @@ public class QueryService {
     private final PurchaseLineRepository purchaseLineRepository;
     private final SupplierTelephoneRepository supplierTelephoneRepository;
     private final SupplierDirectionRepository supplierDirectionRepository;
-    private final PurchaseRepository purchaseRepository;
 
 
     @Autowired
@@ -43,8 +42,6 @@ public class QueryService {
                         SupplierTelephoneRepository supplierTelephoneRepository,
                         SupplierDirectionRepository supplierDirectionRepository,
                         PurchaseRepository purchaseRepository,
-                        ReceiptRepository receiptRepository,
-                        PurchaseRepository purchaseRepository,
                         PurchaseLineRepository purchaseLineRepository) {
         this.clientRepository = clientRepository;
         this.supplierRepository = supplierRepository;
@@ -58,7 +55,6 @@ public class QueryService {
         this.receiptRepository = receiptRepository;
         this.supplierTelephoneRepository = supplierTelephoneRepository;
         this.supplierDirectionRepository = supplierDirectionRepository;
-        this.purchaseRepository = purchaseRepository;
         this.purchaseRepository = purchaseRepository;
         this.purchaseLineRepository = purchaseLineRepository;
     }
@@ -263,7 +259,7 @@ public class QueryService {
         if (purchases != null) {
             purchases.forEach(purchase -> {
                 purchase.setSupplier(id);
-                purchaseRepository.save(purchase);
+                savePurchase(purchase);
             });
         }
         return supplierRepository.findById(id).orElse(null);
@@ -728,9 +724,9 @@ public class QueryService {
                                     purchaseLineRepository.save(purchaseLine);
                                 }
                             });
-                    purchaseLines.forEach(saleLine -> {
-                        if (!newPurchase.getPurchaseLines().contains(saleLine)) {
-                            saleLineRepository.deleteById(saleLine.getId());
+                    purchaseLines.forEach(purchaseLine -> {
+                        if (!newPurchase.getPurchaseLines().contains(purchaseLine)) {
+                            purchaseLineRepository.deleteById(purchaseLine.getId());
                         }
                     });
                     updatePurchaseStaff(newPurchase, id, purchase);
@@ -756,7 +752,7 @@ public class QueryService {
             if (sRepo == null) {
                 sRepo = staffRepository.save(newPurchase.getStaff());
             }
-            saleRepository.updateIdStaff(sRepo.getIdStaff(), id);
+            purchaseRepository.updateIdStaff(sRepo.getIdStaff(), id);
         }
     }
 
@@ -784,7 +780,7 @@ public class QueryService {
                         updatePurchaseReceipt(newPurchase, id, purchase);
                     }
                     if (newPurchase.getSupplier() != 0) {
-                        saleRepository.updateSale(newPurchase.getSupplier(), id);
+                        purchaseRepository.updatePurchase(newPurchase.getSupplier(), id);
                     }
                     return 1;
                 })

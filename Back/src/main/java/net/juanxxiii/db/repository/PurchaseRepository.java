@@ -13,11 +13,18 @@ public interface PurchaseRepository extends JpaRepository<Purchase, Integer> {
     @Query("SELECT MAX(p.id) FROM Purchase p")
     int lastId();
 
+    @Query("UPDATE Purchase p SET p.supplier = :supplier WHERE p.id = :id")
+    int updatePurchase(@Param("supplier") int supplier,@Param("id") int id);
+
     @Modifying
     @Transactional
-    @Query(value = "UPDATE compras SET idFactura=:idfactura WHERE idCompra=:id",nativeQuery = true)
-    void updateIdReceipt(int id, int idfactura);
+    @Query(value = "UPDATE sge_moviles.compras SET idPersonal=:idpersonal WHERE idCompra=:id",nativeQuery = true)
+    void updateIdStaff(@Param("idpersonal") int idStaff, @Param("id") int id);
 
-    @Query("UPDATE Purchase p SET p.supplier = :supplier WHERE p.id = :id")
-    int updatePurchase(@Param("supplier") int supplier, @Param("id") int id);
+    @Modifying
+    @Transactional
+    @Query(value = "UPDATE sge_moviles.compras SET idFactura=:idfactura WHERE idCompra=:id",nativeQuery = true)
+    void updateIdReceipt(@Param("idfactura")int idReceipt,@Param("id") int id1);
+
+
 }
