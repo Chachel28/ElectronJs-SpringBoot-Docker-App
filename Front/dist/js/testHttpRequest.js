@@ -26,3 +26,4 @@ async function apiTestProducts() {
 
 
 /*Para parsear un JSON hay que hacer JSON.parse(myObject) */
+
