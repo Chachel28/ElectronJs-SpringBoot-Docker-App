@@ -8,6 +8,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -44,4 +45,6 @@ public interface StaffRepository extends JpaRepository<Staff, Integer> {
 
     @Query("select s from Staff s where s.name = :name")
     Optional<Staff> findByName(@Param("name")String name);
+
+    List<Staff> findByEmail(String name);
 }
