@@ -331,8 +331,8 @@ public class Controller {
 
     //Other things
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody String email) {
-        Staff staff = queryService.getStaffByEmail(email);
+    public ResponseEntity<?> login(@RequestBody Staff email) {
+        Staff staff = queryService.getStaffByEmail(email.getEmail());
         if (staff != null) {
             return ResponseEntity.ok(staff);
         } else {

@@ -642,8 +642,9 @@ public class QueryService {
     }
 
     public Staff getStaffByEmail(String email) {
+        log.info(email);
         staffRepository.findAll()
-                .forEach(e -> log.info(e.toString()));
+                .forEach(e -> log.info(e.getEmail()));
         return staffRepository.findAll().stream()
                 .filter(e -> e.getEmail().equalsIgnoreCase(email))
                 .findFirst()
