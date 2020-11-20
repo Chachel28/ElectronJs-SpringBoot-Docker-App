@@ -1,6 +1,5 @@
 package net.juanxxiii.db.repository;
 
-import net.juanxxiii.db.entity.PositionStaff;
 import net.juanxxiii.db.entity.Staff;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;

@@ -1,20 +1,29 @@
-async function validate_login(){
-    let url = "localhost:8080/api/v1/login";
-    let email = document.getElementById("email").value;
-    let pass = document.getElementById("password").value;
-    let body = {email: email}
-    let getInit = {
-        method: "GET",
-        headers:{            
-            "Content-Type": "application/json",
-            "Accept": "application/json"
-        },
-        body: JSON.stringify(body)
-    }
-    document.getElementById("access").setAttribute("href", "views/index.html");
-    /*await fetch(url, getInit)
-    .then(response => response.json)
-    .then(response => {
+function validate_login(){
+    const url = "localhost:8080/api/v1/login";
+    const email = document.getElementById("email");
+    const pass = document.getElementById("password");
+    const form = document.getElementById("form-login")
+    form.addEventListener('submit', async (e) => {
+        let messages = [];
 
-    });*/
+        if(pass.length <= 6){
+            messages.push("La contraseña debe contener al menos 6 caracteres.")
+        }
+
+        let body = {email: email.value}
+        let getInit = {
+            method: 'POST',
+            headers:{            
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            },
+            body: JSON.stringify(body)
+        }
+        await fetch(url, getInit)
+        .then(response => response.json)
+        .then(response => {
+            console.log(response)
+        });
+        //location.href = "views/index.html"
+    })
 }

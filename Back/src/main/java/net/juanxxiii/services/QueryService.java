@@ -1,5 +1,6 @@
 package net.juanxxiii.services;
 
+import lombok.extern.java.Log;
 import net.juanxxiii.db.entity.*;
 import net.juanxxiii.db.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import java.util.List;
 import java.util.Objects;
 
 @Service
+@Log
 public class QueryService {
 
     private final ClientRepository clientRepository;
@@ -637,5 +639,14 @@ public class QueryService {
                         .requireNonNull(purchaseRepository
                                 .findById(id)
                                 .orElse(null)));
+    }
+
+    public Staff getStaffByEmail(String email) {
+        staffRepository.findAll()
+                .forEach(e -> log.info(e.toString()));
+        return staffRepository.findAll().stream()
+                .filter(e -> e.getEmail().equalsIgnoreCase(email))
+                .findFirst()
+                .orElse(null);
     }
 }

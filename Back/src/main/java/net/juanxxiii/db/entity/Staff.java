@@ -51,4 +51,16 @@ public class Staff implements Serializable {
                 password.equals(staff.password) &&
                 positionStaff.equals(staff.positionStaff);
     }
+
+    @Override
+    public String toString() {
+        return "Staff{" +
+                "idStaff=" + idStaff +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", telephone=" + telephone +
+                ", positionStaff=" + positionStaff +
+                '}';
+    }
 }

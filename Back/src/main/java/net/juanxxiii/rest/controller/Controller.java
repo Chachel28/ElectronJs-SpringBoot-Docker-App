@@ -329,4 +329,14 @@ public class Controller {
         return ResponseEntity.ok("Purchase deleted");
     }
 
+    //Other things
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestBody String email) {
+        Staff staff = queryService.getStaffByEmail(email);
+        if (staff != null) {
+            return ResponseEntity.ok(staff);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 }
