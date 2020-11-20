@@ -23,4 +23,14 @@ async function apiTestProducts() {
   .then(response => console.log(response));
 }
 
+$.ajax({
+    type: "GET",
+    url: "http://localhost:8080/api/v1/products",
+    data: "data",
+    dataType: "List<Products>",
+    success: function (response) {
+        
+    }
+});
+
 /*Para parsear un JSON hay que hacer JSON.parse(myObject) */
