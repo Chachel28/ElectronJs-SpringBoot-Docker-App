@@ -377,4 +377,15 @@ public class Controller {
         return ResponseEntity.ok("Purchase deleted");
     }
 
+    //Other things
+    @PostMapping("/login")
+    @CrossOrigin(origins = "localhost:8080")
+    public ResponseEntity<?> login(@RequestBody Staff email) {
+        Staff staff = queryService.getStaffByEmail(email.getEmail());
+        if (staff != null) {
+            return ResponseEntity.ok(staff);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 }

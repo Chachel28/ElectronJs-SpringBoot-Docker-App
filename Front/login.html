@@ -23,14 +23,13 @@
             <form id="form-login">
                 <div class="form-group">
                     <label>Correo corporativo</label>
-                    <input type="text" class="form-control" placeholder="usuario@ejemplo.net" id="email">
+                    <input type="text" class="form-control" placeholder="usuario@ejemplo.net" id="email" required>
                 </div>
                 <div class="form-group">
                     <label>Contraseña</label>
-                    <input type="password" class="form-control" placeholder="Contraseña" id="password">
+                    <input type="password" class="form-control" placeholder="Contraseña" id="password" required>
                 </div>
-                <button type="button" class="btn btn-black" onclick="validate_login()">Acceder</button>
-                <input type="button" onclick="validate_login()" value="DALE">
+                <button type="submit" class="btn btn-black" onclick="validate_login()">Acceder</button>
             </form>
         </div>
     </div>

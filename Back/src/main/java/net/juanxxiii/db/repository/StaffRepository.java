@@ -1,6 +1,5 @@
 package net.juanxxiii.db.repository;
 
-import net.juanxxiii.db.entity.PositionStaff;
 import net.juanxxiii.db.entity.Staff;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -9,6 +8,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -45,4 +45,6 @@ public interface StaffRepository extends JpaRepository<Staff, Integer> {
 
     @Query("select s from Staff s where s.name = :name")
     Optional<Staff> findByName(@Param("name")String name);
+
+    List<Staff> findByEmail(String name);
 }

@@ -3,8 +3,9 @@ const { app, BrowserWindow } = require('electron')
 function createWindow () {
     // Crea la ventana del navegador.
     const win = new BrowserWindow({
-        width: 800,
-        height: 600,
+        darkTheme:true,
+        fullscreen:true,
+        resizable:false,
         webPreferences: {
             nodeIntegration: true
         }
@@ -14,7 +15,7 @@ function createWindow () {
     win.loadFile('login.html')
 
     // Abre las herramientas de desarrollo (DevTools).
-    // win.webContents.openDevTools()
+    win.webContents.openDevTools()
 }
 
 // Este método se llamará cuando Electron haya finalizado
