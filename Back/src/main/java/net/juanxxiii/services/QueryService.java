@@ -142,7 +142,7 @@ public class QueryService {
                             });
                     sales.forEach(sale -> {
                         if (!newClient.getSales().contains(sale)) {
-                            saleRepository.deleteById(sale.getId());
+                            deleteSale(sale.getId());
                         }
                     });
                     return clientRepository.updateClient(newClient.getFullName(), newClient.getDni(), newClient.getEmail(), newClient.getIban(), id);
@@ -204,7 +204,7 @@ public class QueryService {
                                 });
                         client.getSales().forEach(sale -> {
                             if (!newClient.getSales().contains(sale)) {
-                                saveSale(sale);
+                                deleteSale(sale.getId());
                             }
                         });
                     }

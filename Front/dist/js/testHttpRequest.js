@@ -21,16 +21,8 @@ async function apiTestProducts() {
     await fetch('http://localhost:8080/api/v1/products')
   .then(response => response.json())
   .then(response => console.log(response));
+  console.log("hola");
 }
 
-$.ajax({
-    type: "GET",
-    url: "http://localhost:8080/api/v1/products",
-    data: "data",
-    dataType: "List<Products>",
-    success: function (response) {
-        
-    }
-});
 
 /*Para parsear un JSON hay que hacer JSON.parse(myObject) */
