@@ -145,6 +145,11 @@ public class Controller {
         }
     }
 
+    @GetMapping("/lastproducts")
+    public ResponseEntity<List<Product>> getTwentyLastProducts() {
+        return ResponseEntity.ok(queryService.getLastProducts());
+    }
+
     @PutMapping("/products/{id}")
     public ResponseEntity<?> updateProduct(@RequestBody Product product, @PathVariable int id) {
         int value = queryService.updateProduct(product, id);

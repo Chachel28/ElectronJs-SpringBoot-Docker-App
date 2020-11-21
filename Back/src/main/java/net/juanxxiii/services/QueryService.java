@@ -306,6 +306,10 @@ public class QueryService {
         return productRepository.findById(id).orElse(null);
     }
 
+    public List<Product> getLastProducts() {
+        return productRepository.getLastProducts();
+    }
+
     public int updateProduct(Product product, int id) {
         return productRepository.updateProduct(product.getName(),
                 product.getDescription(),
@@ -638,4 +642,6 @@ public class QueryService {
                                 .findById(id)
                                 .orElse(null)));
     }
+
+
 }
