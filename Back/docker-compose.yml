@@ -3,7 +3,6 @@ services:
   db:
     container_name: db-sge
     image: mysql:latest
-    restart: always
     environment:
       MYSQL_DATABASE: 'sge_moviles'
       MYSQL_USER: 'SGE_admin'
