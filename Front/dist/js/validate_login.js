@@ -1,3 +1,5 @@
+//const { dialog } = require("electron");
+
 async function validate_login(){
     const url = "http://localhost:8080/api/v1/login";
     const email = document.getElementById("email");
@@ -20,12 +22,23 @@ async function validate_login(){
             if(pass.value == result.password){
                 location.href = "views/index.html";
             }else{
-                //notificacion de contraseña erronea
+                await notifyDialog('Contraseña errónea')
             }
         })
         .catch(() => {
-            //noticiacion de datos erroneos
+            await notifyDialog('Algunos datos son erróneos')
         })
 
+    });
+}
+// función para enseñar notificaciones en Electron
+async function notifyDialog (message) {
+    let options = {
+        buttons: ["Yes","No","Cancel"],
+        message: message,
+        title: 'Application Error'
+    };
+    dialog.showMessageBox(null,options,response => {
+        console.log(response)
     });
 }
