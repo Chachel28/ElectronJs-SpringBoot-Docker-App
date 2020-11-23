@@ -5,7 +5,6 @@ function createWindow () {
     const win = new BrowserWindow({
         darkTheme:true,
         fullscreen:true,
-        resizable:false,
         webPreferences: {
             nodeIntegration: true
         }

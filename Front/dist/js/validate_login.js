@@ -6,7 +6,7 @@ async function validate_login(){
     let body = {email: email.value}
     let postInit = {
         method: 'POST',
-        headers:{            
+        headers:{
             'Content-Type': 'application/json',
             'Accept': 'application/json'
         },
