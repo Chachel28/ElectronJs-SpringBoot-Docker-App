@@ -8,6 +8,8 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Integer> {
     @Transactional
@@ -44,4 +46,8 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
     @Modifying
     @Query("UPDATE Product p SET p.stock=:stock WHERE p.id=:id")
     int updateProductStock(@Param("stock")int stock, @Param("id") int id);
+
+    @Query(value = "SELECT * FROM productos ORDER BY idProducto DESC LIMIT 20",
+            nativeQuery = true)
+    List<Product> getLastProducts();
 }

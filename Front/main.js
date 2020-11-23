@@ -7,7 +7,10 @@ function createWindow () {
         fullscreen:true,
         resizable:false,
         webPreferences: {
-            nodeIntegration: true
+            nodeIntegration: true,
+            allowRunningInsecureContent: true,
+            worldSafeExecuteJavaScript: true,
+            contextIsolation: true
         }
     })
 

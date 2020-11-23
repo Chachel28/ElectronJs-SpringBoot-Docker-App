@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.xml.ws.Response;
 import java.util.List;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/api/v1")
 public class Controller {
@@ -191,6 +192,11 @@ public class Controller {
         } else {
             return ResponseEntity.notFound().build();
         }
+    }
+
+    @GetMapping("/lastproducts")
+    public ResponseEntity<List<Product>> getTwentyLastProducts() {
+        return ResponseEntity.ok(queryService.getLastProducts());
     }
 
     @PutMapping("/products/{id}")
@@ -379,7 +385,6 @@ public class Controller {
 
     //Other things
     @PostMapping("/login")
-    @CrossOrigin(origins = "localhost:8080")
     public ResponseEntity<?> login(@RequestBody Staff email) {
         Staff staff = queryService.getStaffByEmail(email.getEmail());
         if (staff != null) {

@@ -465,6 +465,10 @@ public class QueryService {
         return productRepository.findById(id).orElse(null);
     }
 
+    public List<Product> getLastProducts() {
+        return productRepository.getLastProducts();
+    }
+
     public int updateProduct(Product product, int id) {
         return productRepository.updateProduct(product.getName(),
                 product.getDescription(),
@@ -797,11 +801,9 @@ public class QueryService {
                                 .findById(id)
                                 .orElse(null)));
     }
-
     public Staff getStaffByEmail(String email) {
-        log.info(email);
         staffRepository.findByEmail(email)
-                .forEach(e -> log.info(e.getEmail()));
+                .forEach(e -> log.info(e.toString()));
         return staffRepository.findByEmail(email).stream()
                 .findFirst()
                 .orElse(null);
