@@ -12,7 +12,7 @@
       integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
       crossorigin="anonymous"></script>
 </head>
-<body>
+<body onload="loadClient()">
     <div class="container-fluid">
         <nav class="navbar navbar-expand-md navbar-dark myNavbar">
             <a class="navbar-brand" href="../index.html">
@@ -32,7 +32,7 @@
             <div class="collapse navbar-collapse pr-5" id="navbarNavDropdown">
               <ul class="navbar-nav">
                 <li class="nav-item">
-                  <a class="nav-link" href="../index.html"
+                  <a class="nav-link" href="index.html"
                     >Inicio <span class="sr-only">(current)</span></a
                   >
                 </li>
@@ -51,28 +51,7 @@
           <section class="row my-2 mr-2">
               <aside class="col-4 aside">
                   <h3 class="h1main my-3">ÚLTIMOS CLIENTES</h3>
-                  <ul>
-                      <a href=""><li><i class="fas fa-portrait mr-2"></i>Lorem ipsum dolor sit amet consectetur adipisicing elit.</li></a>
-                      <a href=""><li><i class="fas fa-portrait mr-2"></i>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</li></a>
-                      <a href=""><li><i class="fas fa-portrait mr-2"></i>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</li></a>
-                      <a href=""><li><i class="fas fa-portrait mr-2"></i>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</li></a>
-                      <a href=""><li><i class="fas fa-portrait mr-2"></i>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</li></a>
-                      <a href=""><li><i class="fas fa-portrait mr-2"></i>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</li></a>
-                      <a href=""><li><i class="fas fa-portrait mr-2"></i>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</li></a>
-                      <a href=""><li><i class="fas fa-portrait mr-2"></i>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</li></a>
-                      <a href=""><li><i class="fas fa-portrait mr-2"></i>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</li></a>
-                      <a href=""><li><i class="fas fa-portrait mr-2"></i>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</li></a>
-                      <a href=""><li><i class="fas fa-portrait mr-2"></i>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</li></a>
-                      <a href=""><li><i class="fas fa-portrait mr-2"></i>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</li></a>
-                      <a href=""><li><i class="fas fa-portrait mr-2"></i>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</li></a>
-                      <a href=""><li><i class="fas fa-portrait mr-2"></i>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</li></a>
-                      <a href=""><li><i class="fas fa-portrait mr-2"></i>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</li></a>
-                      <a href=""><li><i class="fas fa-portrait mr-2"></i>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</li></a>
-                      <a href=""><li><i class="fas fa-portrait mr-2"></i>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</li></a>
-                      <a href=""><li><i class="fas fa-portrait mr-2"></i>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</li></a>
-                      <a href=""><li><i class="fas fa-portrait mr-2"></i>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</li></a>
-                      <a href=""><li><i class="fas fa-portrait mr-2"></i>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</li></a>
-                      <a href=""><li><i class="fas fa-portrait mr-2"></i>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</li></a>
+                  <ul id="LastClientList">
                   </ul>
               </aside>
               <section class="col-8 row my-2 justify-content-center">
@@ -93,20 +72,20 @@
                   <div class="col-9">
                    <div class="client row ml-2">
                     <span class="border"></span>
-                    <div class="col-12" style="margin-top: 10px;"><h4 class="display-5 text-center">Nombre del Cliente</h4></div>
+                    <div class="col-12" style="margin-top: 10px;"><h4 class="display-5 text-center" id="NombreCliente"></h4></div>
                     <hr class="text-white">
-                    <div class="col-3">ID</div>
-                    <div class="col-3">DNI</div>
-                    <div class="col-3">email</div>
-                    <div class="col-3">IBAN</div>
-                    <div class="col-6 py-2">teléfonos</div>
-                    <div class="col-6 py-2">direcciones</div>
+                    <div class="col-3" id="id">ID: </div>
+                    <div class="col-3" id="dni">DNI: </div>
+                    <div class="col-3" id="email">EMAIL: </div>
+                    <div class="col-3" id="iban">IBAN: </div>
+                    <div class="col-6 py-2" id="telefonos">TELEFONO: </div>
+                    <div class="col-6 py-2" id="direcciones">DIRECCION: </div>
                    </div>
                     <div class="collapse my-4" id="collapseExample">
                       <form>
                         <div class="form-row">
                           <div class="form-group col-6">
-                            <label for="inputEmail4">Email</label>
+                            <label for="inputEmail4">AÑADIR CLIENTE (EMAIL)</label>
                             <input type="email" class="form-control" id="inputEmail4" placeholder="ejemplo@gmail.com">
                           </div>
                           <div class="form-group col-6">
@@ -140,29 +119,29 @@
                         <div class="form-row">
                           <div class="form-group col-6">
                             <label for="inputEmail4">Email</label>
-                            <input type="email" class="form-control" id="inputEmail4" placeholder="ejemplo@gmail.com">
+                            <input type="email" class="form-control" id="inputEmail2" placeholder="ejemplo@gmail.com">
                           </div>
                           <div class="form-group col-6">
                             <label for="inputCompletName">Nombre Completo</label>
-                            <input type="text" class="form-control" id="inputCompletName">
+                            <input type="text" class="form-control" id="inputCompleteName2">
                           </div>
                         </div>
                         <div class="form-group">
                           <label for="inputIBAN">IBAN</label>
-                          <input type="text" class="form-control" id="inputIBAN" placeholder="ES80 ....">
+                          <input type="text" class="form-control" id="inputIBAN2" placeholder="ES80 ....">
                         </div>
                         <div class="form-group">
                           <label for="inputDNI">DNI/NIE</label>
-                          <input type="text" class="form-control" id="inputDNI" >
+                          <input type="text" class="form-control" id="inputDNI2" >
                         </div>
                         <div class="form-row">
                           <div class="form-group col-6">
                             <label for="inputTelephone">Teléfono</label>
-                            <input type="text" class="form-control" id="inputTelephone">
+                            <input type="text" class="form-control" id="inputTelephone2">
                           </div>
                           <div class="form-group col-6">
                             <label for="inputDirection">Dirección</label>
-                            <input type="text" class="form-control" id="inputDirection">
+                            <input type="text" class="form-control" id="inputDirection2">
                           </div>
                         </div>
                         <button type="submit" class="btn btn2">Modificar</button>
@@ -201,6 +180,7 @@
               </div>
           </section>
     </div>
+    <script src="../dist/js/clientConections.js"></script>
     <script src="../assets/bootstrap-4.5.3-dist/js/bootstrap.min.js"></script>
     <script
       src="https://code.jquery.com/jquery-3.5.1.slim.min.js"

@@ -22,17 +22,14 @@ async function validate_login(){
             if(pass.value == result.password){
                 location.href = "views/index.html";
             }else{
-                await notifyDialog('Contraseña errónea')
+                console.log('Ha fallado algo')
             }
-        })
-        .catch(() => {
-            await notifyDialog('Algunos datos son erróneos')
         })
 
     });
 }
 // función para enseñar notificaciones en Electron
-async function notifyDialog (message) {
+function notifyDialog (message) {
     let options = {
         buttons: ["Yes","No","Cancel"],
         message: message,
