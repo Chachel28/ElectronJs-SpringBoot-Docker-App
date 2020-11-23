@@ -10,7 +10,7 @@ import java.util.Objects;
 @Getter
 @Setter
 @Entity
-@Table(name = "telefonoscliente")
+@Table(name = "telefonos_cliente")
 public class ClientTelephone implements Serializable {
 
     @Id
