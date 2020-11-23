@@ -26,6 +26,9 @@ public class QueryService {
     private final ReceiptRepository receiptRepository;
     private final PurchaseRepository purchaseRepository;
     private final PurchaseLineRepository purchaseLineRepository;
+    private final SupplierTelephoneRepository supplierTelephoneRepository;
+    private final SupplierDirectionRepository supplierDirectionRepository;
+
 
     @Autowired
     public QueryService(ClientRepository clientRepository,
@@ -38,6 +41,8 @@ public class QueryService {
                         SaleLineRepository saleLineRepository,
                         ProductRepository productRepository,
                         ReceiptRepository receiptRepository,
+                        SupplierTelephoneRepository supplierTelephoneRepository,
+                        SupplierDirectionRepository supplierDirectionRepository,
                         PurchaseRepository purchaseRepository,
                         PurchaseLineRepository purchaseLineRepository) {
         this.clientRepository = clientRepository;
@@ -50,6 +55,8 @@ public class QueryService {
         this.saleLineRepository = saleLineRepository;
         this.productRepository = productRepository;
         this.receiptRepository = receiptRepository;
+        this.supplierTelephoneRepository = supplierTelephoneRepository;
+        this.supplierDirectionRepository = supplierDirectionRepository;
         this.purchaseRepository = purchaseRepository;
         this.purchaseLineRepository = purchaseLineRepository;
     }
@@ -192,9 +199,6 @@ public class QueryService {
                                 clientDirectionRepository.deleteById(direction.getId());
                             }
                         });
-                        client.getDirections().stream()
-                                .filter(direction -> !newClient.getDirections().contains(direction))
-                                .forEach(direction -> clientDirectionRepository.deleteById(direction.getId()));
                     }
                     if (newClient.getSales() != null) {
                         newClient.getSales()
@@ -224,11 +228,164 @@ public class QueryService {
     }
 
     //Supplier queryList
+    public Supplier saveSupplier(Supplier newSupplier) {
+        List<SupplierTelephone> telephones = null;
+        List<SupplierDirection> directions = null;
+        List<Purchase> purchases = null;
+        if (!newSupplier.getTelephones().isEmpty()) {
+            telephones = newSupplier.getTelephones();
+            newSupplier.setTelephones(null);
+        }
+        if (!newSupplier.getDirections().isEmpty()) {
+            directions = newSupplier.getDirections();
+            newSupplier.setDirections(null);
+        }
+        if (!newSupplier.getPurchases().isEmpty()) {
+            purchases = newSupplier.getPurchases();
+            newSupplier.setPurchases(null);
+        }
+        supplierRepository.save(newSupplier);
+        int id = supplierRepository.lastId();
+        if (telephones != null) {
+            telephones.forEach(telephone -> {
+                telephone.setSupplier(id);
+                supplierTelephoneRepository.save(telephone);
+            });
+        }
+        if (directions != null) {
+            directions.forEach(direction -> {
+                direction.setSupplier(id);
+                supplierDirectionRepository.save(direction);
+            });
+        }
+        if (purchases != null) {
+            purchases.forEach(purchase -> {
+                purchase.setSupplier(id);
+                savePurchase(purchase);
+            });
+        }
+        return supplierRepository.findById(id).orElse(null);
+    }
+
+    public List<Supplier> getSupplierList() {
+        return supplierRepository
+                .findAll();
+    }
+
     public Supplier getSupplier(int id) {
         return supplierRepository
                 .findById(id)
                 .orElse(null);
     }
+
+    public int updateSupplier(Supplier newSupplier, int id) {
+        return supplierRepository.findById(id)
+                .map(supplier -> {
+                    List<SupplierTelephone> telephones = supplier.getTelephones();
+                    List<SupplierDirection> directions = supplier.getDirections();
+                    List<Purchase> purchases = supplier.getPurchases();
+                    newSupplier.getTelephones()
+                            .forEach(telephone -> {
+                                if (!telephones.contains(telephone)) {
+                                    supplierTelephoneRepository.save(telephone);
+                                }
+                            });
+                    telephones.forEach(telephone -> {
+                        if (!newSupplier.getTelephones().contains(telephone)) {
+                            supplierTelephoneRepository.deleteById(telephone.getId());
+                        }
+                    });
+                    newSupplier.getDirections()
+                            .forEach(direction -> {
+                                if (!directions.contains(direction)) {
+                                    supplierDirectionRepository.save(direction);
+                                }
+                            });
+                    directions.forEach(sale -> {
+                        if (!newSupplier.getDirections().contains(directions)) {
+                            supplierDirectionRepository.deleteById(sale.getId());
+                        }
+                    });
+                    newSupplier.getPurchases()
+                            .forEach(purchase -> {
+                                if (!purchases.contains(purchase)) {
+                                    purchaseRepository.save(purchase);
+                                }
+                            });
+                    purchases.forEach(sale -> {
+                        if (!newSupplier.getPurchases().contains(sale)) {
+                            purchaseRepository.deleteById(sale.getId());
+                        }
+                    });
+                    return supplierRepository.updateSupplier(newSupplier.getFullName(), newSupplier.getDni(), newSupplier.getEmail(), newSupplier.getId());
+                })
+                .orElse(-1);
+    }
+
+    public int partialUpdateSupplier(Supplier newSupplier, int id) {
+        return supplierRepository.findById(id)
+                .map(supplier -> {
+                    if (newSupplier.getFullName() != null) {
+                        supplierRepository.updateSupplierName(newSupplier.getFullName(), id);
+                    }
+                    if (newSupplier.getDni() != null) {
+                        supplierRepository.updateSupplierDni(newSupplier.getDni(), id);
+                    }
+                    if (newSupplier.getEmail() != null) {
+                        supplierRepository.updateSupplierEmail(newSupplier.getEmail(), id);
+                    }
+                    if (newSupplier.getTelephones() != null) {
+                        newSupplier.getTelephones().forEach(supplierTelephone -> {
+                            if (!supplier.getTelephones().contains(supplierTelephone)) {
+                                supplierTelephone.setSupplier(supplier.getId());
+                                supplierTelephoneRepository.save(supplierTelephone);
+                            }
+                        });
+                        supplier.getTelephones().forEach(telephone -> {
+                            if (!newSupplier.getTelephones().contains(telephone)) {
+                                supplierTelephoneRepository.deleteById(telephone.getId());
+                            }
+                        });
+                    }
+                    if (newSupplier.getDirections() != null) {
+                        newSupplier.getDirections().forEach(supplierDirection -> {
+                            if (!supplier.getDirections().contains(supplierDirection)) {
+                                supplierDirection.setSupplier(supplier.getId());
+                                supplierDirectionRepository.save(supplierDirection);
+                            }
+                        });
+                        supplier.getDirections().forEach(direction -> {
+                            if (!newSupplier.getDirections().contains(direction)) {
+                                supplierDirectionRepository.deleteById(direction.getId());
+                            }
+                        });
+                    }
+                    if (newSupplier.getPurchases() != null) {
+                        newSupplier.getPurchases()
+                                .forEach(purchase -> {
+                                    if (!supplier.getPurchases().contains(purchase)) {
+                                        purchase.setSupplier(supplier.getId());
+                                        purchaseRepository.save(purchase);
+                                    }
+                                });
+                        supplier.getPurchases().forEach(purchase -> {
+                            if (!newSupplier.getPurchases().contains(purchase)) {
+                                purchaseRepository.deleteById(purchase.getId());
+                            }
+                        });
+                    }
+                    return 1;
+                }).orElse(-1);
+    }
+
+    public void deleteSupplier(int id) {
+        supplierRepository
+                .delete(Objects
+                        .requireNonNull(supplierRepository
+                                .findById(id)
+                                .orElse(null)));
+    }
+
 
     //Staff queryList
     public Staff saveStaff(Staff staff) {
@@ -573,9 +730,9 @@ public class QueryService {
                                     purchaseLineRepository.save(purchaseLine);
                                 }
                             });
-                    purchaseLines.forEach(saleLine -> {
-                        if (!newPurchase.getPurchaseLines().contains(saleLine)) {
-                            saleLineRepository.deleteById(saleLine.getId());
+                    purchaseLines.forEach(purchaseLine -> {
+                        if (!newPurchase.getPurchaseLines().contains(purchaseLine)) {
+                            purchaseLineRepository.deleteById(purchaseLine.getId());
                         }
                     });
                     updatePurchaseStaff(newPurchase, id, purchase);
@@ -601,7 +758,7 @@ public class QueryService {
             if (sRepo == null) {
                 sRepo = staffRepository.save(newPurchase.getStaff());
             }
-            saleRepository.updateIdStaff(sRepo.getIdStaff(), id);
+            purchaseRepository.updateIdStaff(sRepo.getIdStaff(), id);
         }
     }
 
@@ -629,7 +786,7 @@ public class QueryService {
                         updatePurchaseReceipt(newPurchase, id, purchase);
                     }
                     if (newPurchase.getSupplier() != 0) {
-                        saleRepository.updateSale(newPurchase.getSupplier(), id);
+                        purchaseRepository.updatePurchase(newPurchase.getSupplier(), id);
                     }
                     return 1;
                 })

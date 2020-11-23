@@ -12,6 +12,9 @@ import java.util.List;
 @Entity
 @Table(name = "compras")
 public class Purchase implements Serializable{
+    public Purchase() {
+        this.supplier=0;
+    }
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idcompra")
@@ -25,10 +28,21 @@ public class Purchase implements Serializable{
     @JoinColumn(name = "idpersonal", referencedColumnName = "idpersonal")
     private Staff staff;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "idfactura", referencedColumnName = "idfactura")
     private Receipt receipt;
 
     @OneToMany(targetEntity = PurchaseLine.class, mappedBy = "idPurchase", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<PurchaseLine> purchaseLines;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Purchase purchase = (Purchase) o;
+        return supplier == purchase.supplier &&
+                staff.equals(purchase.staff) &&
+                receipt.equals(purchase.receipt);
+    }
+
 }

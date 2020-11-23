@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.xml.ws.Response;
 import java.util.List;
 
 @CrossOrigin
@@ -73,10 +74,57 @@ public class Controller {
     }
 
     //Supplier Mapping
-    @GetMapping("/supplier/{id}")
-    public Supplier getSupplier(@PathVariable("id") int id) {
-        return queryService.getSupplier(id);
+    @PostMapping("/supplier")
+    public ResponseEntity<Supplier> newSupplier(@RequestBody Supplier newSupplier) {
+        Supplier supplier = queryService.saveSupplier(newSupplier);
+        if (supplier != null) {
+            return ResponseEntity.ok(supplier);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
+
+    @GetMapping("/supplier")
+    public ResponseEntity<List<Supplier>> getSupplierList() {
+        return ResponseEntity.ok(queryService.getSupplierList());
+    }
+
+    @GetMapping("/supplier/{id}")
+    public ResponseEntity<?> getSupplier(@PathVariable("id") int id) {
+        Supplier supplier = queryService.getSupplier(id);
+        if (supplier != null) {
+            return ResponseEntity.ok(supplier);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @PutMapping("/supplier/{id}")
+    public ResponseEntity<?> updateSupplier(@RequestBody Supplier newSupplier, @PathVariable("id") int id) {
+        int supplier = queryService.updateSupplier(newSupplier, id);
+        if (supplier != -1) {
+            return ResponseEntity.ok("Supplier updated");
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @PatchMapping("/supplier/{id}")
+    public ResponseEntity<?> partialUpdateSupplier(@RequestBody Supplier supplier, @PathVariable("id") int id) {
+        int value = queryService.partialUpdateSupplier(supplier, id);
+        if (value != -1) {
+            return ResponseEntity.ok("Supplier partially updated");
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @DeleteMapping("/supplier/{id}")
+    public ResponseEntity<?> deleteSupplier(@PathVariable("id") int id) {
+        queryService.deleteSupplier(id);
+        return ResponseEntity.ok("Supplier deleted");
+    }
+
 
     //Staff Mapping
     @PostMapping("/staffs")

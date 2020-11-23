@@ -18,11 +18,11 @@ public interface SaleRepository extends JpaRepository<Sale, Integer> {
 
     @Modifying
     @Transactional
-    @Query(value = "UPDATE ventas SET idPersonal=:idpersonal WHERE idVenta=:id",nativeQuery = true)
+    @Query(value = "UPDATE sge_moviles.ventas SET idPersonal=:idpersonal WHERE idVenta=:id",nativeQuery = true)
     void updateIdStaff(@Param("idpersonal") int idStaff, @Param("id") int id);
 
     @Modifying
     @Transactional
-    @Query(value = "UPDATE ventas SET idFactura=:idfactura WHERE idVenta=:id",nativeQuery = true)
+    @Query(value = "UPDATE sge_moviles.ventas SET idFactura=:idfactura WHERE idVenta=:id",nativeQuery = true)
     void updateIdReceipt(@Param("idfactura")int idReceipt,@Param("id") int id1);
 }
