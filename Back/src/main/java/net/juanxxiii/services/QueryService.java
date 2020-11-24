@@ -808,4 +808,8 @@ public class QueryService {
                 .findFirst()
                 .orElse(null);
     }
+
+    public List<PositionStaff> getPossitionStaffList() {
+        return positionStaffRepository.findAll();
+    }
 }
