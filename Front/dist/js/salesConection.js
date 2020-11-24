@@ -10,7 +10,6 @@ async function loadSalesList(){
     await fetch(url, getInit)
     .then(response => response.json())
     .then(response => {
-        console.log(response)
         let final = 1;
         if (response.length > 20){
             final = 20;
@@ -19,7 +18,7 @@ async function loadSalesList(){
         }
         for (let i = 0; i < final; i++) {
             let a = document.createElement('a');
-            let urlClient = 'clients.html?id=' + response[i].client;
+            let urlClient = 'sales.html?id=' + response[i].id + '&idClient=' + response[i].client;
             a.setAttribute('href', urlClient);
 
             let li = document.createElement('li');
@@ -34,5 +33,27 @@ async function loadSalesList(){
 
             document.getElementById('LastClientList').appendChild(a);
         }
+    })
+}
+
+async function loadSaleClient(){
+    const querystring = location.search;
+    const params = new URLSearchParams(querystring)
+    let id = params.get("id");
+    let idClient = params.get('idClient');
+    if(idClient == undefined) idClient = 1;
+    let url = 'http://localhost:8080/api/v1/clients/' + idClient; 
+    let getInit = {
+        method:'GET',
+        headers:{
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        }
+    }
+    console.log(id)
+    await fetch(url, getInit)
+    .then(response => response.json())
+    .then(response => {
+        console.log(response)
     })
 }
