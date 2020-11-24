@@ -1,13 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,600;1,100;1,200;1,300;1,400;1,500;1,600&display=swap');
 
 /* VARIABLES CSS*/
+
 :root {
     --color_body: #232427;
     --color_caja: #2a2b2f;
     --color_border_caja: #1e1f23;
-    --color_letra_content: rgba(255,255,255,0.05);
-    --color_letrah3_content: rgba(255,255,255,0.5);
-    --main_font:  'Poppins', sans-serif;
+    --color_letra_content: rgba(255, 255, 255, 0.05);
+    --color_letrah3_content: rgba(255, 255, 255, 0.5);
+    --main_font: 'Poppins', sans-serif;
     --color_corporative_first: #009e81;
     --color_corporative_second: #00b594;
     --color_corporative_third: #1C3D36;
@@ -17,41 +18,36 @@
     --color_gray: #c8c8c8;
 }
 
+
 /* ESTILOS UNIVERSALES*/
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: var(--main_font);
-
 }
 
 body {
-
     min-height: 100vh;
     background: var(--color_gray);
 }
 
 
-
 /* ESTILOS DEL CONTENEDOR */
 
-
- .Mycard {
+.Mycard {
     position: relative;
     min-width: 320px;
     height: 440px;
     justify-content: center;
     background-color: var(--color_caja);
-    box-shadow: inset 5px 5px 5px rgba(0, 0, 0, 0.2),
-                inset -5px -5px 15px rgba(255, 255, 255, 0.1),
-                5px 5px 15px rgba(0, 0, 0, 0.3),
-                -5px -5px 15px rgba(255, 255, 255, 0.1);
+    box-shadow: inset 5px 5px 5px rgba(0, 0, 0, 0.2), inset -5px -5px 15px rgba(255, 255, 255, 0.1), 5px 5px 15px rgba(0, 0, 0, 0.3), -5px -5px 15px rgba(255, 255, 255, 0.1);
     border-radius: 15px;
     margin: 30px;
 }
 
- .Mycard:before {
+.Mycard:before {
     position: absolute;
     content: '';
     top: 0;
@@ -61,7 +57,7 @@ body {
     background: rgba(255, 255, 255, 0.1);
 }
 
- .Mycard .box {
+.Mycard .box {
     position: absolute;
     top: 20px;
     left: 20px;
@@ -78,7 +74,7 @@ body {
     overflow: hidden;
 }
 
- .Mycard .box:before {
+.Mycard .box:before {
     position: absolute;
     content: '';
     top: 0;
@@ -89,34 +85,32 @@ body {
     pointer-events: none;
 }
 
- .Mycard .box:hover {
+.Mycard .box:hover {
     transform: translateY(-50px);
     box-shadow: 0 40px 70px rgba(0, 0, 0, 0.5);
 }
 
- .Mycard .box .content {
+.Mycard .box .content {
     padding: 20px;
     text-align: center;
-
 }
 
- .Mycard .box .content h2 {
+.Mycard .box .content h2 {
     position: absolute;
     top: -10px;
     right: 30px;
     font-size: 8em;
     color: var(--color_letra_content);
-
 }
 
- .Mycard .box .content h3 {
+.Mycard .box .content h3 {
     font-size: 1.8em;
     color: var(--color_letrah3_content);
     z-index: 1;
     transition: 0.5s;
 }
 
- .Mycard .box .content p {
+.Mycard .box .content p {
     font-size: 16px;
     font-weight: 300;
     color: var(--color_letrah3_content);
@@ -124,7 +118,7 @@ body {
     transition: 0.5s;
 }
 
- .Mycard .box .content a {
+.Mycard .box .content a {
     position: relative;
     display: inline-block;
     padding: 8px 20px;
@@ -135,7 +129,6 @@ body {
     color: #000;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
-
 
 .btn1 {
     background-color: var(--color_corporative_first);
@@ -149,15 +142,17 @@ body {
     width: 100%;
 }
 
+
 /*ESTILOS DEL LOGIN*/
-.body-login{
+
+.body-login {
     font-family: "Lato", sans-serif;
-    display:contents;
+    display: contents;
     justify-content: left;
     flex-wrap: wrap;
 }
 
-.main-head{
+.main-head {
     height: 150px;
     background: #FFF;
 }
@@ -169,90 +164,83 @@ body {
     text-align: center;
 }
 
-
 .main {
     padding: 0px 10px;
 }
 
-.logo{
+.logo {
     height: 150px;
     width: 150px;
     margin-bottom: 15%;
 }
 
-.login-main-text{
+.login-main-text {
     margin-top: 20%;
     padding: 60px;
     color: #fff;
 }
 
-.login-main-text h2{
+.login-main-text h2 {
     font-weight: 300;
 }
 
-.btn-black{
+.btn-black {
     background-color: #000 !important;
     color: #fff;
 }
 
 @media screen and (max-height: 450px) {
-    .sidenav {padding-top: 15px;}
+    .sidenav {
+        padding-top: 15px;
+    }
 }
 
 @media screen and (max-width: 450px) {
-
-    .login-form{
+    .login-form {
         margin-top: 70%;
     }
-
 }
 
-@media screen and (min-width: 768px){
-    .main{
+@media screen and (min-width: 768px) {
+    .main {
         margin-left: 40%;
     }
-
-    .sidenav{
+    .sidenav {
         width: 40%;
         position: fixed;
         z-index: 1;
         top: 0;
         left: 0;
     }
-
-    .login-form{
+    .login-form {
         margin-top: 70%;
         padding-left: 30px;
     }
-
 }
 
-.login-main-text{
+.login-main-text {
     margin-top: 20%;
     padding: 60px;
     color: #fff;
 }
 
-.login-main-text h2{
+.login-main-text h2 {
     font-weight: 300;
 }
 
-.btn-black{
+.btn-black {
     background-color: #000 !important;
     color: #fff;
 }
 
-/* SALES.HTML INICIO */
 
+/* SALES.HTML INICIO */
 
 .aside {
     padding: 0.5%;
     border: 2px solid rgba(255, 255, 255, 0.1);
     border-radius: 1em;
-    box-shadow: inset 5px 5px 5px rgba(0, 0, 0, 0.2),
-                inset -5px -5px 15px rgba(255, 255, 255, 0.1),
-                5px 5px 15px rgba(0, 0, 0, 0.3),
-                -5px -5px 15px rgba(255, 255, 255, 0.1);
+    box-shadow: inset 5px 5px 5px rgba(0, 0, 0, 0.2), inset -5px -5px 15px rgba(255, 255, 255, 0.1), 5px 5px 15px rgba(0, 0, 0, 0.3), -5px -5px 15px rgba(255, 255, 255, 0.1);
     background-color: var(--color_corporative_third);
     height: 100vh;
     position: relative;
@@ -261,12 +249,8 @@ body {
 .mainBlock {
     background-color: var(--color_caja);
     border-radius: 1em;
-    box-shadow: inset 5px 5px 5px rgba(0, 0, 0, 0.2),
-                inset -5px -5px 15px rgba(255, 255, 255, 0.1),
-                5px 5px 15px rgba(0, 0, 0, 0.3),
-                -5px -5px 15px rgba(255, 255, 255, 0.1);
+    box-shadow: inset 5px 5px 5px rgba(0, 0, 0, 0.2), inset -5px -5px 15px rgba(255, 255, 255, 0.1), 5px 5px 15px rgba(0, 0, 0, 0.3), -5px -5px 15px rgba(255, 255, 255, 0.1);
     height: auto;
-
 }
 
 .navbar-nav li {
@@ -283,8 +267,8 @@ body {
     text-shadow: var(--color_corporative_second);
     margin-bottom: 1em;
     margin: 0 0.5em;
-
 }
+
 #btnSellOperations:hover {
     font-weight: bolder;
     box-shadow: 2px 2px 0 var(--color_corporative_second);
@@ -305,7 +289,7 @@ body {
     text-align: center;
 }
 
-.aside > a {
+.aside>a {
     position: relative;
     display: inline-block;
     padding: 8px 20px;
@@ -324,7 +308,7 @@ body {
     margin-top: 2em;
 }
 
-.aside > a:hover {
+.aside>a:hover {
     font-weight: bolder;
     box-shadow: 2px 2px 0 var(--color_corporative_second);
     font-size: 16px;
@@ -342,7 +326,6 @@ body {
 .aside ul li:hover {
     background-color: var(--color_corporative_first);
     border-radius: 1em;
-
 }
 
 .card {
@@ -352,7 +335,6 @@ body {
 
 .card img {
     width: 60%;
-
 }
 
 .card a {
@@ -374,9 +356,13 @@ body {
 .collapse .card-body {
     background-color: var(--color_caja);
 }
+
+
 /* SALES.HTML FIN */
 
+
 /* INICIO SALESOPERATION.HTML*/
+
 .aside {
     background-color: var(--color_border_caja);
     border: 2px solid #8b8b8b;
@@ -399,7 +385,10 @@ body {
 .table tr:hover {
     background-color: var(--color_corporative_first);
 }
+
+
 /* FIN SALESOPERATION.HTML*/
+
 
 /* INICIO CLIENTS.HTML*/
 
@@ -410,7 +399,7 @@ form button:hover {
     transition: 0.5s;
 }
 
-.collapse > a:hover {
+.collapse>a:hover {
     font-weight: bolder;
     box-shadow: 2px 2px 0 var(--color_corporative_first);
     font-size: 16px;
@@ -420,17 +409,17 @@ form button:hover {
 .client {
     background-color: var(--color_corporative_second);
     border-radius: 15px;
-    box-shadow: inset 5px 5px 5px rgba(0, 0, 0, 0.2),
-                inset -5px -5px 15px rgba(255, 255, 255, 0.1),
-                5px 5px 15px rgba(0, 0, 0, 0.3),
-                -5px -5px 15px rgba(255, 255, 255, 0.1);
+    box-shadow: inset 5px 5px 5px rgba(0, 0, 0, 0.2), inset -5px -5px 15px rgba(255, 255, 255, 0.1), 5px 5px 15px rgba(0, 0, 0, 0.3), -5px -5px 15px rgba(255, 255, 255, 0.1);
 }
 
-.client > div {
+.client>div {
     text-align: center;
     font-weight: 600;
 }
+
+
 /* FIN CLIENTS.HTML*/
+
 
 /* ALLSTAFF.HTML*/
 
@@ -444,5 +433,6 @@ form button:hover {
     font-size: 16px;
     justify-content: center;
 }
-/* ALLSTAFF.HTML*/
 
+
+/* ALLSTAFF.HTML*/
