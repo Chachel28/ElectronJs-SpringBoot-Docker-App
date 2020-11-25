@@ -45,7 +45,7 @@ async function loadProduct() {
         .then(response => response.json())
         .then(response => {
             let nameProduct = document.getElementById('nombreProducto');
-            nameProduct.innerHTML = nameProduct.innerHTML + response.name;
+            nameProduct.innerHTML = response.name;
             let idProduct = document.getElementById('idProducto')
             idProduct.innerHTML = idProduct.innerHTML + response.id;
             let tipo = document.getElementById('tipoProducto')
@@ -61,7 +61,7 @@ async function loadProduct() {
 
             let nameModificar = document.getElementById('inputProduct')
             nameModificar.value = response.name;
-            let descripcionModificar = document.getElementById('inputProduct')
+            let descripcionModificar = document.getElementById('inputDescription')
             descripcionModificar.value = response.description;
             let tipoModificar = document.getElementById('inputTipo')
             tipoModificar.value = response.type;

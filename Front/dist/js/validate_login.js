@@ -18,6 +18,7 @@ async function validate_login() {
         await fetch(url, postInit)
             .then(response => response.json())
             .then(result => {
+                console.log(result)
                 if (pass.value == result.password) {
                     location.href = "views/index.html";
                 } else {
