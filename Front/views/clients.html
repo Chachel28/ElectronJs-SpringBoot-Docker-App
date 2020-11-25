@@ -74,11 +74,11 @@
                         <div class="col-6 py-2" id="direcciones">DIRECCION: </div>
                     </div>
                     <div class="collapse my-4" id="collapseExample">
-                        <form>
+                        <form id="addClient">
                             <div class="form-row">
                                 <div class="form-group col-6">
-                                    <label for="inputEmail4">AÑADIR CLIENTE (EMAIL)</label>
-                                    <input type="email" class="form-control" id="inputEmail4" placeholder="ejemplo@gmail.com">
+                                    <label for="inputEmail">Email</label>
+                                    <input type="email" class="form-control" id="inputEmail" placeholder="ejemplo@gmail.com">
                                 </div>
                                 <div class="form-group col-6">
                                     <label for="inputCompletName">Nombre Completo</label>
@@ -103,40 +103,40 @@
                                     <input type="text" class="form-control" id="inputDirection">
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn2">Añadir</button>
+                            <button type="submit" class="btn btn2" onclick="addClient()">Añadir</button>
                         </form>
                     </div>
                     <div class="collapse my-4" id="collapseExample1">
-                        <form>
+                        <form id="updateClient">
                             <div class="form-row">
                                 <div class="form-group col-6">
-                                    <label for="inputEmail4">Email</label>
+                                    <label for="inputEmail2">Email</label>
                                     <input type="email" class="form-control" id="inputEmail2" placeholder="ejemplo@gmail.com">
                                 </div>
                                 <div class="form-group col-6">
-                                    <label for="inputCompletName">Nombre Completo</label>
+                                    <label for="inputCompleteName2">Nombre Completo</label>
                                     <input type="text" class="form-control" id="inputCompleteName2">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="inputIBAN">IBAN</label>
+                                <label for="inputIBAN2">IBAN</label>
                                 <input type="text" class="form-control" id="inputIBAN2" placeholder="ES80 ....">
                             </div>
                             <div class="form-group">
-                                <label for="inputDNI">DNI/NIE</label>
+                                <label for="inputDNI2">DNI/NIE</label>
                                 <input type="text" class="form-control" id="inputDNI2">
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-6">
-                                    <label for="inputTelephone">Teléfono</label>
+                                    <label for="inputTelephone2">Teléfono</label>
                                     <input type="text" class="form-control" id="inputTelephone2">
                                 </div>
                                 <div class="form-group col-6">
-                                    <label for="inputDirection">Dirección</label>
+                                    <label for="inputDirection2">Dirección</label>
                                     <input type="text" class="form-control" id="inputDirection2">
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn2">Modificar</button>
+                            <button type="submit" class="btn btn2" onclick="updateClient()">Modificar</button>
                         </form>
                     </div>
                     <div class="collapse" id="collapseExample2">

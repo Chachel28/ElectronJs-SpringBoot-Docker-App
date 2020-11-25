@@ -13,7 +13,7 @@ async function validate_login() {
             body: JSON.stringify(body)
         }
         //let dialog = electron.remote.dialog;
-    form.addEventListener('submit', async function(e) {
+    form.addEventListener('submit', async(e) => {
         e.preventDefault();
         await fetch(url, postInit)
             .then(response => response.json())
