@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="">
+
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
@@ -10,33 +11,35 @@
 <link rel="stylesheet" href="dist/css/styles.css">
 
 <!------ Include the above in your HEAD tag ---------->
+
 <body class="body-login">
-<div class="sidenav">
-    <div class="login-main-text my-5">
-        <img src="./resources/logoTemporal.png">
-        <p>Introduce tu correo corporativo y tu contraseña para acceder al sistema de gestión de la empresa.</p>
-    </div>
-</div>
-<div class="main">
-    <div class="col-md-6 col-sm-12">
-        <div class="login-form">
-            <form id="form-login">
-                <div class="form-group">
-                    <label>Correo corporativo</label>
-                    <input type="text" class="form-control" placeholder="usuario@ejemplo.net" id="email" required>
-                </div>
-                <div class="form-group">
-                    <label>Contraseña</label>
-                    <input type="password" class="form-control" placeholder="Contraseña" id="password" required>
-                </div>
-                <button type="submit" class="btn btn-black" onclick="validate_login()">Acceder</button>
-            </form>
+    <div class="sidenav">
+        <div class="login-main-text my-5">
+            <img src="./resources/logoTemporal.png">
+            <p>Introduce tu correo corporativo y tu contraseña para acceder al sistema de gestión de la empresa.</p>
         </div>
     </div>
-</div>
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="assets/bootstrap-4.5.3-dist/js/bootstrap.min.js"></script>
+    <div class="main">
+        <div class="col-md-6 col-sm-12">
+            <div class="login-form">
+                <form id="form-login">
+                    <div class="form-group">
+                        <label>Correo corporativo</label>
+                        <input type="text" class="form-control" placeholder="usuario@ejemplo.net" id="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Contraseña</label>
+                        <input type="password" class="form-control" placeholder="Contraseña" id="password" required>
+                    </div>
+                    <button type="submit" class="btn btn-black" onclick="validate_login()">Acceder</button>
+                </form>
+                <p id="debug" style="color: red; font-weight: bolder;"></p>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="assets/bootstrap-4.5.3-dist/js/bootstrap.min.js"></script>
 </body>
 
 </html>

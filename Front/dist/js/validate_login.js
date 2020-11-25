@@ -1,14 +1,14 @@
 //const { dialog } = require("electron");
 
-async function validate_login(){
+async function validate_login() {
     const url = "http://localhost:8080/api/v1/login";
     const email = document.getElementById("email");
     const pass = document.getElementById("password");
     const form = document.getElementById("form-login")
-    let body = {email: email.value}
+    let body = { email: email.value }
     let postInit = {
         method: 'POST',
-        headers:{
+        headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json'
         },
@@ -17,25 +17,19 @@ async function validate_login(){
     form.addEventListener('submit', async function(e) {
         e.preventDefault();
         await fetch(url, postInit)
-        .then(response => response.json())
-        .then(result => {
-            if(pass.value == result.password){
-                location.href = "views/index.html";
-            }else{
-                console.log('Ha fallado algo')
-            }
-        })
+            .then(response => response.json())
+            .then(result => {
+                if (pass.value == result.password) {
+                    location.href = "views/index.html";
+                } else {
+                    console.log('Ha fallado algo')
+                    let p = document.getElementById('debug');
+                    p.innerHTML = 'Las credenciales no son correctas';
+                }
+            }).catch(() => {
+                let p = document.getElementById('debug');
+                p.innerHTML = 'El usuario no existe en el sistema';
+            })
 
-    });
-}
-// función para enseñar notificaciones en Electron
-function notifyDialog (message) {
-    let options = {
-        buttons: ["Yes","No","Cancel"],
-        message: message,
-        title: 'Application Error'
-    };
-    dialog.showMessageBox(null,options,response => {
-        console.log(response)
     });
 }
