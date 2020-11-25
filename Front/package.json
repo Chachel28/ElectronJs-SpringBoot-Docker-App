@@ -13,6 +13,7 @@
     "electron": "^10.1.6"
   },
   "dependencies": {
-    "ajax": "0.0.4"
+    "ajax": "0.0.4",
+    "node-notifier": "^8.0.0"
   }
 }

@@ -6,7 +6,7 @@ function createWindow () {
         darkTheme:true,
         fullscreen:true,
         webPreferences: {
-            nodeIntegration: true,
+            nodeIntegration: false,
             allowRunningInsecureContent: true,
             worldSafeExecuteJavaScript: true,
             contextIsolation: true
