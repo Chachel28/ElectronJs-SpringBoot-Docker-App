@@ -10,6 +10,7 @@ async function getTwentyLastProducts() {
     await fecth(url, getInit)
         .then(response => response.json())
         .then(response => {
+            console.log(response)
             response.forEach(product => {
                 let ul = document.getElementById('lastProductsList');
                 let a = document.createElement('a');
@@ -22,7 +23,6 @@ async function getTwentyLastProducts() {
                 li.innerHTML = li.innerHTML + product.name + " - " + product.stock;
                 a.appendChild(li)
                 ul.appendChild(a)
-
             });
         })
 
@@ -135,7 +135,11 @@ async function addProduct() {
                 'Accept': 'application/json'
             },
             body: JSON.stringify(data)
+<<<<<<< HEAD
         };
+=======
+        }
+>>>>>>> 635ad5f7d2aa5ee13c2cd2a288de2bc54cdfb440
 
         await fetch(url, postInit)
             .then(response => response.json())
