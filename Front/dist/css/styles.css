@@ -33,6 +33,17 @@ body {
     background: var(--color_gray);
 }
 
+.requestDeleteHidden {
+    background-color: var(--color_gray);
+    border-radius: 12px;
+    width: auto;
+}
+
+.requestDeleteHidden p {
+    font-weight: bolder;
+    color: #000;
+}
+
 
 /* ESTILOS DEL CONTENEDOR */
 
