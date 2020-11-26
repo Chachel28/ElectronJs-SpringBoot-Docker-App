@@ -12,7 +12,7 @@
     <script src="../dist/js/productsApi.js"></script>
 </head>
 
-<body onload="getTwentyLastProducts()">
+<body onload="getTwentyLastProducts(); loadProduct()">
     <div class="container-fluid">
         <nav class="navbar navbar-expand-md navbar-dark myNavbar">
             <a class="navbar-brand" href="../index.html">
@@ -68,15 +68,15 @@
                             <h4 class="display-5 text-center" id="nombreProducto">Nombre del Producto</h4>
                         </div>
                         <hr class="text-white">
-                        <div class="col-3" id="idProducto">ID</div>
-                        <div class="col-3" id="tipoProducto">tipo</div>
-                        <div class="col-3" id="pvpProducto">PVP</div>
-                        <div class="col-3" id="pvrProducto">PVR</div>
-                        <div class="col-8 py-2" id="descripcionProducto">Descripción</div>
-                        <div class="col-4 py-2" id="stockProducto">Stock</div>
+                        <div class="col-3" id="idProducto">ID </div>
+                        <div class="col-3" id="tipoProducto">Tipo </div>
+                        <div class="col-3" id="pvpProducto">PVP </div>
+                        <div class="col-3" id="pvrProducto">PVR </div>
+                        <div class="col-8 py-2" id="descripcionProducto">Descripción </div>
+                        <div class="col-4 py-2" id="stockProducto">Stock </div>
                     </div>
                     <div class="collapse my-4" id="collapseExample">
-                        <form>
+                        <form id="addProduct">
                             <div class="form-row">
                                 <div class="form-group col-6">
                                     <label for="inputProduct">Nombre Producto</label>
@@ -102,14 +102,14 @@
                                 </div>
                                 <div class="form-group col-4">
                                     <label for="inputStock">Stock</label>
-                                    <input type="number" class="form-control" id="inputStock">
+                                    <input type="number" class="form-control" id="inputStockA">
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn2">Añadir</button>
+                            <button type="submit" class="btn btn2" onclick="addProduct()">Añadir</button>
                         </form>
                     </div>
                     <div class="collapse my-4" id="collapseExample1" id="modificacionProducto">
-                        <form>
+                        <form id="updateProduct">
                             <div class="form-row">
                                 <div class="form-group col-6">
                                     <label for="inputProduct">Nombre Producto</label>
@@ -138,15 +138,15 @@
                                     <input type="number" class="form-control" id="inputStock">
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn2">Modificar</button>
+                            <button type="submit" class="btn btn2" onclick="updateProduct()">Modificar</button>
                         </form>
                     </div>
                     <div class="collapse my-3" id="collapseExample2">
-                        <form class="form-inline my-2 my-lg-0">
+                        <form class="form-inline my-2 my-lg-0" id="deleteProduct">
                             <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search">
                             <button class="btn btn1" type="submit">Buscar</button>
                         </form>
-                        <table class="table table-dark my-4">
+                        <table class="table table-dark my-4" id="tableProductsLoad">
                             <thead>
                                 <tr>
                                     <th scope="col">ID</th>
