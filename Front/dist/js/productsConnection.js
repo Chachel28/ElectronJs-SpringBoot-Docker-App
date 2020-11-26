@@ -128,7 +128,7 @@ async function addProduct() {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json'
             },
-            body: JSON.stringify(data);
+            body: JSON.stringify(data)
         }
 
         await fetch(url, postInit)
