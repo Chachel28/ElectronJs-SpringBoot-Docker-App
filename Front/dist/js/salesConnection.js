@@ -96,5 +96,33 @@ async function loadSale() {
             possitionStaff.innerHTML = possitionStaff.innerHTML + response.staff.positionStaff.name;
             let emailStaff = document.getElementById('emailStaff')
             emailStaff.innerHTML = emailStaff.innerHTML + response.staff.email;
+
+            let tBody = document.getElementById('products')
+            response.saleLines.forEach(line => {
+                //line.idProduct
+                let tr = document.createElement('tr');
+                let id = document.createElement('td');
+                id.innerHTML = line.idProduct.id;
+                tr.appendChild(id);
+                let name = document.createElement('td');
+                name.innerHTML = line.idProduct.name;
+                tr.appendChild(name);
+                let description = document.createElement('td');
+                description.innerHTML = line.idProduct.description;
+                tr.appendChild(description);
+                let sellPrice = document.createElement('td');
+                sellPrice.innerHTML = line.idProduct.sellPrice;
+                tr.appendChild(sellPrice);
+                let buyPrice = document.createElement('td');
+                buyPrice.innerHTML = line.idProduct.buyPrice;
+                tr.appendChild(buyPrice);
+                let quantity = document.createElement('td');
+                quantity.innerHTML = line.quantity;
+                tr.appendChild(quantity);
+                let type = document.createElement('td');
+                type.innerHTML = line.idProduct.type;
+                tr.appendChild(type);
+                tBody.appendChild(tr)
+            });
         })
 }

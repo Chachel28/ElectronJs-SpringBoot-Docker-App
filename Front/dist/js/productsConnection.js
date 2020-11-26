@@ -10,6 +10,7 @@ async function getTwentyLastProducts() {
     await fecth(url, getInit)
         .then(response => response.json())
         .then(response => {
+            console.log(response)
             response.forEach(product => {
                 let ul = document.getElementById('lastProductsList');
                 let a = document.createElement('a');
@@ -22,7 +23,6 @@ async function getTwentyLastProducts() {
                 li.innerHTML = li.innerHTML + product.name + " - " + product.stock;
                 a.appendChild(li)
                 ul.appendChild(a)
-
             });
         })
 
