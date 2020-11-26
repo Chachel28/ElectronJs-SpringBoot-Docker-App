@@ -72,6 +72,136 @@ async function loadProduct() {
             let stockModificar = document.getElementById('inputStock')
             stockModificar.value = response.stock;
 
+
+            //Carga del dato en la celda de la tabla
+            let table = document.getElementById('tableProductsLoad');
+            let tblBody = table.getElementsByTagName("tbody");
+            let row = document.createElement('tr');
+            let celda1 = document.createElement('td');
+            celda1.value = response.id;
+            let celda2 = document.createElement('td');
+            celda2.value = response.name;
+            let celda3 = document.createElement('td');
+            celda3.value = response.type;
+            let celda4 = document.createElement('td');
+            celda4.value = response.stock;
+            let celda5 = document.createElement('td');
+            celda5.value = response.sellPrice;
+            let celda6 = document.createElement('td');
+            celda6.value = response.buyPrice;
+
+            tblBody.appendChild(row);
+            table.appendChild(tblBody);
+
         })
+
+}
+
+async function addProduct() {
+    let form = document.getElementById('addProduct');
+    form.addEventListener('submit', async(e) => {
+        e.preventDefault();
+        const querystring = location.search;
+        const params = new URLSearchParams(querystring)
+        let id = params.get("id");
+        if (id == undefined) id = 1
+        let name = document.getElementById('inputProductA');
+        let description = document.getElementById('inputDescriptionA');
+        let tipo = document.getElementById('inputTipoA');
+        let pvp = document.getElementById('inputPVPA');
+        let pvr = document.getElementById('inputPVRA');
+        let stock = document.getElementById('inputStockA');
+
+        let data = {
+            name: name.value,
+            description: description.value,
+            buyPrice: pvr.value,
+            sellPrice: pvp.value,
+            type: tipo.value,
+            stock: stock.value
+        }
+
+        let url = 'http://localhost:8080/api/v1/products'
+        let postInit = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify(data);
+        }
+
+        await fetch(url, postInit)
+            .then(response => response.json())
+            .then(response => console.log(response))
+
+        location.href = 'products.html?id=' + id;
+    })
+}
+
+async function updateProduct() {
+    let form = document.getElementById('updateProduct')
+
+    form.addEventListener('submit', async(e) => {
+        const querystring = location.search;
+        const params = new URLSearchParams(querystring)
+        let id = params.get("id");
+        if (id == undefined) id = 1
+        e.preventDefault();
+        let name = document.getElementById('inputProduct');
+        let description = document.getElementById('inputDescription');
+        let tipo = document.getElementById('inputTipo');
+        let pvp = document.getElementById('inputPVP');
+        let pvr = document.getElementById('inputPVR');
+        let stock = document.getElementById('inputStock');
+
+        let data = {
+            name: name.value,
+            description: description.value,
+            buyPrice: pvr.value,
+            sellPrice: pvp.value,
+            type: tipo.value,
+            stock: stock.value
+        }
+
+        console.log(data)
+
+        let url = 'http://localhost:8080/api/v1/products' + id;
+        let postInit = {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify(data)
+        }
+
+        await fetch(url, postInit)
+            .then(response => console.log(response))
+
+        location.href = 'products.html?id=' + id;
+    })
+}
+
+async function deleteProduct() {
+    let form = document.getElementById('deleteProduct')
+    form.addEventListener('submit', async(e) => {
+        const querystring = location.search;
+        const params = new URLSearchParams(querystring)
+        let id = params.get("id");
+        let url = 'http://localhost:8080/api/v1/products/' + id;
+        let deleteInit = {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            }
+        }
+
+        await fetch(url, deleteInit)
+            .then(response => console.log(response))
+
+        location.href = 'products.html';
+    })
 
 }
