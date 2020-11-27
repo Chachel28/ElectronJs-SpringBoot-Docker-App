@@ -161,6 +161,20 @@ async function updateProduct() {
         let pvp = document.getElementById('inputPVP');
         let pvr = document.getElementById('inputPVR');
         let stock = document.getElementById('inputStock');
+        let tipoGlobal;
+        switch (tipo.value) {
+            case 'SIMPLE':
+                tipoGlobal = 'SIMPLE';
+                break;
+            case 'COMPUESTO':
+                tipoGlobal = 'COMPUESTO';
+                break;
+            case 'RECURSO':
+                tipoGlobal = 'RECURSO';
+            case 'SERVICIO':
+                tipoGlobal = 'SERVICIO';
+                break;
+        }
 
         let data = {
             name: name.value,
