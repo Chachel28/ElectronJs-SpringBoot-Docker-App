@@ -168,4 +168,27 @@ async function updateClient() {
     })
 }
 
+async function deleteProduct() {
+    let form = document.getElementById('deleteClient')
+    form.addEventListener('submit', async(e) => {
+        const querystring = location.search;
+        const params = new URLSearchParams(querystring)
+        let id = params.get("id");
+        let url = 'http://localhost:8080/api/v1/clients/' + id;
+        let deleteInit = {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            }
+        }
+
+        await fetch(url, deleteInit)
+            .then(response => console.log(response))
+
+        location.href = 'clients.html';
+    })
+
+}
+
 // <a href=""><li><i class="fas fa-clipboard mr-2"></i>Lorem ipsum dolor sit amet consectetur</li></a>
