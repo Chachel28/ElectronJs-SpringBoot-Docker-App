@@ -7,7 +7,8 @@ async function getTwentyLastProducts() {
             'Accept': 'application/json'
         }
     }
-    await fecth(url, getInit)
+
+    await fetch(url, getInit)
         .then(response => response.json())
         .then(response => {
             console.log(response)
@@ -75,20 +76,26 @@ async function loadProduct() {
 
             //Carga del dato en la celda de la tabla
             let table = document.getElementById('tableProductsLoad');
-            let tblBody = table.getElementsByTagName("tbody");
+            let tblBody = document.getElementById('bodyTableProducts');
             let row = document.createElement('tr');
             let celda1 = document.createElement('td');
-            celda1.value = response.id;
+            celda1.innerHTML = response.id;
+            row.appendChild(celda1);
             let celda2 = document.createElement('td');
-            celda2.value = response.name;
+            celda2.innerHTML = response.name;
+            row.appendChild(celda2);
             let celda3 = document.createElement('td');
-            celda3.value = response.type;
+            celda3.innerHTML = response.type;
+            row.appendChild(celda3);
             let celda4 = document.createElement('td');
-            celda4.value = response.stock;
+            celda4.innerHTML = response.stock;
+            row.appendChild(celda4);
             let celda5 = document.createElement('td');
-            celda5.value = response.sellPrice;
+            celda5.innerHTML = response.sellPrice;
+            row.appendChild(celda5);
             let celda6 = document.createElement('td');
-            celda6.value = response.buyPrice;
+            celda6.innerHTML = response.buyPrice;
+            row.appendChild(celda6);
 
             tblBody.appendChild(row);
             table.appendChild(tblBody);
@@ -182,10 +189,11 @@ async function updateProduct() {
         location.href = 'products.html?id=' + id;
     })
 }
-
+//TODO: Hacer que deleteProduct() funcione, no hace nada
 async function deleteProduct() {
     let form = document.getElementById('deleteProduct')
     form.addEventListener('submit', async(e) => {
+        e.preventDefault();
         const querystring = location.search;
         const params = new URLSearchParams(querystring)
         let id = params.get("id");
