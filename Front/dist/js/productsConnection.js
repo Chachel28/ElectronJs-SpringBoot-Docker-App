@@ -181,7 +181,7 @@ async function updateProduct() {
             description: description.value,
             buyPrice: pvr.value,
             sellPrice: pvp.value,
-            type: tipo.value,
+            type: tipoGlobal,
             stock: stock.value
         }
 
