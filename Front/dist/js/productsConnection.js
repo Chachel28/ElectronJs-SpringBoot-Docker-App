@@ -227,3 +227,46 @@ async function deleteProduct() {
     })
 
 }
+
+async function loadAllProducts() {
+    let url = 'http://localhost:8080/api/v1/products';
+    let getInit = {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        }
+    }
+    let table = document.getElementById('tableAllProducts');
+    let tblBody = document.getElementById('bodyTableProducts');
+    await fetch(url, getInit)
+    .then(response => response.json())
+    .then (response => {
+        let row = document.createElement('tr');
+        let celda1 = document.createElement('td');
+        celda1.innerHTML = response.id;
+        row.appendChild(celda1);
+        let celda2 = document.createElement('td');
+        celda2.innerHTML = response.name;
+        row.appendChild(celda2);
+        let celda3 = document.createElement('td');
+        celda3.innerHTML = response.description;
+        row.appendChild(celda3);
+        let celda4 = document.createElement('td');
+        celda4.innerHTML = response.sellPrice;
+        row.appendChild(celda4);
+        let celda5 = document.createElement('td');
+        celda5.innerHTML = response.buyPrice;
+        row.appendChild(celda5);
+        let celda6 = document.createElement('td');
+        celda6.innerHTML = response.type;
+        row.appendChild(celda6);
+        let celda7 = document.createElement('td');
+        celda7.innerHTML = response.stock;
+        row.appendChild(celda7);
+
+        tblBody.appendChild(row);
+        table.appendChild(tblBody);
+    })
+
+}
