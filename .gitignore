@@ -1,5 +1,5 @@
 Front/node_modules
-docker
+docker/*
 
 ### VisualStudioCode ###
 .vscode/*

@@ -236,34 +236,39 @@ async function loadStaff() {
         await fetch(url, getInit)
         .then(response => response.json())
         .then (response => {
-            let row = document.createElement('tr');
-            let celda1 = document.createElement('td');
-            celda1.innerHTML = response.idStaff;
-            row.appendChild(celda1);
-            let celda2 = document.createElement('td');
-            celda2.innerHTML = response.name;
-            row.appendChild(celda2);
-            let celda3 = document.createElement('td');
-            celda3.innerHTML = response.email;
-            row.appendChild(celda3);
-            let celda4 = document.createElement('td');
-            celda4.innerHTML = response.telephone;
-            row.appendChild(celda4);
-            let celda5 = document.createElement('td');
-            celda5.innerHTML = response.positionStaff.idPositionStaff;
-            row.appendChild(celda5);
-            let celda6 = document.createElement('td');
-            celda6.innerHTML = response.positionStaff.name;
-            row.appendChild(celda6);
-            let celda7 = document.createElement('td');
-            celda7.innerHTML = response.positionStaff.section;
-            row.appendChild(celda7);
-            let celda8 = document.createElement('td');
-            celda8.innerHTML = response.positionStaff.privilege;
-            row.appendChild(celda8);
 
-            tblBody.appendChild(row);
-            table.appendChild(tblBody);
+            response.forEach(s => {
+                let row = document.createElement('tr');
+                let celda1 = document.createElement('td');
+                celda1.innerHTML = s.idStaff;
+                row.appendChild(celda1);
+                let celda2 = document.createElement('td');
+                celda2.innerHTML = s.name;
+                row.appendChild(celda2);
+                let celda3 = document.createElement('td');
+                celda3.innerHTML = s.email;
+                row.appendChild(celda3);
+                let celda4 = document.createElement('td');
+                celda4.innerHTML = s.telephone;
+                row.appendChild(celda4);
+                let celda5 = document.createElement('td');
+                celda5.innerHTML = s.positionStaff.idPositionStaff;
+                row.appendChild(celda5);
+                let celda6 = document.createElement('td');
+                celda6.innerHTML = s.positionStaff.name;
+                row.appendChild(celda6);
+                let celda7 = document.createElement('td');
+                celda7.innerHTML = s.positionStaff.section;
+                row.appendChild(celda7);
+                let celda8 = document.createElement('td');
+                celda8.innerHTML = s.positionStaff.privilege;
+                row.appendChild(celda8);
+
+                tblBody.appendChild(row);
+                table.appendChild(tblBody);
+            });
+
+            
         })
 
 }
