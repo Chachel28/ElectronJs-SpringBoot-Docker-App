@@ -1,0 +1,33 @@
+version: '3.8'
+services:
+  db-sge:
+    container_name: db-sge
+    image: mysql:latest
+    environment:
+      MYSQL_DATABASE: 'sge_moviles'
+      MYSQL_USER: 'SGE_admin'
+      MYSQL_PASSWORD: 'alejandroanibalpablo'
+      MYSQL_ROOT_PASSWORD: 'root'
+    ports:
+      - '3306:3306'
+    expose:
+      - '3306'
+    volumes:
+      - data:/var/lib/mysql
+    networks:
+      - backend
+  api-sge:
+    container_name: api-sge
+    image: back
+    ports:
+      - '8080:8080'
+    expose:
+      - '8080'
+    depends_on:
+      - db-sge
+    networks:
+      - backend
+volumes:
+  data:
+networks:
+  backend:
