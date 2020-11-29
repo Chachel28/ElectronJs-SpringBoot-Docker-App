@@ -40,10 +40,9 @@ async function loadLastStaffs() {
 async function loadStaff() {
     const querystring = location.search;
     const params = new URLSearchParams(querystring)
-    let id = params.get('id')
     let idStaff = params.get('idStaff');
-    if (id == undefined) id=1;
-    let urlStaff = 'http://localhost:8080/api/v1/clients/' + idStaff;
+    if (idStaff == undefined) idStaff=1;
+    let urlStaff = 'http://localhost:8080/api/v1/staffs/' + idStaff;
     let getInit = {
         method: 'GET',
         headers: {
