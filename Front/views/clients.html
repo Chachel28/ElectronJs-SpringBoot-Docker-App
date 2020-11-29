@@ -143,29 +143,23 @@
                         </form>
                     </div>
                     <div class="collapse" id="collapseExample2">
-                        <form class="form-inline my-2 my-lg-0">
+                        <form class="form-inline my-2 my-lg-0" id="deleteClient">
                             <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search">
-                            <button class="btn btn1" type="submit">Buscar</button>
+                            <button class="btn btn1" type="button">Buscar</button>
+                            <table class="table table-dark my-4">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">ID</th>
+                                        <th scope="col">Nombre</th>
+                                        <th scope="col">Email</th>
+                                        <th scope="col">DNI</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="bodyDelete">
+                                </tbody>
+                            </table>
+                            <button type="submit" class="btn btn2 text-center" onclick="deleteClient()">Borrar</button>
                         </form>
-                        <table class="table table-dark my-4">
-                            <thead>
-                                <tr>
-                                    <th scope="col">ID</th>
-                                    <th scope="col">Nombre</th>
-                                    <th scope="col">Email</th>
-                                    <th scope="col">DNI</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>@mdo</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <a href="" class="btn btn2 text-center">Borrar</a>
                     </div>
                 </div>
             </section>
