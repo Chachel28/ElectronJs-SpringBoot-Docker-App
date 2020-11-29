@@ -14,6 +14,23 @@ async function loadClient() {
     await fetch(url + '/' + id, getInit)
         .then(response => response.json())
         .then(response => {
+            let deleteForm = document.getElementById('bodyDelete');
+            let trDelete = document.createElement('tr')
+                //id - nombre - email - dni
+            let tdId = document.createElement('td')
+            tdId.innerHTML = response.id;
+            trDelete.appendChild(tdId)
+            let tdNombre = document.createElement('td')
+            tdNombre.innerHTML = response.fullName;
+            trDelete.appendChild(tdNombre)
+            let tdEmail = document.createElement('td')
+            tdEmail.innerHTML = response.email;
+            trDelete.appendChild(tdEmail)
+            let tdDni = document.createElement('td')
+            tdDni.innerHTML = response.dni;
+            trDelete.appendChild(tdDni)
+            deleteForm.appendChild(trDelete)
+
             let name = document.getElementById('NombreCliente')
             name.innerHTML = name.innerHTML + response.fullName;
             let inputName = document.getElementById('inputCompleteName2');
@@ -168,7 +185,7 @@ async function updateClient() {
     })
 }
 
-async function deleteProduct() {
+function deleteClient() {
     let form = document.getElementById('deleteClient')
     form.addEventListener('submit', async(e) => {
         const querystring = location.search;
