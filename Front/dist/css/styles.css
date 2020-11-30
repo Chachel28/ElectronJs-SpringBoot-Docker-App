@@ -45,6 +45,14 @@ body {
     margin-top: 10px;
 }
 
+.show-content {
+    border-radius: 39px 39px 39px 39px;
+    background: #00b594;
+    background: linear-gradient(64deg,#00b594 0%, #01a862 80%);
+    box-shadow: 26px 11px 8px 5px rgba(0,0,0,0.79);
+
+}
+
 
 /* ESTILOS DEL CONTENEDOR */
 
@@ -343,7 +351,14 @@ body {
 .card {
     color: white;
     background-color: var(--color_corporative_first);
+    box-shadow: 0 4px 8px 0 #aeaeae;
+    transition: 0.3s;
+    border-radius: 5px;
 }
+
+.card:hover {
+    background-color: var(--color_corporative_second);
+  }
 
 .card img {
     width: 60%;
